@@ -1,5 +1,4 @@
 language: objective-c
 xcode_project: Dox.xcodeproj
-xcode_scheme: DoxTests
 xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone 7
 osx_image: xcode10.2
