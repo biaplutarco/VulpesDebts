@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B20399712294DAD6004BFCC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399702294DAD6004BFCC8 /* AppDelegate.swift */; };
-		B20399732294DAD6004BFCC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399722294DAD6004BFCC8 /* ViewController.swift */; };
+		B20399732294DAD6004BFCC8 /* DebtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399722294DAD6004BFCC8 /* DebtsViewController.swift */; };
 		B20399792294DAD6004BFCC8 /* Dox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B20399772294DAD6004BFCC8 /* Dox.xcdatamodeld */; };
 		B203997B2294DAD9004BFCC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B203997A2294DAD9004BFCC8 /* Assets.xcassets */; };
 		B203997E2294DAD9004BFCC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B203997C2294DAD9004BFCC8 /* LaunchScreen.storyboard */; };
 		B20399892294DAD9004BFCC8 /* DoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399882294DAD9004BFCC8 /* DoxTests.swift */; };
+		B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B51E22985CD50072F61A /* UIColor+AppColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +29,7 @@
 /* Begin PBXFileReference section */
 		B203996D2294DAD6004BFCC8 /* Dox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20399702294DAD6004BFCC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B20399722294DAD6004BFCC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B20399722294DAD6004BFCC8 /* DebtsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsViewController.swift; sourceTree = "<group>"; };
 		B20399782294DAD6004BFCC8 /* Dox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dox.xcdatamodel; sourceTree = "<group>"; };
 		B203997A2294DAD9004BFCC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B203997D2294DAD9004BFCC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +37,7 @@
 		B20399842294DAD9004BFCC8 /* DoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20399882294DAD9004BFCC8 /* DoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoxTests.swift; sourceTree = "<group>"; };
 		B203998A2294DAD9004BFCC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B279B51E22985CD50072F61A /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				B203997C2294DAD9004BFCC8 /* LaunchScreen.storyboard */,
 				B203997F2294DAD9004BFCC8 /* Info.plist */,
 				B20399772294DAD6004BFCC8 /* Dox.xcdatamodeld */,
+				B279B51E22985CD50072F61A /* UIColor+AppColors.swift */,
 			);
 			path = Dox;
 			sourceTree = "<group>";
@@ -102,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				B20399962294DFF6004BFCC8 /* Components */,
-				B20399722294DAD6004BFCC8 /* ViewController.swift */,
+				B20399722294DAD6004BFCC8 /* DebtsViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,7 +252,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B20399732294DAD6004BFCC8 /* ViewController.swift in Sources */,
+				B20399732294DAD6004BFCC8 /* DebtsViewController.swift in Sources */,
+				B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */,
 				B20399712294DAD6004BFCC8 /* AppDelegate.swift in Sources */,
 				B20399792294DAD6004BFCC8 /* Dox.xcdatamodeld in Sources */,
 			);

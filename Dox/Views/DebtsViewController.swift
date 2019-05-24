@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DebtsViewController.swift
 //  Dox
 //
 //  Created by Bia Plutarco on 21/05/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DebtsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
