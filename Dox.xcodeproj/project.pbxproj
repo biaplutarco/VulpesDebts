@@ -14,6 +14,7 @@
 		B203997E2294DAD9004BFCC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B203997C2294DAD9004BFCC8 /* LaunchScreen.storyboard */; };
 		B20399892294DAD9004BFCC8 /* DoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399882294DAD9004BFCC8 /* DoxTests.swift */; };
 		B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B51E22985CD50072F61A /* UIColor+AppColors.swift */; };
+		B279B52122985E470072F61A /* ShadowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B52022985E470072F61A /* ShadowProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		B20399882294DAD9004BFCC8 /* DoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoxTests.swift; sourceTree = "<group>"; };
 		B203998A2294DAD9004BFCC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B279B51E22985CD50072F61A /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
+		B279B52022985E470072F61A /* ShadowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				B203997F2294DAD9004BFCC8 /* Info.plist */,
 				B20399772294DAD6004BFCC8 /* Dox.xcdatamodeld */,
 				B279B51E22985CD50072F61A /* UIColor+AppColors.swift */,
+				B279B52022985E470072F61A /* ShadowProtocol.swift */,
 			);
 			path = Dox;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */,
 				B20399712294DAD6004BFCC8 /* AppDelegate.swift in Sources */,
 				B20399792294DAD6004BFCC8 /* Dox.xcdatamodeld in Sources */,
+				B279B52122985E470072F61A /* ShadowProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
