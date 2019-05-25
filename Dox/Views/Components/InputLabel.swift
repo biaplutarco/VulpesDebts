@@ -9,13 +9,25 @@
 import UIKit
 
 class InputLabel: UILabel {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
-    */
+    
+    convenience init(text: String) {
+        self.init(frame: CGRect.zero)
+        configLabel(text: text)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 
+extension InputLabel {
+    private func configLabel(text: String) {
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+                          NSAttributedString.Key.foregroundColor: UIColor.AppColors.lightGray]
+        let attributedText = NSMutableAttributedString(string: text, attributes: attributes)
+        self.attributedText = attributedText
+    }
 }
