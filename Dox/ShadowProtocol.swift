@@ -14,14 +14,14 @@ protocol ShadowProtocol: class {
 extension ShadowProtocol {
     func configShadowIn(view: UIView, isDark: Bool) {
         view.clipsToBounds = false
-        view.layer.shadowRadius = 22
-        view.layer.shadowOffset = CGSize(width: 0, height: 3)
+        view.layer.shadowRadius = 8
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
         if isDark {
             view.layer.shadowColor = UIColor.AppColors.darkShadow.cgColor
-            view.layer.shadowOpacity = 0.5
+            view.layer.shadowOpacity = 0.8
         } else {
             view.layer.shadowColor = UIColor.AppColors.lightGray.cgColor
-            view.layer.shadowOpacity = 0.25
+            view.layer.shadowOpacity = 0.4
         }
     }
 }

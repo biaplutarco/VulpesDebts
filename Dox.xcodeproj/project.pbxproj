@@ -17,6 +17,8 @@
 		B279B52122985E470072F61A /* ShadowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B52022985E470072F61A /* ShadowProtocol.swift */; };
 		B279B5232298622C0072F61A /* DebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B5222298622C0072F61A /* DebtCell.swift */; };
 		B279B5272298651B0072F61A /* MockLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B5262298651B0072F61A /* MockLabel.swift */; };
+		B279B52D2299A6AA0072F61A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B52C2299A6AA0072F61A /* CardView.swift */; };
+		B279B52F229A05150072F61A /* InputLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B52E229A05150072F61A /* InputLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		B279B52022985E470072F61A /* ShadowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowProtocol.swift; sourceTree = "<group>"; };
 		B279B5222298622C0072F61A /* DebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCell.swift; sourceTree = "<group>"; };
 		B279B5262298651B0072F61A /* MockLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLabel.swift; sourceTree = "<group>"; };
+		B279B52C2299A6AA0072F61A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B279B52E229A05150072F61A /* InputLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +138,10 @@
 		B20399962294DFF6004BFCC8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				B279B5222298622C0072F61A /* DebtCell.swift */,
+				B279B52E229A05150072F61A /* InputLabel.swift */,
 				B279B5262298651B0072F61A /* MockLabel.swift */,
+				B279B52C2299A6AA0072F61A /* CardView.swift */,
+				B279B5222298622C0072F61A /* DebtCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -262,12 +268,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B279B5232298622C0072F61A /* DebtCell.swift in Sources */,
+				B279B52D2299A6AA0072F61A /* CardView.swift in Sources */,
 				B20399732294DAD6004BFCC8 /* DebtsViewController.swift in Sources */,
 				B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */,
 				B279B5272298651B0072F61A /* MockLabel.swift in Sources */,
 				B20399712294DAD6004BFCC8 /* AppDelegate.swift in Sources */,
 				B20399792294DAD6004BFCC8 /* Dox.xcdatamodeld in Sources */,
 				B279B52122985E470072F61A /* ShadowProtocol.swift in Sources */,
+				B279B52F229A05150072F61A /* InputLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
