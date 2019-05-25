@@ -39,7 +39,7 @@ class MockLabel: UILabel {
     private func configLabel(text: String, type: MockLabelType) {
         switch type {
         case .cardDebt:
-            self.attributedText = configAtributedText(text: text, fontSize: 14, color: UIColor.AppColors.gray)
+            self.attributedText = configAtributedText(text: text, fontSize: 12, color: UIColor.AppColors.gray)
         case .button:
             self.attributedText = configAtributedText(text: text, fontSize: 18, color: UIColor.AppColors.lightGray)
         default:
