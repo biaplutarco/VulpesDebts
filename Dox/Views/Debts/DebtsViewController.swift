@@ -123,6 +123,15 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 128
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let paid = UITableViewRowAction(style: .normal, title: "Paid") { (action, indexPath) in
+            //deleted item in indexpath
+        }
+        paid.backgroundColor = UIColor.AppColors.orange
+        
+        return [paid]
+    }
 }
 //SegmentedControl Delegate
 extension DebtsViewController: OneLineSGDelegate {
