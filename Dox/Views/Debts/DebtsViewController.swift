@@ -67,11 +67,10 @@ class DebtsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.darkGray
+        
         tableView.register(DebtCell.self, forCellReuseIdentifier: "cell")
-        
-        configConstraints()
-        
         addButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        configConstraints()
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
@@ -138,11 +137,7 @@ extension DebtsViewController: OneLineSGDelegate {
     }
 }
 //Transitioning Delegate + Button Delegate
-extension DebtsViewController: UIViewControllerTransitioningDelegate, CircleButtonDelegate {
-    func goTo(viewController: UIViewController, from: UIViewController) {
-        present(viewController, animated: true, completion: nil)
-    }
-    
+extension DebtsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present

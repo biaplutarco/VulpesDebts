@@ -50,11 +50,11 @@ class NewDebtViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(NewDebtCell.self, forCellReuseIdentifier: "cell")
         view.backgroundColor = UIColor.AppColors.orange
-        configConstraints()
         
+        tableView.register(NewDebtCell.self, forCellReuseIdentifier: "cell")
         exitButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        configConstraints()
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
