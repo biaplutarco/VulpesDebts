@@ -9,16 +9,50 @@
 import UIKit
 
 class NewDebtCell: UITableViewCell {
+    lazy var mockLabel: MockLabel = {
+        let mockLabel = MockLabel(text: mockLabelTitle, type: .viewNewDebt)
+        mockLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(mockLabel)
+        return mockLabel
+    }()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+    lazy var textField: CardTextField = {
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightGray)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(textField)
+        return textField
+    }()
+    
+    lazy var mockLabelTitle: MockLabelText = {
+        let mockLabelTitle = MockLabelText.error
+        return mockLabelTitle
+    }()
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
+    
+    func setupCell(title: MockLabelText) {
+        self.contentView.backgroundColor = UIColor.AppColors.orange
+        self.mockLabelTitle = title
+        configConstraints()
+    }
+}
 
+extension NewDebtCell {
+    private func configConstraints() {
+        NSLayoutConstraint.activate([
+            mockLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            mockLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
+            mockLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+            mockLabel.heightAnchor.constraint(equalToConstant: 36)
+        ])
+        
+        NSLayoutConstraint.activate([
+            textField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 8),
+            textField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+            textField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+            textField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+        ])
+    }
 }
