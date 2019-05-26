@@ -14,8 +14,6 @@ enum ButtonActionType {
 }
 
 class CircleButton: UIButton {
-    weak var delegate: CircleButtonDelegate?
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
