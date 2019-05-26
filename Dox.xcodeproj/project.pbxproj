@@ -22,6 +22,7 @@
 		B279B531229A0CA90072F61A /* OneLineSC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B530229A0CA90072F61A /* OneLineSC.swift */; };
 		B279B533229A0CBA0072F61A /* OneLineSGDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B532229A0CBA0072F61A /* OneLineSGDelegate.swift */; };
 		B279B53E229A405A0072F61A /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B53D229A405A0072F61A /* CircleButton.swift */; };
+		B279B540229AC3310072F61A /* NewDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B53F229AC3310072F61A /* NewDebtViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		B279B530229A0CA90072F61A /* OneLineSC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneLineSC.swift; sourceTree = "<group>"; };
 		B279B532229A0CBA0072F61A /* OneLineSGDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneLineSGDelegate.swift; sourceTree = "<group>"; };
 		B279B53D229A405A0072F61A /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		B279B53F229AC3310072F61A /* NewDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 		B279B536229A2B8A0072F61A /* NewDebtVC */ = {
 			isa = PBXGroup;
 			children = (
+				B279B53F229AC3310072F61A /* NewDebtViewController.swift */,
 			);
 			path = NewDebtVC;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B279B540229AC3310072F61A /* NewDebtViewController.swift in Sources */,
 				B279B5232298622C0072F61A /* DebtCell.swift in Sources */,
 				B279B52D2299A6AA0072F61A /* CardView.swift in Sources */,
 				B20399732294DAD6004BFCC8 /* DebtsViewController.swift in Sources */,
