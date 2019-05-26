@@ -9,8 +9,15 @@
 import UIKit
 
 class DebtsViewController: UIViewController {
+    lazy var titleLablel: MockLabel = {
+        let label = MockLabel(text: .debts, type: .title)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        return label
+    }()
+    
     lazy var segmentedWidth: CGFloat = {
-        let segmentedWidth = view.frame.width*0.48
+        let segmentedWidth = view.frame.width*0.54
         return segmentedWidth
     }()
     
@@ -48,7 +55,6 @@ class DebtsViewController: UIViewController {
     
     private func configConstraints() {
         NSLayoutConstraint.activate([
-            tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8),
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
@@ -56,9 +62,16 @@ class DebtsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.48),
+            segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.54),
             segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -16),
             segmentedControl.heightAnchor.constraint(equalToConstant: 32)
+        ])
+        
+        NSLayoutConstraint.activate([
+            titleLablel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
+            titleLablel.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
+            titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4)
         ])
     }
 }
