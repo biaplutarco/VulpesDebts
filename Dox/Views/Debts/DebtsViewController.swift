@@ -20,7 +20,6 @@ class DebtsViewController: UIViewController {
         let addButton = CircleButton(image: #imageLiteral(resourceName: "addButton"), type: .add)
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.layer.cornerRadius = 20
-        addButton.delegate = self
         view.addSubview(addButton)
         return addButton
     }()
