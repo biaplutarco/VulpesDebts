@@ -57,6 +57,16 @@ class DebtsViewController: UIViewController {
         return tableView
     }()
     
+    lazy var transition: CircularTransition = {
+        let transition = CircularTransition()
+        return transition
+    }()
+    
+    lazy var circleCenter: CGPoint = {
+        let circleCenter = self.addButton.center
+        return circleCenter
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -108,7 +118,7 @@ class DebtsViewController: UIViewController {
         ])
     }
 }
-
+//TableView Delegate
 extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableViewItems.count
@@ -124,7 +134,7 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
         return 128
     }
 }
-
+//SegmentedControl Delegate
 extension DebtsViewController: OneLineSGDelegate {
     func didChangeTo(index: Int) {
         switch index {
@@ -133,5 +143,36 @@ extension DebtsViewController: OneLineSGDelegate {
         default:
             print("b")
         }
+    }
+}
+//Transitioning Delegate
+extension DebtsViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        
+        transition.presentedViewCenter = view.center
+        transition.presentedViewSize = view.frame.size
+        
+        transition.widthColoredView = self.view.frame.width
+        transition.heightColoredView = self.view.frame.height/0.75
+        
+        transition.startingPoint = circleCenter
+        transition.middlePoint = view.center
+        transition.endPoint = CGPoint(x: view.frame.width, y: 0)
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        
+        transition.widthColoredView = self.view.frame.width
+        transition.heightColoredView = self.view.frame.height/0.75
+        
+        transition.startingPoint = CGPoint(x: view.frame.width, y: 0)
+        transition.middlePoint = view.center
+        transition.endPoint = circleCenter
+        
+        return transition
     }
 }

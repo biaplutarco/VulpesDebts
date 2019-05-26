@@ -27,6 +27,7 @@
 		B279B545229ACAB50072F61A /* CardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B544229ACAB50072F61A /* CardTextField.swift */; };
 		B279B547229ADB200072F61A /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B546229ADB200072F61A /* RectangleButton.swift */; };
 		B279B549229ADBFD0072F61A /* AttributedTextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */; };
+		B279B54B229AED8B0072F61A /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B54A229AED8B0072F61A /* CircularTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		B279B544229ACAB50072F61A /* CardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextField.swift; sourceTree = "<group>"; };
 		B279B546229ADB200072F61A /* RectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
 		B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextProtocol.swift; sourceTree = "<group>"; };
+		B279B54A229AED8B0072F61A /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,9 +132,10 @@
 		B20399932294DFD1004BFCC8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B279B54A229AED8B0072F61A /* CircularTransition.swift */,
 				B279B53D229A405A0072F61A /* CircleButton.swift */,
-				B279B535229A2B6A0072F61A /* DebtsVC */,
-				B279B536229A2B8A0072F61A /* NewDebtVC */,
+				B279B535229A2B6A0072F61A /* Debts */,
+				B279B536229A2B8A0072F61A /* NewDebt */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,22 +165,22 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		B279B535229A2B6A0072F61A /* DebtsVC */ = {
+		B279B535229A2B6A0072F61A /* Debts */ = {
 			isa = PBXGroup;
 			children = (
 				B20399722294DAD6004BFCC8 /* DebtsViewController.swift */,
 				B20399962294DFF6004BFCC8 /* Components */,
 			);
-			path = DebtsVC;
+			path = Debts;
 			sourceTree = "<group>";
 		};
-		B279B536229A2B8A0072F61A /* NewDebtVC */ = {
+		B279B536229A2B8A0072F61A /* NewDebt */ = {
 			isa = PBXGroup;
 			children = (
 				B279B53F229AC3310072F61A /* NewDebtViewController.swift */,
 				B279B541229AC9010072F61A /* Components */,
 			);
-			path = NewDebtVC;
+			path = NewDebt;
 			sourceTree = "<group>";
 		};
 		B279B537229A2BBD0072F61A /* Ultis */ = {
@@ -344,6 +347,7 @@
 				B279B531229A0CA90072F61A /* OneLineSC.swift in Sources */,
 				B279B5272298651B0072F61A /* MockLabel.swift in Sources */,
 				B20399712294DAD6004BFCC8 /* AppDelegate.swift in Sources */,
+				B279B54B229AED8B0072F61A /* CircularTransition.swift in Sources */,
 				B20399792294DAD6004BFCC8 /* Dox.xcdatamodeld in Sources */,
 				B279B52122985E470072F61A /* ShadowProtocol.swift in Sources */,
 				B279B52F229A05150072F61A /* InputLabel.swift in Sources */,
