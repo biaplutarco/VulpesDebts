@@ -24,6 +24,15 @@ class DebtsViewController: UIViewController {
         return addButton
     }()
     
+    lazy var orangeImage: UIImageView = {
+        let orangeImage = UIImageView()
+        orangeImage.image = #imageLiteral(resourceName: "semiCircle")
+        orangeImage.tintColor = UIColor.AppColors.orange
+        orangeImage.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(orangeImage)
+        return orangeImage
+    }()
+    
     lazy var segmentedWidth: CGFloat = {
         let segmentedWidth = view.frame.width*0.54
         return segmentedWidth
@@ -48,6 +57,10 @@ class DebtsViewController: UIViewController {
         return tableView
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var titles = ["to recieve", "to pay"]
     var tableViewItems: [String] = ["Aaaa", "Bbbbb", "Cccc"]
     
@@ -62,13 +75,20 @@ class DebtsViewController: UIViewController {
     private func configConstraints() {
         NSLayoutConstraint.activate([
             titleLablel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
+            titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 58),
             titleLablel.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
             titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4)
-            ])
+        ])
         
         NSLayoutConstraint.activate([
-            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            orangeImage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            orangeImage.rightAnchor.constraint(equalTo: view.rightAnchor),
+            orangeImage.widthAnchor.constraint(equalToConstant: 68),
+            orangeImage.heightAnchor.constraint(equalToConstant: 64)
+        ])
+        
+        NSLayoutConstraint.activate([
+            addButton.rightAnchor.constraint(equalTo: orangeImage.rightAnchor, constant: -12),
             addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 28),
             addButton.heightAnchor.constraint(equalToConstant: 40),
             addButton.widthAnchor.constraint(equalToConstant: 40)
