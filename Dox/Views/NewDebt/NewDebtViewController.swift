@@ -20,6 +20,7 @@ class NewDebtViewController: UIViewController {
         let exitButton = CircleButton(image: #imageLiteral(resourceName: "exitButton"), type: .exit)
         exitButton.translatesAutoresizingMaskIntoConstraints = false
         exitButton.layer.cornerRadius = 20
+        exitButton.isUserInteractionEnabled = true
         view.addSubview(exitButton)
         return exitButton
     }()
@@ -62,6 +63,13 @@ class NewDebtViewController: UIViewController {
     
     private func configConstraints() {
         NSLayoutConstraint.activate([
+            exitButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            exitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            exitButton.heightAnchor.constraint(equalToConstant: 36),
+            exitButton.widthAnchor.constraint(equalToConstant: 36)
+        ])
+    
+        NSLayoutConstraint.activate([
             titleLablel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 58),
             titleLablel.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -24),
@@ -69,21 +77,13 @@ class NewDebtViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            exitButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12),
-            exitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 28),
-            exitButton.heightAnchor.constraint(equalToConstant: 40),
-            exitButton.widthAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        NSLayoutConstraint.activate([
-            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tableView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -12),
+            tableView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -24),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
         
         NSLayoutConstraint.activate([
             saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32),
+            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24),
             saveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.36)
         ])
     }

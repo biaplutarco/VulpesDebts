@@ -29,6 +29,7 @@
 		B279B549229ADBFD0072F61A /* AttributedTextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */; };
 		B279B54B229AED8B0072F61A /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B54A229AED8B0072F61A /* CircularTransition.swift */; };
 		B279B54D229AF1720072F61A /* CircleButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B54C229AF1720072F61A /* CircleButtonDelegate.swift */; };
+		B279B54F229B10550072F61A /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B54E229B10550072F61A /* CustomTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextProtocol.swift; sourceTree = "<group>"; };
 		B279B54A229AED8B0072F61A /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		B279B54C229AF1720072F61A /* CircleButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonDelegate.swift; sourceTree = "<group>"; };
+		B279B54E229B10550072F61A /* CustomTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				B279B54A229AED8B0072F61A /* CircularTransition.swift */,
+				B279B54E229B10550072F61A /* CustomTransition.swift */,
 				B279B53D229A405A0072F61A /* CircleButton.swift */,
 				B279B54C229AF1720072F61A /* CircleButtonDelegate.swift */,
 				B279B535229A2B6A0072F61A /* Debts */,
@@ -337,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B279B54F229B10550072F61A /* CustomTransition.swift in Sources */,
 				B279B545229ACAB50072F61A /* CardTextField.swift in Sources */,
 				B279B547229ADB200072F61A /* RectangleButton.swift in Sources */,
 				B279B540229AC3310072F61A /* NewDebtViewController.swift in Sources */,
