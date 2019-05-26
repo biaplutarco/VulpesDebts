@@ -30,13 +30,14 @@ class CircleButton: UIButton {
 
 extension CircleButton: ShadowProtocol {
     private func configButton(image: UIImage, type: ButtonActionType) {
-        self.configShadowIn(view: self, isDark: true)
         self.setBackgroundImage(image, for: .normal)
         switch type {
         case .add:
             self.transform.rotated(by: 0)
+            self.configShadowIn(view: self, isDark: true)
         default:
             self.transform.rotated(by: .pi/2)
+            self.configShadowIn(view: self, isDark: false)
         }
     }
 }

@@ -13,16 +13,16 @@ enum MockLabelText: String {
     case value = "Value"
     case reason = "Reason"
     case type = "Type"
-    case save = "Save"
     case debts = "Debts"
     case newDebt = "New Debt"
+    case error = "error"
 }
 
 enum MockLabelType {
     case cardDebt
     case viewNewDebt
-    case button
     case title
+    case titleDark
 }
 
 class MockLabel: UILabel {
@@ -40,29 +40,17 @@ class MockLabel: UILabel {
     }
 }
 
-extension MockLabel {
+extension MockLabel: AttributedTextProtocol {
     private func configLabel(text: String, type: MockLabelType) {
         switch type {
         case .cardDebt:
             self.attributedText = configText(text, size: 12, color: UIColor.AppColors.gray, isBold: false)
-        case .button:
-            self.attributedText = configText(text, size: 18, color: UIColor.AppColors.lightGray, isBold: true)
         case .title:
             self.attributedText = configText(text, size: 34, color: UIColor.AppColors.lightGray, isBold: true)
+        case .titleDark:
+            self.attributedText = configText(text, size: 34, color: UIColor.AppColors.darkGray, isBold: true)
         default:
             self.attributedText = configText(text, size: 20, color: UIColor.AppColors.darkGray, isBold: false)
         }
-    }
-    
-    private func configText(_ text: String, size: CGFloat, color: UIColor, isBold: Bool) -> NSMutableAttributedString {
-        var font = UIFont()
-        if isBold == true {
-            font = UIFont.boldSystemFont(ofSize: size)
-        } else {
-            font = UIFont.systemFont(ofSize: size)
-        }
-        let attributes = [NSAttributedString.Key.font: font,
-                          NSAttributedString.Key.foregroundColor: color]
-        return NSMutableAttributedString(string: text, attributes: attributes)
     }
 }

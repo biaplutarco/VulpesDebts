@@ -23,11 +23,8 @@ class InputLabel: UILabel {
     }
 }
 
-extension InputLabel {
+extension InputLabel: AttributedTextProtocol {
     private func configLabel(text: String) {
-        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
-                          NSAttributedString.Key.foregroundColor: UIColor.AppColors.lightGray]
-        let attributedText = NSMutableAttributedString(string: text, attributes: attributes)
-        self.attributedText = attributedText
+        self.attributedText = configText(text, size: 16, color: UIColor.AppColors.lightGray, isBold: false)
     }
 }

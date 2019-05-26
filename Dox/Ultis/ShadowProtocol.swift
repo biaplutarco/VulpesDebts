@@ -20,7 +20,7 @@ extension ShadowProtocol {
             view.layer.shadowColor = UIColor.AppColors.darkShadow.cgColor
             view.layer.shadowOpacity = 0.8
         } else {
-            view.layer.shadowColor = UIColor.AppColors.lightGray.cgColor
+            view.layer.shadowColor = UIColor.AppColors.lighShadow.cgColor
             view.layer.shadowOpacity = 0.4
         }
     }
