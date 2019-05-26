@@ -65,8 +65,8 @@ class NewDebtViewController: UIViewController {
         NSLayoutConstraint.activate([
             exitButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             exitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            exitButton.heightAnchor.constraint(equalToConstant: 36),
-            exitButton.widthAnchor.constraint(equalToConstant: 36)
+            exitButton.heightAnchor.constraint(equalToConstant: 42),
+            exitButton.widthAnchor.constraint(equalToConstant: 42)
         ])
     
         NSLayoutConstraint.activate([

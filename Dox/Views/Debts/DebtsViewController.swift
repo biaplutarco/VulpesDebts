@@ -90,8 +90,8 @@ class DebtsViewController: UIViewController {
         NSLayoutConstraint.activate([
             addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            addButton.heightAnchor.constraint(equalToConstant: 36),
-            addButton.widthAnchor.constraint(equalToConstant: 36)
+            addButton.heightAnchor.constraint(equalToConstant: 42),
+            addButton.widthAnchor.constraint(equalToConstant: 42)
         ])
         
         NSLayoutConstraint.activate([
@@ -124,13 +124,21 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
         return 128
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let paid = UITableViewRowAction(style: .normal, title: "Paid") { (action, indexPath) in
-            //deleted item in indexpath
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+        -> UISwipeActionsConfiguration? {
+        let paid = UIContextualAction(style: .destructive, title: "paid") { (action, view, handler) in
+            self.tableViewItems.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        paid.backgroundColor = UIColor.AppColors.orange
-        
-        return [paid]
+        paid.backgroundColor = UIColor.AppColors.darkGray
+        paid.image = #imageLiteral(resourceName: "paid")
+        let swipeAction = UISwipeActionsConfiguration(actions: [paid])
+        swipeAction.performsFirstActionWithFullSwipe = true
+        return swipeAction
     }
 }
 //SegmentedControl Delegate
