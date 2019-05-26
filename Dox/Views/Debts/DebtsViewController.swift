@@ -20,6 +20,7 @@ class DebtsViewController: UIViewController {
         let addButton = CircleButton(image: #imageLiteral(resourceName: "add+exit"), type: .add)
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.layer.cornerRadius = 20
+        addButton.delegate = self
         view.addSubview(addButton)
         return addButton
     }()
@@ -80,6 +81,16 @@ class DebtsViewController: UIViewController {
         tableView.register(DebtCell.self, forCellReuseIdentifier: "cell")
         
         configConstraints()
+        
+        addButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+    }
+    
+    @objc func buttonTapped(_ sender: UIButton) {
+        let nextVC = NewDebtViewController()
+        nextVC.transitioningDelegate = self
+        nextVC.modalPresentationStyle = .custom
+        transition.color = UIColor.AppColors.orange
+        present(nextVC, animated: true, completion: nil)
     }
     
     private func configConstraints() {
@@ -145,8 +156,12 @@ extension DebtsViewController: OneLineSGDelegate {
         }
     }
 }
-//Transitioning Delegate
-extension DebtsViewController: UIViewControllerTransitioningDelegate {
+//Transitioning Delegate + Button Delegate
+extension DebtsViewController: UIViewControllerTransitioningDelegate, CircleButtonDelegate {
+    func goTo(viewController: UIViewController, from: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
         

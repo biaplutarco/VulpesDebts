@@ -28,6 +28,7 @@
 		B279B547229ADB200072F61A /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B546229ADB200072F61A /* RectangleButton.swift */; };
 		B279B549229ADBFD0072F61A /* AttributedTextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */; };
 		B279B54B229AED8B0072F61A /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B54A229AED8B0072F61A /* CircularTransition.swift */; };
+		B279B54D229AF1720072F61A /* CircleButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B54C229AF1720072F61A /* CircleButtonDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		B279B546229ADB200072F61A /* RectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
 		B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextProtocol.swift; sourceTree = "<group>"; };
 		B279B54A229AED8B0072F61A /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
+		B279B54C229AF1720072F61A /* CircleButtonDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			children = (
 				B279B54A229AED8B0072F61A /* CircularTransition.swift */,
 				B279B53D229A405A0072F61A /* CircleButton.swift */,
+				B279B54C229AF1720072F61A /* CircleButtonDelegate.swift */,
 				B279B535229A2B6A0072F61A /* Debts */,
 				B279B536229A2B8A0072F61A /* NewDebt */,
 			);
@@ -351,6 +354,7 @@
 				B20399792294DAD6004BFCC8 /* Dox.xcdatamodeld in Sources */,
 				B279B52122985E470072F61A /* ShadowProtocol.swift in Sources */,
 				B279B52F229A05150072F61A /* InputLabel.swift in Sources */,
+				B279B54D229AF1720072F61A /* CircleButtonDelegate.swift in Sources */,
 				B279B543229AC9330072F61A /* NewDebtCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

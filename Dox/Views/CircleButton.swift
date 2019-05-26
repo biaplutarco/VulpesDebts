@@ -14,6 +14,8 @@ enum ButtonActionType {
 }
 
 class CircleButton: UIButton {
+    weak var delegate: CircleButtonDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -27,16 +29,14 @@ class CircleButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
+//ShadowProtocol
 extension CircleButton: ShadowProtocol {
     private func configButton(image: UIImage, type: ButtonActionType) {
         self.setBackgroundImage(image, for: .normal)
         switch type {
         case .add:
-            self.transform.rotated(by: 0)
             self.configShadowIn(view: self, isDark: true)
         default:
-            self.transform.rotated(by: .pi/2)
             self.configShadowIn(view: self, isDark: false)
         }
     }
