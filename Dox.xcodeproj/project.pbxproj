@@ -107,10 +107,10 @@
 		B203996F2294DAD6004BFCC8 /* Dox */ = {
 			isa = PBXGroup;
 			children = (
+				B279B537229A2BBD0072F61A /* Ultis */,
 				B20399952294DFE0004BFCC8 /* Models */,
 				B20399942294DFD8004BFCC8 /* ViewModels */,
 				B20399932294DFD1004BFCC8 /* Views */,
-				B279B537229A2BBD0072F61A /* Ultis */,
 				B20399702294DAD6004BFCC8 /* AppDelegate.swift */,
 				B203997A2294DAD9004BFCC8 /* Assets.xcassets */,
 				B203997C2294DAD9004BFCC8 /* LaunchScreen.storyboard */,
@@ -132,10 +132,12 @@
 		B20399932294DFD1004BFCC8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B279B54E229B10550072F61A /* CustomTransition.swift */,
-				B279B53D229A405A0072F61A /* CircleButton.swift */,
 				B279B535229A2B6A0072F61A /* Debts */,
 				B279B536229A2B8A0072F61A /* NewDebt */,
+				B279B52E229A05150072F61A /* InputLabel.swift */,
+				B279B5262298651B0072F61A /* MockLabel.swift */,
+				B279B54E229B10550072F61A /* CustomTransition.swift */,
+				B279B53D229A405A0072F61A /* CircleButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,21 +188,11 @@
 		B279B537229A2BBD0072F61A /* Ultis */ = {
 			isa = PBXGroup;
 			children = (
-				B279B53A229A2E020072F61A /* Label */,
 				B279B51E22985CD50072F61A /* UIColor+AppColors.swift */,
 				B279B52022985E470072F61A /* ShadowProtocol.swift */,
 				B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */,
 			);
 			path = Ultis;
-			sourceTree = "<group>";
-		};
-		B279B53A229A2E020072F61A /* Label */ = {
-			isa = PBXGroup;
-			children = (
-				B279B52E229A05150072F61A /* InputLabel.swift */,
-				B279B5262298651B0072F61A /* MockLabel.swift */,
-			);
-			path = Label;
 			sourceTree = "<group>";
 		};
 		B279B541229AC9010072F61A /* Components */ = {
