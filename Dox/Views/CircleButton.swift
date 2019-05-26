@@ -32,12 +32,15 @@ class CircleButton: UIButton {
 //ShadowProtocol
 extension CircleButton: ShadowProtocol {
     private func configButton(image: UIImage, type: ButtonActionType) {
-        self.setBackgroundImage(image, for: .normal)
         switch type {
         case .add:
             self.configShadowIn(view: self, isDark: true)
+            self.tintColor = UIColor.AppColors.orange
+            
         default:
             self.configShadowIn(view: self, isDark: false)
+            self.tintColor = UIColor.AppColors.darkGray
         }
+        self.setBackgroundImage(image, for: .normal)
     }
 }

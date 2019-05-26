@@ -18,10 +18,10 @@ extension ShadowProtocol {
         view.layer.shadowOffset = CGSize(width: 0, height: 4)
         if isDark {
             view.layer.shadowColor = UIColor.AppColors.darkShadow.cgColor
-            view.layer.shadowOpacity = 0.8
+            view.layer.shadowOpacity = 0.88
         } else {
             view.layer.shadowColor = UIColor.AppColors.lighShadow.cgColor
-            view.layer.shadowOpacity = 0.4
+            view.layer.shadowOpacity = 0.38
         }
     }
 }

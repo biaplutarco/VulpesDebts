@@ -17,7 +17,7 @@ class NewDebtViewController: UIViewController {
     }()
     
     lazy var exitButton: CircleButton = {
-        let exitButton = CircleButton(image: #imageLiteral(resourceName: "add+exit"), type: .exit)
+        let exitButton = CircleButton(image: #imageLiteral(resourceName: "exitButton"), type: .exit)
         exitButton.translatesAutoresizingMaskIntoConstraints = false
         exitButton.layer.cornerRadius = 20
         view.addSubview(exitButton)

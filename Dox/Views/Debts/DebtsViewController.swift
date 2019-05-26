@@ -17,21 +17,12 @@ class DebtsViewController: UIViewController {
     }()
     
     lazy var addButton: CircleButton = {
-        let addButton = CircleButton(image: #imageLiteral(resourceName: "add+exit"), type: .add)
+        let addButton = CircleButton(image: #imageLiteral(resourceName: "addButton"), type: .add)
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.layer.cornerRadius = 20
         addButton.delegate = self
         view.addSubview(addButton)
         return addButton
-    }()
-    
-    lazy var orangeImage: UIImageView = {
-        let orangeImage = UIImageView()
-        orangeImage.image = #imageLiteral(resourceName: "semiCircle")
-        orangeImage.tintColor = UIColor.AppColors.orange
-        orangeImage.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(orangeImage)
-        return orangeImage
     }()
     
     lazy var segmentedWidth: CGFloat = {
@@ -102,14 +93,7 @@ class DebtsViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            orangeImage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            orangeImage.rightAnchor.constraint(equalTo: view.rightAnchor),
-            orangeImage.widthAnchor.constraint(equalToConstant: 68),
-            orangeImage.heightAnchor.constraint(equalToConstant: 64)
-        ])
-        
-        NSLayoutConstraint.activate([
-            addButton.rightAnchor.constraint(equalTo: orangeImage.rightAnchor, constant: -12),
+            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12),
             addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 28),
             addButton.heightAnchor.constraint(equalToConstant: 40),
             addButton.widthAnchor.constraint(equalToConstant: 40)
