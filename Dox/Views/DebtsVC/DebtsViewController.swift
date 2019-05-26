@@ -9,10 +9,15 @@
 import UIKit
 
 class DebtsViewController: UIViewController {
+    lazy var segmentedWidth: CGFloat = {
+        let segmentedWidth = view.frame.width*0.48
+        return segmentedWidth
+    }()
+    
     lazy var segmentedControl: OneLineSC = {
         let segmentedControl = OneLineSC(titles: ["To recieve", "To pay"],
                                          selectorMultiple: 3,
-                                         segmentedWidth: view.frame.width*0.48)
+                                         segmentedWidth: self.segmentedWidth)
         segmentedControl.delegate = self
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segmentedControl)
