@@ -9,6 +9,16 @@
 import UIKit
 
 class DebtsViewController: UIViewController {
+    lazy var segmentedControl: OneLineSC = {
+        let segmentedControl = OneLineSC(titles: ["To recieve", "To pay"],
+                                         selectorMultiple: 3,
+                                         segmentedWidth: view.frame.width*0.48)
+        segmentedControl.delegate = self
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(segmentedControl)
+        return segmentedControl
+    }()
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -28,11 +38,22 @@ class DebtsViewController: UIViewController {
         view.backgroundColor = UIColor.AppColors.darkGray
         tableView.register(DebtCell.self, forCellReuseIdentifier: "cell")
         
+        configConstraints()
+    }
+    
+    private func configConstraints() {
         NSLayoutConstraint.activate([
-            tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
+            tableView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8),
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.48),
+            segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -16),
+            segmentedControl.heightAnchor.constraint(equalToConstant: 32)
         ])
     }
 }
@@ -50,5 +71,16 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 128
+    }
+}
+
+extension DebtsViewController: OneLineSGDelegate {
+    func didChangeTo(index: Int) {
+        switch index {
+        case 0:
+            print("a")
+        default:
+            print("b")
+        }
     }
 }
