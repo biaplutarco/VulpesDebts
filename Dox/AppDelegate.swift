@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
-            window.rootViewController = NewDebtViewController()
+            window.rootViewController = DebtsViewController()
             window.makeKeyAndVisible()
         }
         

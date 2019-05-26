@@ -1,9 +1,9 @@
 //
 //  OneLineSC.swift
-//  Putometro
+//  Dox
 //
-//  Created by Bia Plutarco on 13/05/19.
-//  Copyright © 2019 Abat. All rights reserved.
+//  Created by Bia Plutarco on 25/05/19.
+//  Copyright © 2019 Bia Plutarco. All rights reserved.
 //
 
 import UIKit
