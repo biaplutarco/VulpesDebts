@@ -21,6 +21,7 @@
 		B279B52F229A05150072F61A /* InputLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B52E229A05150072F61A /* InputLabel.swift */; };
 		B279B531229A0CA90072F61A /* OneLineSC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B530229A0CA90072F61A /* OneLineSC.swift */; };
 		B279B533229A0CBA0072F61A /* OneLineSGDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B532229A0CBA0072F61A /* OneLineSGDelegate.swift */; };
+		B279B53E229A405A0072F61A /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B53D229A405A0072F61A /* CircleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		B279B52E229A05150072F61A /* InputLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputLabel.swift; sourceTree = "<group>"; };
 		B279B530229A0CA90072F61A /* OneLineSC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneLineSC.swift; sourceTree = "<group>"; };
 		B279B532229A0CBA0072F61A /* OneLineSGDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneLineSGDelegate.swift; sourceTree = "<group>"; };
+		B279B53D229A405A0072F61A /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		B20399932294DFD1004BFCC8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B279B53D229A405A0072F61A /* CircleButton.swift */,
 				B279B535229A2B6A0072F61A /* DebtsVC */,
 				B279B536229A2B8A0072F61A /* NewDebtVC */,
 			);
@@ -308,6 +311,7 @@
 				B279B5232298622C0072F61A /* DebtCell.swift in Sources */,
 				B279B52D2299A6AA0072F61A /* CardView.swift in Sources */,
 				B20399732294DAD6004BFCC8 /* DebtsViewController.swift in Sources */,
+				B279B53E229A405A0072F61A /* CircleButton.swift in Sources */,
 				B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */,
 				B279B533229A0CBA0072F61A /* OneLineSGDelegate.swift in Sources */,
 				B279B531229A0CA90072F61A /* OneLineSC.swift in Sources */,

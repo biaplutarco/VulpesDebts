@@ -16,19 +16,25 @@ class DebtsViewController: UIViewController {
         return label
     }()
     
+    lazy var addButton: CircleButton = {
+        let addButton = CircleButton(image: #imageLiteral(resourceName: "add+exit"), type: .add)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.layer.cornerRadius = 20
+        view.addSubview(addButton)
+        return addButton
+    }()
+    
     lazy var segmentedWidth: CGFloat = {
         let segmentedWidth = view.frame.width*0.54
         return segmentedWidth
     }()
     
     lazy var segmentedControl: OneLineSC = {
-        let segmentedControl = OneLineSC(titles: ["To recieve", "To pay"],
-                                         selectorMultiple: 3,
-                                         segmentedWidth: self.segmentedWidth)
-        segmentedControl.delegate = self
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(segmentedControl)
-        return segmentedControl
+        let segControl = OneLineSC(titles: self.titles, selectorMultiple: 3, segmentedWidth: self.segmentedWidth)
+        segControl.delegate = self
+        segControl.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(segControl)
+        return segControl
     }()
     
     lazy var tableView: UITableView = {
@@ -39,10 +45,10 @@ class DebtsViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
-        
         return tableView
     }()
     
+    var titles = ["to recieve", "to pay"]
     var tableViewItems: [String] = ["Aaaa", "Bbbbb", "Cccc"]
     
     override func viewDidLoad() {
@@ -55,9 +61,17 @@ class DebtsViewController: UIViewController {
     
     private func configConstraints() {
         NSLayoutConstraint.activate([
-            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
+            titleLablel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
+            titleLablel.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
+            titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4)
+            ])
+        
+        NSLayoutConstraint.activate([
+            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 28),
+            addButton.heightAnchor.constraint(equalToConstant: 40),
+            addButton.widthAnchor.constraint(equalToConstant: 40)
         ])
         
         NSLayoutConstraint.activate([
@@ -65,13 +79,12 @@ class DebtsViewController: UIViewController {
             segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.54),
             segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -16),
             segmentedControl.heightAnchor.constraint(equalToConstant: 32)
-        ])
+            ])
         
         NSLayoutConstraint.activate([
-            titleLablel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 48),
-            titleLablel.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
-            titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4)
+            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
     }
 }
