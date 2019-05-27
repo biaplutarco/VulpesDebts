@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Dox
+
+  Created by Bia Plutarco on 26/05/19.
+  Copyright © 2019 Bia Plutarco. All rights reserved.
+*/
+"Debts" = "Deudas";
+"New Debt" = "Nueva Deuda";
+"To receive" = "Para recibir";
+"To pay" = "Para pagar";
+"Name" = "Nombre";
+"Reason" = "Razón";
+"Value" = "Valor";
+"Type" = "Tipo";
+"Save" = "Salvar";
+"Paid" = "Pago";

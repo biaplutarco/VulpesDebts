@@ -28,6 +28,8 @@ extension RectangleButton: ShadowProtocol {
         self.configShadowIn(view: self, isDark: false)
         self.layer.cornerRadius = 8
         self.backgroundColor = UIColor.AppColors.darkGray
-        self.setTitle(title, for: .normal)
+        
+        let translatedTitle = NSLocalizedString(title, comment: title)
+        self.setTitle(translatedTitle, for: .normal)
     }
 }

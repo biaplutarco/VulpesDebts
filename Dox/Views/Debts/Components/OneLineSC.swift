@@ -46,7 +46,9 @@ class OneLineSC: UIControl {
         var buttons = [UIButton]()
         for buttonTitle in buttonTitles {
             let button = UIButton(type: .system)
-            button.setTitle(buttonTitle, for: .normal)
+            let title = NSLocalizedString(buttonTitle, comment: buttonTitle)
+            
+            button.setTitle(title, for: .normal)
             button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
             button.setTitleColor(UIColor.AppColors.gray, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 18)

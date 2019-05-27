@@ -25,7 +25,7 @@ class DebtsViewController: UIViewController {
     }()
     
     lazy var segmentedWidth: CGFloat = {
-        let segmentedWidth = view.frame.width*0.54
+        let segmentedWidth = view.frame.width*0.60
         return segmentedWidth
     }()
     
@@ -56,11 +56,15 @@ class DebtsViewController: UIViewController {
         return transition
     }()
     
+    lazy var titles: [String] = {
+        let titles = ["To receive", "To pay"]
+        return titles
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    var titles = ["to recieve", "to pay"]
     var tableViewItems: [String] = ["Aaaa", "Bbbbb", "Cccc"]
     
     override func viewDidLoad() {
@@ -96,7 +100,7 @@ class DebtsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.54),
+            segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60),
             segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -16),
             segmentedControl.heightAnchor.constraint(equalToConstant: 32)
         ])
@@ -130,7 +134,8 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
         -> UISwipeActionsConfiguration? {
-        let paid = UIContextualAction(style: .destructive, title: "paid") { (action, view, handler) in
+        let title = NSLocalizedString("Paid", comment: "Paid")
+        let paid = UIContextualAction(style: .destructive, title: title) { (_, _, _) in
             self.tableViewItems.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }

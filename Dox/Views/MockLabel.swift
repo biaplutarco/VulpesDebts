@@ -9,13 +9,13 @@
 import UIKit
 
 enum MockLabelText: String {
-    case name = "Name"
-    case value = "Value"
-    case reason = "Reason"
-    case type = "Type"
-    case debts = "Debts"
-    case newDebt = "New Debt"
-    case error = "error"
+    case name
+    case value
+    case reason
+    case type
+    case debts
+    case newDebt
+    case error
 }
 
 enum MockLabelType {
@@ -32,7 +32,7 @@ class MockLabel: UILabel {
     
     convenience init(text: MockLabelText, type: MockLabelType) {
         self.init(frame: CGRect.zero)
-        configLabel(text: text.rawValue, type: type)
+        uptadeString(text: text, type: type)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,6 +41,11 @@ class MockLabel: UILabel {
 }
 
 extension MockLabel: AttributedTextProtocol {
+    private func uptadeString(text: MockLabelText, type: MockLabelType) {
+        let string = translateString(text)
+        configLabel(text: string, type: type)
+    }
+    
     private func configLabel(text: String, type: MockLabelType) {
         switch type {
         case .cardDebt:
@@ -51,6 +56,25 @@ extension MockLabel: AttributedTextProtocol {
             self.attributedText = configText(text, size: 34, color: UIColor.AppColors.darkGray, isBold: true)
         default:
             self.attributedText = configText(text, size: 20, color: UIColor.AppColors.darkGray, isBold: false)
+        }
+    }
+    
+    private func translateString(_ mockLabelText: MockLabelText) -> String {
+        switch mockLabelText {
+        case .debts:
+            return NSLocalizedString("Debts", comment: "Debts")
+        case .newDebt:
+            return NSLocalizedString("New Debt", comment: "New Debt")
+        case .name:
+            return NSLocalizedString("Name", comment: "Name")
+        case .value:
+            return NSLocalizedString("Value", comment: "Value")
+        case .reason:
+            return NSLocalizedString("Reason", comment: "Reason")
+        case .type:
+            return NSLocalizedString("Type", comment: "Type")
+        case .error:
+            return "error"
         }
     }
 }

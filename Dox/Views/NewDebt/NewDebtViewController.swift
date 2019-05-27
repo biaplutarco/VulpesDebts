@@ -73,7 +73,7 @@ class NewDebtViewController: UIViewController {
             titleLablel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 58),
             titleLablel.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -24),
-            titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.54)
+            titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
         
         NSLayoutConstraint.activate([
