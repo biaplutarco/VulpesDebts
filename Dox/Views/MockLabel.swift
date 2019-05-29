@@ -54,8 +54,8 @@ extension MockLabel: AttributedTextProtocol {
             self.attributedText = configText(text, size: 34, color: UIColor.AppColors.lightGray, isBold: true)
         case .titleDark:
             self.attributedText = configText(text, size: 34, color: UIColor.AppColors.darkGray, isBold: true)
-        default:
-            self.attributedText = configText(text, size: 20, color: UIColor.AppColors.darkGray, isBold: false)
+        case .viewNewDebt:
+            self.attributedText = configText(text, size: 18, color: UIColor.AppColors.darkGray, isBold: false)
         }
     }
     
