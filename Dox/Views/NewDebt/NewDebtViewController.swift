@@ -11,6 +11,7 @@ import UIKit
 enum DebtType: Int {
     case toReceive = 0
     case toPay = 1
+    case error
 }
 
 class NewDebtViewController: UIViewController {
@@ -30,9 +31,9 @@ class NewDebtViewController: UIViewController {
         return exitButton
     }()
     
-    lazy var titles: [String] = {
-        let titles = ["To receive", "To pay"]
-        return titles
+    lazy var segmetendTitles: [String] = {
+        let segmetendTitles = ["To receive", "To pay"]
+        return segmetendTitles
     }()
     
     lazy var segmentedWidth: CGFloat = {
@@ -41,7 +42,8 @@ class NewDebtViewController: UIViewController {
     }()
     
     lazy var segmentedControl: OneLineSC = {
-        let segControl = OneLineSC(titles: self.titles, selectorMultiple: 3, segmentedWidth: self.segmentedWidth,
+        let segControl = OneLineSC(titles: self.segmetendTitles, selectorMultiple: 3,
+                                   segmentedWidth: self.segmentedWidth,
                                    selectedColor: UIColor.AppColors.darkGray,
                                    unselectedColor: UIColor.AppColors.grayLowOpacity)
         segControl.delegate = self
@@ -97,10 +99,14 @@ class NewDebtViewController: UIViewController {
         return value
     }()
     
+    lazy var debtType: DebtType = {
+        let debtType: DebtType = .toReceive
+        return debtType
+    }()
+    
     var nameCell: NewDebtCell?
     var reasonCell: NewDebtCell?
     var valueCell: ValueDebtCell?
-    var debtType: DebtType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,11 +133,11 @@ class NewDebtViewController: UIViewController {
     
     @objc func saveTapped(_ sender: UIButton) {
         getTextFromTextFields()
-//        guard let debtType = debtType else { return }
         let finalValue = "\(symbol)\(self.value)"
-        self.delegate?.addNewDebt(name: self.name, reason: self.reason, value: finalValue, type: .toReceive)
+        let debt = CoreDataManager.sharedManager.createDebt(name: name,
+                                                            reason: reason, value: finalValue, type: debtType)
         dismiss(animated: true) {
-            self.delegate?.didFinishAdd()
+            self.delegate?.addNew(debt: debt)
         }
     }
     
