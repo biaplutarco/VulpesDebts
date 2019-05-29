@@ -25,6 +25,6 @@ class InputLabel: UILabel {
 
 extension InputLabel: AttributedTextProtocol {
     private func configLabel(text: String) {
-        self.attributedText = configText(text, size: 16, color: UIColor.AppColors.lightGray, isBold: false)
+        self.attributedText = configText(text, size: 16, color: UIColor.AppColors.lightGray, isBold: true)
     }
 }

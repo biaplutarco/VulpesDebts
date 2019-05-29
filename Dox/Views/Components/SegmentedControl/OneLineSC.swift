@@ -56,6 +56,7 @@ class OneLineSC: UIControl {
         }
         //        Set the first item in button to selected
         buttons[0].setTitleColor(selectedColor, for: .normal)
+        buttons[0].titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         return buttons
     }()
     
@@ -103,6 +104,7 @@ class OneLineSC: UIControl {
             if button == sender {
                 button.setTitleColor(selectedColor, for: .normal)
                 setIndex(index: buttonIndex)
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
 //                Setup to animate anchor
                 let offset = selectorStartpoint + selectorWidth*CGFloat(buttonIndex*selectorMultiple)
                 selectorViewLeftAnchor.isActive = false
