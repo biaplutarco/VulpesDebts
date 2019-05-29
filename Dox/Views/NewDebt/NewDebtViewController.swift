@@ -77,8 +77,14 @@ class NewDebtViewController: UIViewController {
         tableView.register(NewDebtCell.self, forCellReuseIdentifier: "cell")
         tableView.register(ValueDebtCell.self, forCellReuseIdentifier: "valueCell")
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         exitButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         configConstraints()
+        hideKeyboardWhenTappedAround()
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
@@ -114,13 +120,10 @@ class NewDebtViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-//            saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44),
             saveButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             saveButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             saveButton.heightAnchor.constraint(equalToConstant: 44)
-//            saveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.36),
-//            saveButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.064)
         ])
     }
 }
@@ -134,12 +137,12 @@ extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "valueCell", for: indexPath) as?
                 ValueDebtCell else { return UITableViewCell() }
-            cell.setupCell(title: mockLabelTitles[indexPath.row])
+            cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewDebtCell
                 else { return UITableViewCell() }
-            cell.setupCell(title: mockLabelTitles[indexPath.row])
+            cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
             return cell
         }
     }
@@ -157,5 +160,43 @@ extension NewDebtViewController: OneLineSGDelegate {
         default:
             print("b")
         }
+    }
+}
+
+extension NewDebtViewController: UITextFieldDelegate {
+    private func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        var userInfo = notification.userInfo!
+        var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as AnyObject).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset: UIEdgeInsets = self.tableView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        tableView.contentInset = contentInset
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        let contentInset: UIEdgeInsets = UIEdgeInsets.zero
+        tableView.contentInset = contentInset
+    }
+//      Método chamado quando o usuário aperta RETURN no teclado
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Agora fazemos o text field deixar de ser o first responder
+        // Isso faz com que o teclado se esconda
+        textField.resignFirstResponder()
+        return true
+    }
+//     Isso faz com que o teclado seja escondido quando vc toca fora dele
+    private func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

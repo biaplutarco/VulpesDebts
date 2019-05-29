@@ -33,10 +33,10 @@ class NewDebtCell: UITableViewCell {
         self.selectionStyle = .none
     }
     
-    func setupCell(title: MockLabelText) {
+    func setupCell(title: MockLabelText, for viewController: UIViewController) {
         self.contentView.backgroundColor = UIColor.AppColors.orange
         self.mockLabelTitle = title
-        
+        self.textField.delegate = viewController as? UITextFieldDelegate
         setupPlaceholder(title: title)
         configConstraints()
     }

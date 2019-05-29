@@ -44,9 +44,11 @@ class ValueDebtCell: UITableViewCell {
         self.selectionStyle = .none
     }
     
-    func setupCell(title: MockLabelText) {
+    func setupCell(title: MockLabelText, for viewController: UIViewController) {
         self.contentView.backgroundColor = UIColor.AppColors.orange
         self.mockLabelTitle = title
+        self.valueTextField.delegate = viewController as? UITextFieldDelegate
+        self.symbolTextField.delegate = viewController as? UITextFieldDelegate
         configConstraints()
     }
 }
