@@ -9,6 +9,5 @@
 import UIKit
 
 protocol NewDebtVCDelegate: class {
-    func addNewDebt(name: String, reason: String, value: String, type: DebtType)
-    func didFinishAdd()
+    func addNew(debt: Debt)
 }
