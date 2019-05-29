@@ -51,6 +51,16 @@ class ValueDebtCell: UITableViewCell {
         self.symbolTextField.delegate = viewController as? UITextFieldDelegate
         configConstraints()
     }
+    
+    func inputValueText() -> String {
+        guard let text = valueTextField.text else { return "error" }
+        return text
+    }
+    
+    func inputSymbolText() -> String {
+        guard let text = symbolTextField.text else { return "error" }
+        return text
+    }
 }
 
 extension ValueDebtCell {

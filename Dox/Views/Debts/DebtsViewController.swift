@@ -67,7 +67,9 @@ class DebtsViewController: UIViewController {
         return .lightContent
     }
     
-    var tableViewItems: [String] = ["Aaaa", "Bbbbb", "Cccc"]
+    var names: [String] = []
+    var reasons: [String] = []
+    var values: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +84,7 @@ class DebtsViewController: UIViewController {
         let nextVC = NewDebtViewController()
         nextVC.transitioningDelegate = self
         nextVC.modalPresentationStyle = .custom
+        nextVC.delegate = self
         present(nextVC, animated: true, completion: nil)
     }
     
@@ -117,12 +120,13 @@ class DebtsViewController: UIViewController {
 //TableView Delegate
 extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableViewItems.count
+        return names.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DebtCell
             else { return UITableViewCell() }
+        cell.setupCell(name: names[indexPath.row], reason: reasons[indexPath.row], value: values[indexPath.row])
         return cell
     }
     
@@ -138,7 +142,6 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let title = NSLocalizedString("Paid", comment: "Paid")
         let paid = UIContextualAction(style: .destructive, title: title) { (_, _, _) in
-            self.tableViewItems.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
         }
         paid.backgroundColor = UIColor.AppColors.darkGray
@@ -170,5 +173,19 @@ extension DebtsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .dismiss
         return transition
+    }
+}
+
+extension DebtsViewController: NewDebtVCDelegate {
+    func didFinishAdd() {
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        tableView.endUpdates()
+    }
+    
+    func addNewDebt(name: String, reason: String, value: String) {
+        names.append(name)
+        reasons.append(reason)
+        values.append(value)
     }
 }

@@ -48,6 +48,11 @@ class NewDebtCell: UITableViewCell {
             textField.placeholder = NSLocalizedString("Reason", comment: "Reason")
         }
     }
+    
+    func inputText() -> String {
+        guard let text = textField.text else { return "error" }
+        return text
+    }
 }
 
 extension NewDebtCell {

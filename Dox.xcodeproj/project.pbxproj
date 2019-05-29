@@ -13,6 +13,7 @@
 		B203997B2294DAD9004BFCC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B203997A2294DAD9004BFCC8 /* Assets.xcassets */; };
 		B203997E2294DAD9004BFCC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B203997C2294DAD9004BFCC8 /* LaunchScreen.storyboard */; };
 		B20399892294DAD9004BFCC8 /* DoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399882294DAD9004BFCC8 /* DoxTests.swift */; };
+		B2486F27229E3498005DDE99 /* NewDebtVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2486F26229E3498005DDE99 /* NewDebtVCDelegate.swift */; };
 		B268CEEB229DCFE4004AE8BE /* ValueDebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268CEEA229DCFE4004AE8BE /* ValueDebtCell.swift */; };
 		B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B51E22985CD50072F61A /* UIColor+AppColors.swift */; };
 		B279B52122985E470072F61A /* ShadowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B52022985E470072F61A /* ShadowProtocol.swift */; };
@@ -53,6 +54,7 @@
 		B20399842294DAD9004BFCC8 /* DoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20399882294DAD9004BFCC8 /* DoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoxTests.swift; sourceTree = "<group>"; };
 		B203998A2294DAD9004BFCC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2486F26229E3498005DDE99 /* NewDebtVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtVCDelegate.swift; sourceTree = "<group>"; };
 		B268CEEA229DCFE4004AE8BE /* ValueDebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueDebtCell.swift; sourceTree = "<group>"; };
 		B279B51E22985CD50072F61A /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		B279B52022985E470072F61A /* ShadowProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowProtocol.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		B279B536229A2B8A0072F61A /* NewDebt */ = {
 			isa = PBXGroup;
 			children = (
+				B2486F26229E3498005DDE99 /* NewDebtVCDelegate.swift */,
 				B279B53F229AC3310072F61A /* NewDebtViewController.swift */,
 				B279B541229AC9010072F61A /* Components */,
 			);
@@ -384,6 +387,7 @@
 				B279B5232298622C0072F61A /* DebtCell.swift in Sources */,
 				B279B549229ADBFD0072F61A /* AttributedTextProtocol.swift in Sources */,
 				B279B52D2299A6AA0072F61A /* CardView.swift in Sources */,
+				B2486F27229E3498005DDE99 /* NewDebtVCDelegate.swift in Sources */,
 				B20399732294DAD6004BFCC8 /* DebtsViewController.swift in Sources */,
 				B268CEEB229DCFE4004AE8BE /* ValueDebtCell.swift in Sources */,
 				B279B53E229A405A0072F61A /* CircleButton.swift in Sources */,

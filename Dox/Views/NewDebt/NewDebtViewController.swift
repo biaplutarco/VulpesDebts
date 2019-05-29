@@ -70,6 +70,28 @@ class NewDebtViewController: UIViewController {
         return mockLabelTitles
     }()
     
+    weak var delegate: NewDebtVCDelegate?
+    
+    lazy var name: String = {
+        let name = NSLocalizedString("Name", comment: "Name")
+        return name
+    }()
+    
+    lazy var reason: String = {
+        let reason = NSLocalizedString("Reason", comment: "Reason")
+        return reason
+    }()
+    
+    lazy var symbol: String = {
+        let symbol = NSLocalizedString("Symbol", comment: "Symbol")
+        return symbol
+    }()
+    
+    lazy var value: String = {
+        let value = NSLocalizedString("Value", comment: "Value")
+        return value
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.orange
@@ -82,13 +104,23 @@ class NewDebtViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        exitButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        exitButton.addTarget(self, action: #selector(exitTapped(_:)), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveTapped(_:)), for: .touchUpInside)
+        
         configConstraints()
         hideKeyboardWhenTappedAround()
     }
     
-    @objc func buttonTapped(_ sender: UIButton) {
+    @objc func exitTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func saveTapped(_ sender: UIButton) {
+        let finalValue = "\(symbol)\(self.value)"
+        self.delegate?.addNewDebt(name: self.name, reason: self.reason, value: finalValue)
+        dismiss(animated: true) {
+            self.delegate?.didFinishAdd()
+        }
     }
     
     private func configConstraints() {
@@ -138,11 +170,20 @@ extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "valueCell", for: indexPath) as?
                 ValueDebtCell else { return UITableViewCell() }
             cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
+            value = cell.inputValueText()
+            symbol = cell.inputSymbolText()
+            return cell
+        } else if indexPath.row == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewDebtCell
+                else { return UITableViewCell() }
+            cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
+            reason = cell.inputText()
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewDebtCell
                 else { return UITableViewCell() }
             cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
+            name = cell.inputText()
             return cell
         }
     }

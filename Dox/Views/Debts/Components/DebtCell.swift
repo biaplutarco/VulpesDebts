@@ -39,21 +39,21 @@ class DebtCell: UITableViewCell {
     }()
     
     lazy var inputLabelName: InputLabel = {
-        let label = InputLabel(text: "Cristina")
+        let label = InputLabel(text: "error")
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
     }()
     
     lazy var inputLabelReason: InputLabel = {
-        let label = InputLabel(text: "Comprar a calça preta")
+        let label = InputLabel(text: "error")
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
     }()
     
     lazy var inputLabelValue: InputLabel = {
-        let label = InputLabel(text: "R$ 65,00")
+        let label = InputLabel(text: "error")
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
         self.addSubview(label)
@@ -62,7 +62,7 @@ class DebtCell: UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        setupCell()
+        configConstraints()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -70,9 +70,11 @@ class DebtCell: UITableViewCell {
         self.selectionStyle = .none
     }
     
-    func setupCell() {
+    func setupCell(name: String, reason: String, value: String) {
         self.contentView.backgroundColor = UIColor.AppColors.darkGray
-        configConstraints()
+        inputLabelName.text = name
+        inputLabelValue.text = value
+        inputLabelReason.text = reason
     }
 }
 
