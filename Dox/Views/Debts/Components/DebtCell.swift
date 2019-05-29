@@ -84,7 +84,6 @@ extension DebtCell: AttributedTextProtocol {
     }
 }
 
-
 //Constraints
 extension DebtCell {
     private func configConstraints() {

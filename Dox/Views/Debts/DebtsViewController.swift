@@ -71,8 +71,7 @@ class DebtsViewController: UIViewController {
     var reasons: [String] = []
     var values: [String] = []
     var debtType: DebtType = .toReceive
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.darkGray
@@ -186,7 +185,7 @@ extension DebtsViewController: NewDebtVCDelegate {
         tableView.endUpdates()
     }
     
-    func addNewDebt(name: String, reason: String, value: String, at: DebtType) {
+    func addNewDebt(name: String, reason: String, value: String, type: DebtType) {
         names.insert(name, at: 0)
         reasons.insert(reason, at: 0)
         values.insert(value, at: 0)

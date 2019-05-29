@@ -127,9 +127,9 @@ class NewDebtViewController: UIViewController {
     
     @objc func saveTapped(_ sender: UIButton) {
         getTextFromTextFields()
-        guard let debtType = debtType else { return }
+//        guard let debtType = debtType else { return }
         let finalValue = "\(symbol)\(self.value)"
-        self.delegate?.addNewDebt(name: self.name, reason: self.reason, value: finalValue, at: debtType)
+        self.delegate?.addNewDebt(name: self.name, reason: self.reason, value: finalValue, type: .toReceive)
         dismiss(animated: true) {
             self.delegate?.didFinishAdd()
         }
