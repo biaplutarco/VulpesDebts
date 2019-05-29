@@ -11,7 +11,7 @@ import UIKit
 class OneLineSC: UIControl {
     lazy var selectorView: UIView = {
         let selectorView = UIView()
-        selectorView.backgroundColor = UIColor.AppColors.lightGray
+        selectorView.backgroundColor = selectedColor
         selectorView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(selectorView)
         return selectorView
@@ -50,12 +50,12 @@ class OneLineSC: UIControl {
             
             button.setTitle(title, for: .normal)
             button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
-            button.setTitleColor(UIColor.AppColors.gray, for: .normal)
+            button.setTitleColor(unselectedColor, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
             buttons.append(button)
         }
         //        Set the first item in button to selected
-        buttons[0].setTitleColor(UIColor.AppColors.lightGray, for: .normal)
+        buttons[0].setTitleColor(selectedColor, for: .normal)
         return buttons
     }()
     
@@ -64,17 +64,24 @@ class OneLineSC: UIControl {
     var buttonTitles: [String]
     var segmentedWidth: CGFloat
     var selectorMultiple: Int
+    var selectedColor: UIColor
+    var unselectedColor: UIColor
     var selectedIndex: Int = 0
     
-    init(frame: CGRect, buttonTitles: [String], selectorMultiple: Int, segmentedWidth: CGFloat) {
+    init(frame: CGRect, buttonTitles: [String], selectorMultiple: Int, segmentedWidth: CGFloat,
+         selectedColor: UIColor, unselectedColor: UIColor) {
         self.buttonTitles = buttonTitles
         self.selectorMultiple = selectorMultiple
         self.segmentedWidth = segmentedWidth
+        self.selectedColor = selectedColor
+        self.unselectedColor = unselectedColor
         super.init(frame: frame)
     }
     
-    convenience init(titles: [String], selectorMultiple multiple: Int, segmentedWidth width: CGFloat) {
-        self.init(frame: CGRect.zero, buttonTitles: titles, selectorMultiple: multiple, segmentedWidth: width)
+    convenience init(titles: [String], selectorMultiple multiple: Int, segmentedWidth width: CGFloat,
+                     selectedColor: UIColor, unselectedColor: UIColor) {
+        self.init(frame: CGRect.zero, buttonTitles: titles, selectorMultiple: multiple,
+                  segmentedWidth: width, selectedColor: selectedColor, unselectedColor: unselectedColor)
         setIndex(index: selectedIndex)
         configConstraints()
     }
@@ -92,9 +99,9 @@ class OneLineSC: UIControl {
     
     @objc func buttonAction(sender: UIButton) {
         for (buttonIndex, button) in buttons.enumerated() {
-            button.setTitleColor(UIColor.AppColors.gray, for: .normal)
+            button.setTitleColor(unselectedColor, for: .normal)
             if button == sender {
-                button.setTitleColor(UIColor.AppColors.lightGray, for: .normal)
+                button.setTitleColor(selectedColor, for: .normal)
                 setIndex(index: buttonIndex)
 //                Setup to animate anchor
                 let offset = selectorStartpoint + selectorWidth*CGFloat(buttonIndex*selectorMultiple)
