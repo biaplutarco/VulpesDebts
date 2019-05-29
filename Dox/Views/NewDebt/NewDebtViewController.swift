@@ -8,9 +8,9 @@
 
 import UIKit
 
-enum DebtType {
-    case toReceive
-    case toPay
+enum DebtType: Int {
+    case toReceive = 0
+    case toPay = 1
 }
 
 class NewDebtViewController: UIViewController {
