@@ -12,7 +12,7 @@ class DebtCell: UITableViewCell {
     lazy var cardView: CardView = {
         let cardView = CardView(backgroundColor: UIColor.AppColors.mediumGray)
         cardView.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(cardView)
+        self.insertSubview(cardView, at: 1)
         return cardView
     }()
     
@@ -38,22 +38,25 @@ class DebtCell: UITableViewCell {
         return label
     }()
     
-    lazy var inputLabelName: InputLabel = {
-        let label = InputLabel(text: "error")
+    lazy var inputLabelName: UILabel = {
+        let label = UILabel()
+        label.attributedText = configText("error", size: 16, color: UIColor.AppColors.lightGray, isBold: true)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
     }()
     
-    lazy var inputLabelReason: InputLabel = {
-        let label = InputLabel(text: "error")
+    lazy var inputLabelReason: UILabel = {
+        let label = UILabel()
+        label.attributedText = configText("error", size: 16, color: UIColor.AppColors.lightGray, isBold: true)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
     }()
     
-    lazy var inputLabelValue: InputLabel = {
-        let label = InputLabel(text: "error")
+    lazy var inputLabelValue: UILabel = {
+        let label = UILabel()
+        label.attributedText = configText("error", size: 16, color: UIColor.AppColors.lightGray, isBold: true)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
         self.addSubview(label)
@@ -69,14 +72,18 @@ class DebtCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         self.selectionStyle = .none
     }
-    
+}
+
+extension DebtCell: AttributedTextProtocol {
     func setupCell(name: String, reason: String, value: String) {
         self.contentView.backgroundColor = UIColor.AppColors.darkGray
-        inputLabelName.text = name
-        inputLabelValue.text = value
-        inputLabelReason.text = reason
+        print(name, reason, value)
+        inputLabelName.attributedText = configText(name, size: 16, color: UIColor.AppColors.lightGray, isBold: true)
+        inputLabelValue.attributedText = configText(value, size: 16, color: UIColor.AppColors.lightGray, isBold: true)
+        inputLabelReason.attributedText = configText(reason, size: 16, color: UIColor.AppColors.lightGray, isBold: true)
     }
 }
+
 
 //Constraints
 extension DebtCell {

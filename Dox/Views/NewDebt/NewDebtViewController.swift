@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum DebtType {
+    case toReceive
+    case toPay
+}
+
 class NewDebtViewController: UIViewController {
     lazy var titleLablel: MockLabel = {
         let label = MockLabel(text: .newDebt, type: .titleDark)
@@ -92,6 +97,11 @@ class NewDebtViewController: UIViewController {
         return value
     }()
     
+    var nameCell: NewDebtCell?
+    var reasonCell: NewDebtCell?
+    var valueCell: ValueDebtCell?
+    var debtType: DebtType?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.orange
@@ -116,11 +126,24 @@ class NewDebtViewController: UIViewController {
     }
     
     @objc func saveTapped(_ sender: UIButton) {
+        getTextFromTextFields()
+        guard let debtType = debtType else { return }
         let finalValue = "\(symbol)\(self.value)"
-        self.delegate?.addNewDebt(name: self.name, reason: self.reason, value: finalValue)
+        self.delegate?.addNewDebt(name: self.name, reason: self.reason, value: finalValue, at: debtType)
         dismiss(animated: true) {
             self.delegate?.didFinishAdd()
         }
+    }
+    
+    private func getTextFromTextFields() {
+        guard let nameCell = nameCell,
+              let reasonCell = reasonCell,
+              let valueCell = valueCell else { return }
+        
+        name = nameCell.inputText()
+        reason = reasonCell.inputText()
+        value = valueCell.inputValueText()
+        symbol = valueCell.inputSymbolText()
     }
     
     private func configConstraints() {
@@ -169,21 +192,23 @@ extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "valueCell", for: indexPath) as?
                 ValueDebtCell else { return UITableViewCell() }
+            valueCell = cell
             cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
-            value = cell.inputValueText()
-            symbol = cell.inputSymbolText()
+            
             return cell
         } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewDebtCell
                 else { return UITableViewCell() }
+            reasonCell = cell
             cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
-            reason = cell.inputText()
+            
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewDebtCell
                 else { return UITableViewCell() }
+            nameCell = cell
             cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
-            name = cell.inputText()
+            
             return cell
         }
     }
@@ -197,9 +222,9 @@ extension NewDebtViewController: OneLineSGDelegate {
     func didChangeTo(index: Int) {
         switch index {
         case 0:
-            print("a")
+            debtType = .toReceive
         default:
-            print("b")
+            debtType = .toPay
         }
     }
 }

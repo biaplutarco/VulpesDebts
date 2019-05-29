@@ -70,6 +70,8 @@ class DebtsViewController: UIViewController {
     var names: [String] = []
     var reasons: [String] = []
     var values: [String] = []
+    var debtType: DebtType = .toReceive
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,6 +128,7 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DebtCell
             else { return UITableViewCell() }
+        
         cell.setupCell(name: names[indexPath.row], reason: reasons[indexPath.row], value: values[indexPath.row])
         return cell
     }
@@ -183,9 +186,10 @@ extension DebtsViewController: NewDebtVCDelegate {
         tableView.endUpdates()
     }
     
-    func addNewDebt(name: String, reason: String, value: String) {
-        names.append(name)
-        reasons.append(reason)
-        values.append(value)
+    func addNewDebt(name: String, reason: String, value: String, at: DebtType) {
+        names.insert(name, at: 0)
+        reasons.insert(reason, at: 0)
+        values.insert(value, at: 0)
+        print(name, reason, value)
     }
 }
