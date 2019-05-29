@@ -13,6 +13,8 @@
 		B203997B2294DAD9004BFCC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B203997A2294DAD9004BFCC8 /* Assets.xcassets */; };
 		B203997E2294DAD9004BFCC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B203997C2294DAD9004BFCC8 /* LaunchScreen.storyboard */; };
 		B20399892294DAD9004BFCC8 /* DoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399882294DAD9004BFCC8 /* DoxTests.swift */; };
+		B215A012229F1E4100207B59 /* Debt+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B215A010229F1E4100207B59 /* Debt+CoreDataClass.swift */; };
+		B215A013229F1E4100207B59 /* Debt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B215A011229F1E4100207B59 /* Debt+CoreDataProperties.swift */; };
 		B2486F27229E3498005DDE99 /* NewDebtVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2486F26229E3498005DDE99 /* NewDebtVCDelegate.swift */; };
 		B2486F29229EFFB6005DDE99 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2486F28229EFFB6005DDE99 /* CoreDataManager.swift */; };
 		B268CEEB229DCFE4004AE8BE /* ValueDebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B268CEEA229DCFE4004AE8BE /* ValueDebtCell.swift */; };
@@ -31,8 +33,6 @@
 		B279B549229ADBFD0072F61A /* AttributedTextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */; };
 		B279B54F229B10550072F61A /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B54E229B10550072F61A /* CustomTransition.swift */; };
 		B279B552229B568D0072F61A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B279B554229B568D0072F61A /* Localizable.strings */; };
-		B2A8CB52229F0E3A008187DA /* Debt+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A8CB50229F0E3A008187DA /* Debt+CoreDataClass.swift */; };
-		B2A8CB53229F0E3A008187DA /* Debt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A8CB51229F0E3A008187DA /* Debt+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +56,8 @@
 		B20399842294DAD9004BFCC8 /* DoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20399882294DAD9004BFCC8 /* DoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoxTests.swift; sourceTree = "<group>"; };
 		B203998A2294DAD9004BFCC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B215A010229F1E4100207B59 /* Debt+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debt+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B215A011229F1E4100207B59 /* Debt+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debt+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B2486F26229E3498005DDE99 /* NewDebtVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtVCDelegate.swift; sourceTree = "<group>"; };
 		B2486F28229EFFB6005DDE99 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B268CEEA229DCFE4004AE8BE /* ValueDebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueDebtCell.swift; sourceTree = "<group>"; };
@@ -76,8 +78,6 @@
 		B279B553229B568D0072F61A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B279B555229B56FE0072F61A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B279B556229B570C0072F61A /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		B2A8CB50229F0E3A008187DA /* Debt+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debt+CoreDataClass.swift"; sourceTree = "<group>"; };
-		B2A8CB51229F0E3A008187DA /* Debt+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debt+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +162,8 @@
 		B20399952294DFE0004BFCC8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B2A8CB50229F0E3A008187DA /* Debt+CoreDataClass.swift */,
-				B2A8CB51229F0E3A008187DA /* Debt+CoreDataProperties.swift */,
+				B215A010229F1E4100207B59 /* Debt+CoreDataClass.swift */,
+				B215A011229F1E4100207B59 /* Debt+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -388,8 +388,8 @@
 			files = (
 				B279B54F229B10550072F61A /* CustomTransition.swift in Sources */,
 				B279B545229ACAB50072F61A /* CardTextField.swift in Sources */,
-				B2A8CB53229F0E3A008187DA /* Debt+CoreDataProperties.swift in Sources */,
-				B2A8CB52229F0E3A008187DA /* Debt+CoreDataClass.swift in Sources */,
+				B215A013229F1E4100207B59 /* Debt+CoreDataProperties.swift in Sources */,
+				B215A012229F1E4100207B59 /* Debt+CoreDataClass.swift in Sources */,
 				B279B547229ADB200072F61A /* RectangleButton.swift in Sources */,
 				B279B540229AC3310072F61A /* NewDebtViewController.swift in Sources */,
 				B279B5232298622C0072F61A /* DebtCell.swift in Sources */,
