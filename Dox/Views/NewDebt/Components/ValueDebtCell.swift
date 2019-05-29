@@ -20,6 +20,7 @@ class ValueDebtCell: UITableViewCell {
     lazy var symbolTextField: CardTextField = {
         let textField = CardTextField(backgroundColor: UIColor.AppColors.lightGray)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = NSLocalizedString("$", comment: "$")
         self.addSubview(textField)
         return textField
     }()
@@ -27,6 +28,8 @@ class ValueDebtCell: UITableViewCell {
     lazy var valueTextField: CardTextField = {
         let textField = CardTextField(backgroundColor: UIColor.AppColors.lightGray)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "00,00"
+        textField.textAlignment = .right
         self.addSubview(textField)
         return textField
     }()
@@ -57,17 +60,17 @@ extension ValueDebtCell {
         ])
         
         NSLayoutConstraint.activate([
-            symbolTextField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 8),
+            symbolTextField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 10),
             symbolTextField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             symbolTextField.rightAnchor.constraint(equalTo: valueTextField.leftAnchor, constant: -12),
-            symbolTextField.widthAnchor.constraint(equalToConstant: 76),
-            symbolTextField.heightAnchor.constraint(equalToConstant: 44)
+            symbolTextField.widthAnchor.constraint(equalToConstant: 68),
+            symbolTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         NSLayoutConstraint.activate([
-            valueTextField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 8),
+            valueTextField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 10),
             valueTextField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            valueTextField.heightAnchor.constraint(equalToConstant: 44)
+            valueTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }
