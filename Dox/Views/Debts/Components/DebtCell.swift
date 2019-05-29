@@ -65,6 +65,7 @@ class DebtCell: UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        self.contentView.backgroundColor = UIColor.AppColors.darkGray
         configConstraints()
     }
 
@@ -75,12 +76,13 @@ class DebtCell: UITableViewCell {
 }
 
 extension DebtCell: AttributedTextProtocol {
-    func setupCell(name: String, reason: String, value: String) {
-        self.contentView.backgroundColor = UIColor.AppColors.darkGray
-        print(name, reason, value)
-        inputLabelName.attributedText = configText(name, size: 16, color: UIColor.AppColors.lightGray, isBold: true)
-        inputLabelValue.attributedText = configText(value, size: 16, color: UIColor.AppColors.lightGray, isBold: true)
-        inputLabelReason.attributedText = configText(reason, size: 16, color: UIColor.AppColors.lightGray, isBold: true)
+    func setupCell(debt: Debt) {
+        inputLabelName.attributedText = configText(debt.name, size: 16,
+                                                   color: UIColor.AppColors.lightGray, isBold: true)
+        inputLabelValue.attributedText = configText(debt.value, size: 16,
+                                                    color: UIColor.AppColors.lightGray, isBold: true)
+        inputLabelReason.attributedText = configText(debt.reason, size: 16,
+                                                     color: UIColor.AppColors.lightGray, isBold: true)
     }
 }
 
