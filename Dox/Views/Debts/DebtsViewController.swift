@@ -103,7 +103,7 @@ class DebtsViewController: UIViewController {
         NSLayoutConstraint.activate([
             segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60),
-            segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -16),
+            segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -24),
             segmentedControl.heightAnchor.constraint(equalToConstant: 32)
         ])
         
