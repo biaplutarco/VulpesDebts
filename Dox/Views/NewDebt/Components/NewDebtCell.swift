@@ -30,6 +30,7 @@ class NewDebtCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        self.selectionStyle = .none
     }
     
     func setupCell(title: MockLabelText) {
@@ -44,15 +45,14 @@ extension NewDebtCell {
         NSLayoutConstraint.activate([
             mockLabel.topAnchor.constraint(equalTo: self.topAnchor),
             mockLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
-            mockLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            mockLabel.heightAnchor.constraint(equalToConstant: 36)
+            mockLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16)
         ])
         
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 8),
             textField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             textField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            textField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+            textField.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 }

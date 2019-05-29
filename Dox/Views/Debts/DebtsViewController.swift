@@ -30,7 +30,9 @@ class DebtsViewController: UIViewController {
     }()
     
     lazy var segmentedControl: OneLineSC = {
-        let segControl = OneLineSC(titles: self.titles, selectorMultiple: 3, segmentedWidth: self.segmentedWidth)
+        let segControl = OneLineSC(titles: self.titles, selectorMultiple: 3, segmentedWidth: self.segmentedWidth,
+                                   selectedColor: UIColor.AppColors.lightGray,
+                                   unselectedColor: UIColor.AppColors.gray)
         segControl.delegate = self
         segControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segControl)
@@ -132,8 +134,8 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
-        -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let title = NSLocalizedString("Paid", comment: "Paid")
         let paid = UIContextualAction(style: .destructive, title: title) { (_, _, _) in
             self.tableViewItems.remove(at: indexPath.row)
