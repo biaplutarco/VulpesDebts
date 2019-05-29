@@ -36,7 +36,17 @@ class NewDebtCell: UITableViewCell {
     func setupCell(title: MockLabelText) {
         self.contentView.backgroundColor = UIColor.AppColors.orange
         self.mockLabelTitle = title
+        
+        setupPlaceholder(title: title)
         configConstraints()
+    }
+    
+    private func setupPlaceholder(title: MockLabelText) {
+        if title == .name {
+            textField.placeholder = NSLocalizedString("Name", comment: "Name")
+        } else if title == .reason {
+            textField.placeholder = NSLocalizedString("Reason", comment: "Reason")
+        }
     }
 }
 
@@ -49,10 +59,10 @@ extension NewDebtCell {
         ])
         
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 8),
+            textField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 10),
             textField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             textField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            textField.heightAnchor.constraint(equalToConstant: 44)
+            textField.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }
