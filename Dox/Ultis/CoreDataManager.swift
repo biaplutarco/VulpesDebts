@@ -13,7 +13,7 @@ class CoreDataManager {
     static let sharedManager = CoreDataManager()
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "PersonData")
+        let container = NSPersistentContainer(name: "Dox")
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -29,24 +29,25 @@ class CoreDataManager {
     
     private init() {}
     
-    func createDebt(name: String, reason: String, value: String, type: DebtType) {
+    func createDebt(name: String, reason: String, value: String, type: DebtType) -> Debt {
         let debt = Debt(context: persistentContainer.viewContext)
         debt.name = name
         debt.reason = reason
         debt.value = value
-        debt.type = type.hashValue
+        debt.type = type.rawValue
         saveContext()
+        return debt
     }
     
     func getDebtsFrom(type: DebtType) -> [Debt] {
         do {
-            allDebts = try persistentContainer.viewContext.fetch(NSFetchRequest(entityName: "Debt"))
+            allDebts = try persistentContainer.viewContext.fetch(NSFetchRequest<Debt>(entityName: "Debt"))
         } catch {
             allDebts = []
             print("error get debts")
         }
         let debts = allDebts.filter { (debt) -> Bool in
-            debt.type == type.hashValue
+            debt.type == type.rawValue
         }
         return debts
     }
