@@ -59,6 +59,8 @@ class NewDebtViewController: UIViewController {
     lazy var saveButton: RectangleButton = {
         let saveButton = RectangleButton(title: "Save")
         saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.setTitleColor(UIColor.AppColors.lightGray, for: .normal)
+        saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         view.addSubview(saveButton)
         return saveButton
     }()
@@ -112,10 +114,13 @@ class NewDebtViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -32),
-            saveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.36),
-            saveButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.064)
+//            saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44),
+            saveButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            saveButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            saveButton.heightAnchor.constraint(equalToConstant: 44)
+//            saveButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.36),
+//            saveButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.064)
         ])
     }
 }
@@ -140,7 +145,7 @@ extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 88
+        return 96
     }
 }
 
