@@ -30,6 +30,11 @@ class MockLabel: UILabel {
         self.init(frame: CGRect.zero)
         uptadeString(text: text, type: type)
     }
+    
+    convenience init(text: String, type: MockLabelType) {
+        self.init(frame: CGRect.zero)
+        configLabel(text: text, type: type)
+    }
 }
 
 extension MockLabel: AttributedTextProtocol {

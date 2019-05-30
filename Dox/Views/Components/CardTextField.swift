@@ -14,17 +14,9 @@ class CardTextField: UITextField {
         return padding
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
     convenience init(backgroundColor color: UIColor) {
         self.init(frame: CGRect.zero)
         configTextField(backgroundColor: color)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -39,7 +31,7 @@ class CardTextField: UITextField {
         return bounds.inset(by: padding)
     }
 }
-
+//ShadowProtocol
 extension CardTextField: ShadowProtocol {
     private func configTextField(backgroundColor: UIColor) {
         self.backgroundColor = backgroundColor

@@ -15,13 +15,22 @@ enum DebtType: Int {
 }
 
 class NewDebtViewController: UIViewController {
-    lazy var titleLablel: MockLabel = {
+//    Label
+    lazy var largeTitle: MockLabel = {
         let label = MockLabel(text: .newDebt, type: .darkLargeTitle)
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         return label
     }()
     
+    lazy var mockLabelTitles: [String] = {
+        let mockLabelTitles: [String] = [NSLocalizedString("Name", comment: "Name"),
+                                         NSLocalizedString("Reason", comment: "Reason"),
+                                         NSLocalizedString("Value", comment: "Value")]
+        return mockLabelTitles
+    }()
+
+//    Button
     lazy var exitButton: CircleButton = {
         let exitButton = CircleButton(image: #imageLiteral(resourceName: "exitButton"), type: .exit)
         exitButton.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +40,15 @@ class NewDebtViewController: UIViewController {
         return exitButton
     }()
     
+    lazy var saveButton: RectangleButton = {
+        let saveButton = RectangleButton(title: "Save")
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.setTitleColor(UIColor.AppColors.lightGray, for: .normal)
+        saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        view.addSubview(saveButton)
+        return saveButton
+    }()
+//    SegmentedControll
     lazy var segmetendTitles: [String] = {
         let segmetendTitles = ["To receive", "To pay"]
         return segmetendTitles
@@ -47,7 +65,7 @@ class NewDebtViewController: UIViewController {
         view.addSubview(segmentedControl)
         return segmentedControl
     }()
-    
+//    TableView
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -58,58 +76,29 @@ class NewDebtViewController: UIViewController {
         view.addSubview(tableView)
         return tableView
     }()
-    
-    lazy var saveButton: RectangleButton = {
-        let saveButton = RectangleButton(title: "Save")
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.setTitleColor(UIColor.AppColors.lightGray, for: .normal)
-        saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        view.addSubview(saveButton)
-        return saveButton
+//    InputCell
+    lazy var inputCellTypes: [InputCellType] = {
+        let inputCellTypes: [InputCellType] = [.name, .reason, .value]
+        return inputCellTypes
     }()
     
-    lazy var mockLabelTitles: [MockLabelText] = {
-        let mockLabelTitles: [MockLabelText] = [.name, .reason, .value]
-        return mockLabelTitles
+    lazy var inputCells: [InputCell] = {
+        let inputCells: [InputCell] = []
+        return inputCells
     }()
-    
-    weak var delegate: NewDebtViewControllerDelegate?
-    
-    lazy var name: String = {
-        let name = NSLocalizedString("Name", comment: "Name")
-        return name
-    }()
-    
-    lazy var reason: String = {
-        let reason = NSLocalizedString("Reason", comment: "Reason")
-        return reason
-    }()
-    
-    lazy var symbol: String = {
-        let symbol = NSLocalizedString("Symbol", comment: "Symbol")
-        return symbol
-    }()
-    
-    lazy var value: String = {
-        let value = NSLocalizedString("Value", comment: "Value")
-        return value
-    }()
-    
+//    DebtType
     lazy var debtType: DebtType = {
         let debtType: DebtType = .toReceive
         return debtType
     }()
+//    Delegate
+    weak var delegate: NewDebtViewControllerDelegate?
     
-    var nameCell: InputNewDebtCell?
-    var reasonCell: InputNewDebtCell?
-    var valueCell: ValueDebtCell?
-    
+//    Life circle method
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.orange
-        tableView.register(InputNewDebtCell.self, forCellReuseIdentifier: "cell")
-        tableView.register(ValueDebtCell.self, forCellReuseIdentifier: "valueCell")
-//        Add action to buttons
+        tableView.register(InputCell.self, forCellReuseIdentifier: "cell")
         exitButton.addTarget(self, action: #selector(exitTapped(_:)), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(saveTapped(_:)), for: .touchUpInside)
 //        Methods
@@ -123,24 +112,18 @@ class NewDebtViewController: UIViewController {
     }
     
     @objc func saveTapped(_ sender: UIButton) {
-        getTextFromTextFields()
-        let finalValue = "\(symbol)\(self.value)"
-        let debt = CoreDataManager.sharedManager.createDebt(name: name,
-                                                            reason: reason, value: finalValue, type: debtType)
+        let newDebt = createNewDebt()
         dismiss(animated: true) {
-            self.delegate?.addNew(debt: debt)
+            self.delegate?.addNew(debt: newDebt)
         }
     }
     
-    private func getTextFromTextFields() {
-        guard let nameCell = nameCell,
-              let reasonCell = reasonCell,
-              let valueCell = valueCell else { return }
-        
-        name = nameCell.getTextFieldInputText()
-        reason = reasonCell.getTextFieldInputText()
-        value = valueCell.getValueTextFieldInputText()
-        symbol = valueCell.getSymbolTextFieldInputText()
+    private func createNewDebt() -> Debt {
+        let name = inputCells[0].getTextFieldTextFor(cellType: .name)
+        let reason = inputCells[1].getTextFieldTextFor(cellType: .reason)
+        let value = inputCells[2].getTextFieldTextFor(cellType: .value)
+        let newDebt = CoreDataManager.sharedManager.saveDebt(name: name, reason: reason, value: value, type: debtType)
+        return newDebt
     }
 }
 //Constraints
@@ -154,10 +137,10 @@ extension NewDebtViewController {
             ])
         
         NSLayoutConstraint.activate([
-            titleLablel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 58),
-            titleLablel.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
-            titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+            largeTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            largeTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 58),
+            largeTitle.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
+            largeTitle.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
             ])
         
         NSLayoutConstraint.activate([
@@ -184,32 +167,16 @@ extension NewDebtViewController {
 //TableViewDelagate
 extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mockLabelTitles.count
+        return inputCellTypes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 2 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "valueCell", for: indexPath) as?
-                ValueDebtCell else { return UITableViewCell() }
-            valueCell = cell
-            cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
-            
-            return cell
-        } else if indexPath.row == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? InputNewDebtCell
-                else { return UITableViewCell() }
-            reasonCell = cell
-            cell.configCellWith(title: mockLabelTitles[indexPath.row], to: self)
-            
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? InputNewDebtCell
-                else { return UITableViewCell() }
-            nameCell = cell
-            cell.configCellWith(title: mockLabelTitles[indexPath.row], to: self)
-            
-            return cell
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? InputCell
+            else { return UITableViewCell() }
+        let index = indexPath.row
+        cell.configCellWith(title: mockLabelTitles[index], andType: inputCellTypes[index], to: self)
+        inputCells.append(cell)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

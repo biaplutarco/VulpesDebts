@@ -9,7 +9,7 @@
 import UIKit
 
 class DebtsViewController: UIViewController {
-//    LargeTitle
+//    Label
     lazy var titleLablel: MockLabel = {
         let label = MockLabel(text: .debts, type: .largeTitle)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +79,7 @@ class DebtsViewController: UIViewController {
         view.addSubview(tableView)
         return tableView
     }()
-
+//    Life circle method
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.darkGray

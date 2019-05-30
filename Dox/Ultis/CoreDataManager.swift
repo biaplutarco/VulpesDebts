@@ -29,7 +29,7 @@ class CoreDataManager {
     
     private init() {}
     
-    func createDebt(name: String, reason: String, value: String, type: DebtType) -> Debt {
+    func saveDebt(name: String, reason: String, value: String, type: DebtType) -> Debt {
         let debt = Debt(context: persistentContainer.viewContext)
         debt.name = name
         debt.reason = reason
