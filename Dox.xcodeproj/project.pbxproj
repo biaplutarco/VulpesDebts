@@ -132,7 +132,6 @@
 				B20399942294DFD8004BFCC8 /* ViewModels */,
 				B20399932294DFD1004BFCC8 /* Views */,
 				B20399702294DAD6004BFCC8 /* AppDelegate.swift */,
-				B279B554229B568D0072F61A /* Localizable.strings */,
 				B203997A2294DAD9004BFCC8 /* Assets.xcassets */,
 				B203997C2294DAD9004BFCC8 /* LaunchScreen.storyboard */,
 				B203997F2294DAD9004BFCC8 /* Info.plist */,
@@ -220,6 +219,7 @@
 		B279B537229A2BBD0072F61A /* Ultis */ = {
 			isa = PBXGroup;
 			children = (
+				B279B554229B568D0072F61A /* Localizable.strings */,
 				B2D5CD08229F7D3300BBCC4F /* Enum */,
 				B2D5CD0D229F7DC700BBCC4F /* Protocol */,
 				B2486F28229EFFB6005DDE99 /* CoreDataManager.swift */,
