@@ -8,6 +8,7 @@
 
 import Foundation
 
-enum TransitionType: Int {
-    case present, dismiss
+enum TransitionType {
+    case present
+    case dismiss
 }
