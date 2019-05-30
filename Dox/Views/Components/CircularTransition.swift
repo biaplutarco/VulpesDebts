@@ -12,7 +12,7 @@ enum TransitionMode: Int {
     case present, dismiss
 }
 
-class CustomTransition: NSObject {
+class CircularTransition: NSObject {
     var circleView: UIView = {
         let circle = UIView()
         circle.backgroundColor = UIColor.AppColors.orange
@@ -90,7 +90,7 @@ class CustomTransition: NSObject {
     }
 }
 //AnimatedTransitioning
-extension CustomTransition: UIViewControllerAnimatedTransitioning {
+extension CircularTransition: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }

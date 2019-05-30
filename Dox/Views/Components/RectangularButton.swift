@@ -8,14 +8,14 @@
 
 import UIKit
 
-class RectangleButton: UIButton {
+class RectangularButton: UIButton {
     convenience init(title: String) {
         self.init(frame: CGRect.zero)
         configButton(title: title)
     }
 }
 //ShadowProtocol
-extension RectangleButton: ShadowProtocol {
+extension RectangularButton: ShadowProtocol {
     private func configButton(title: String) {
         self.configShadowIn(view: self, isDark: false)
         self.layer.cornerRadius = 8

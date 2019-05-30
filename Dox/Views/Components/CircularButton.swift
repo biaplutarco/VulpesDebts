@@ -13,14 +13,14 @@ enum ButtonActionType {
     case exit
 }
 
-class CircleButton: UIButton {
+class CircularButton: UIButton {
     convenience init(image: UIImage, type: ButtonActionType) {
         self.init(frame: CGRect.zero)
         configButton(image: image, type: type)
     }
 }
 //ShadowProtocol
-extension CircleButton: ShadowProtocol {
+extension CircularButton: ShadowProtocol {
     private func configButton(image: UIImage, type: ButtonActionType) {
         self.setBackgroundImage(image, for: .normal)
         switch type {
