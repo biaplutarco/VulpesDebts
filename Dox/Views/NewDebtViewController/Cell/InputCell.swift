@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum InputCellType {
-    case name
-    case reason
-    case value
-}
-
 class InputCell: UITableViewCell {
 //    Label
     lazy var mockLabel: MockLabel = {

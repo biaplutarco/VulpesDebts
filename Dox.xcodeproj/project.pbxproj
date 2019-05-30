@@ -37,6 +37,7 @@
 		B2D5CD07229F7D0E00BBCC4F /* MockLabelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD06229F7D0E00BBCC4F /* MockLabelType.swift */; };
 		B2D5CD0A229F7D5300BBCC4F /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD09229F7D5300BBCC4F /* TransitionType.swift */; };
 		B2D5CD0C229F7D9A00BBCC4F /* CircularButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD0B229F7D9A00BBCC4F /* CircularButtonType.swift */; };
+		B2D5CD10229F80D600BBCC4F /* InputCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD0F229F80D600BBCC4F /* InputCellType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		B2D5CD06229F7D0E00BBCC4F /* MockLabelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLabelType.swift; sourceTree = "<group>"; };
 		B2D5CD09229F7D5300BBCC4F /* TransitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionType.swift; sourceTree = "<group>"; };
 		B2D5CD0B229F7D9A00BBCC4F /* CircularButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonType.swift; sourceTree = "<group>"; };
+		B2D5CD0F229F80D600BBCC4F /* InputCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCellType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,8 +242,9 @@
 			isa = PBXGroup;
 			children = (
 				B2D5CD04229F7CDC00BBCC4F /* DebtType.swift */,
-				B2D5CD06229F7D0E00BBCC4F /* MockLabelType.swift */,
+				B2D5CD0F229F80D600BBCC4F /* InputCellType.swift */,
 				B2D5CD09229F7D5300BBCC4F /* TransitionType.swift */,
+				B2D5CD06229F7D0E00BBCC4F /* MockLabelType.swift */,
 				B2D5CD0B229F7D9A00BBCC4F /* CircularButtonType.swift */,
 			);
 			path = Enum;
@@ -406,6 +409,7 @@
 				B20399732294DAD6004BFCC8 /* DebtsViewController.swift in Sources */,
 				B279B53E229A405A0072F61A /* CircularButton.swift in Sources */,
 				B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */,
+				B2D5CD10229F80D600BBCC4F /* InputCellType.swift in Sources */,
 				B279B533229A0CBA0072F61A /* LineSegmentedControlDelegate.swift in Sources */,
 				B279B531229A0CA90072F61A /* LineSegmentedControl.swift in Sources */,
 				B2D5CD03229F7AC900BBCC4F /* HeaderConstraintsProtocol.swift in Sources */,
