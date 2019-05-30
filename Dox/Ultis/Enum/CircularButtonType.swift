@@ -1,15 +1,14 @@
 //
-//  Debt+CoreDataClass.swift
+//  CircularButtonType.swift
 //  Dox
 //
 //  Created by Bia Plutarco on 29/05/19.
 //  Copyright © 2019 Bia Plutarco. All rights reserved.
 //
-//
 
-import Foundation
-import CoreData
+import UIKit
 
-@objc(Debt)
-public class Debt: NSManagedObject {
+enum CircularButtonType {
+    case add
+    case exit
 }

@@ -8,16 +8,11 @@
 
 import UIKit
 
-enum DebtType: Int {
-    case toReceive = 0
-    case toPay = 1
-    case error
-}
-
 class NewDebtViewController: UIViewController {
 //    Label
     lazy var largeTitle: MockLabel = {
-        let label = MockLabel(text: .newDebt, type: .darkLargeTitle)
+        let title = NSLocalizedString("New Debt", comment: "New Debt")
+        let label = MockLabel(text: title, type: .darkLargeTitle)
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         return label
@@ -31,8 +26,8 @@ class NewDebtViewController: UIViewController {
     }()
 
 //    Button
-    lazy var exitButton: CircleButton = {
-        let exitButton = CircleButton(image: #imageLiteral(resourceName: "exitButton"), type: .exit)
+    lazy var exitButton: CircularButton = {
+        let exitButton = CircularButton(image: #imageLiteral(resourceName: "exitButton"), type: .exit)
         exitButton.translatesAutoresizingMaskIntoConstraints = false
         exitButton.layer.cornerRadius = 20
         exitButton.isUserInteractionEnabled = true
@@ -40,8 +35,8 @@ class NewDebtViewController: UIViewController {
         return exitButton
     }()
     
-    lazy var saveButton: RectangleButton = {
-        let saveButton = RectangleButton(title: "Save")
+    lazy var saveButton: RectangularButton = {
+        let saveButton = RectangularButton(title: "Save")
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.setTitleColor(UIColor.AppColors.lightGray, for: .normal)
         saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
@@ -127,31 +122,14 @@ class NewDebtViewController: UIViewController {
     }
 }
 //Constraints
-extension NewDebtViewController {
+extension NewDebtViewController: HeaderConstraintsProtocol {
     private func configConstraints() {
-        NSLayoutConstraint.activate([
-            exitButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            exitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            exitButton.heightAnchor.constraint(equalToConstant: 42),
-            exitButton.widthAnchor.constraint(equalToConstant: 42)
-            ])
-        
-        NSLayoutConstraint.activate([
-            largeTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            largeTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 58),
-            largeTitle.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
-            largeTitle.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
-            ])
-        
-        NSLayoutConstraint.activate([
-            segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60),
-            segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -26),
-            segmentedControl.heightAnchor.constraint(equalToConstant: 32)
-            ])
+        configHeaderConstraints(largeTitle: largeTitle, segmentedControl: segmentedControl,
+                                button: exitButton, at: view)
         
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 26),
             tableView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -24),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
             ])

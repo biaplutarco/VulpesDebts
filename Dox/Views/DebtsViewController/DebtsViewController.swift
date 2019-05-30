@@ -10,15 +10,16 @@ import UIKit
 
 class DebtsViewController: UIViewController {
 //    Label
-    lazy var titleLablel: MockLabel = {
-        let label = MockLabel(text: .debts, type: .largeTitle)
+    lazy var largeTitle: MockLabel = {
+        let title = NSLocalizedString("Debts", comment: "Debts")
+        let label = MockLabel(text: title, type: .largeTitle)
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         return label
     }()
 //    Button
-    lazy var addButton: CircleButton = {
-        let addButton = CircleButton(image: #imageLiteral(resourceName: "addButton"), type: .add)
+    lazy var addButton: CircularButton = {
+        let addButton = CircularButton(image: #imageLiteral(resourceName: "addButton"), type: .add)
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.layer.cornerRadius = 20
         view.addSubview(addButton)
@@ -49,11 +50,11 @@ class DebtsViewController: UIViewController {
         return isToPay
     }()
 //    CustomTransition
-    lazy var transition: CustomTransition = {
+    lazy var transition: CircularTransition = {
         let size = view.frame.height
         let startingPoint = addButton.center
         let center = view.center
-        let transition = CustomTransition(
+        let transition = CircularTransition(
             size: size, startingPoint: startingPoint, viewCenter: center, duration: 0.6
         )
         return transition
@@ -97,33 +98,16 @@ class DebtsViewController: UIViewController {
     }
 }
 //Constraints
-extension DebtsViewController {
+extension DebtsViewController: HeaderConstraintsProtocol {
     private func configConstraints() {
-        NSLayoutConstraint.activate([
-            titleLablel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 58),
-            titleLablel.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
-            titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4)
-        ])
-        
-        NSLayoutConstraint.activate([
-            addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            addButton.heightAnchor.constraint(equalToConstant: 42),
-            addButton.widthAnchor.constraint(equalToConstant: 42)
-        ])
-        
-        NSLayoutConstraint.activate([
-            segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60),
-            segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -24),
-            segmentedControl.heightAnchor.constraint(equalToConstant: 32)
-        ])
+        configHeaderConstraints(largeTitle: largeTitle, segmentedControl: segmentedControl,
+                                button: addButton, at: view)
         
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
+            tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 24)
         ])
     }
 }
@@ -194,12 +178,12 @@ extension DebtsViewController: LineSegmentedControlDelegate {
 extension DebtsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .present
+        transition.transitionType = .present
         return transition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .dismiss
+        transition.transitionType = .dismiss
         return transition
     }
 }

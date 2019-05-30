@@ -17,7 +17,7 @@ enum InputCellType {
 class InputCell: UITableViewCell {
 //    Label
     lazy var mockLabel: MockLabel = {
-        let mockLabel = MockLabel(text: "error", type: .insideNewDebtVC)
+        let mockLabel = MockLabel(text: "error", type: .insideNewDebt)
         mockLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(mockLabel)
         return mockLabel

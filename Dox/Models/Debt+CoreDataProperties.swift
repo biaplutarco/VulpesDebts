@@ -19,5 +19,4 @@ extension Debt {
     @NSManaged public var reason: String
     @NSManaged public var type: Int
     @NSManaged public var value: String
-
 }

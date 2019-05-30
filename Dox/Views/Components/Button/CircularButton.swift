@@ -8,20 +8,15 @@
 
 import UIKit
 
-enum ButtonActionType {
-    case add
-    case exit
-}
-
 class CircularButton: UIButton {
-    convenience init(image: UIImage, type: ButtonActionType) {
+    convenience init(image: UIImage, type: CircularButtonType) {
         self.init(frame: CGRect.zero)
         configButton(image: image, type: type)
     }
 }
 //ShadowProtocol
 extension CircularButton: ShadowProtocol {
-    private func configButton(image: UIImage, type: ButtonActionType) {
+    private func configButton(image: UIImage, type: CircularButtonType) {
         self.setBackgroundImage(image, for: .normal)
         switch type {
         case .add:

@@ -8,10 +8,6 @@
 
 import UIKit
 
-enum TransitionMode: Int {
-    case present, dismiss
-}
-
 class CircularTransition: NSObject {
     var circleView: UIView = {
         let circle = UIView()
@@ -22,7 +18,7 @@ class CircularTransition: NSObject {
     var startingPoint: CGPoint
     var viewCenter: CGPoint
     var duration: TimeInterval
-    var transitionMode: TransitionMode = .present
+    var transitionType: TransitionType = .present
     
     init(size: CGFloat, startingPoint: CGPoint, viewCenter: CGPoint, duration: TimeInterval) {
         self.startingPoint = startingPoint
@@ -36,7 +32,7 @@ class CircularTransition: NSObject {
         circleView.frame = CGRect(origin: startingPoint, size: CGSize(width: size*2, height: size*2))
         circleView.layer.cornerRadius = size
 //        Setting circleView to animation
-        switch transitionMode {
+        switch transitionType {
         case .present:
             circleView.center = self.startingPoint
             circleView.transform = CGAffineTransform(scaleX: 0.004, y: 0.004)
@@ -98,7 +94,7 @@ extension CircularTransition: UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         containerView.addSubview(circleView)
-        switch transitionMode {
+        switch transitionType {
         case .present:
             guard let presentedView = transitionContext.view(forKey: UITransitionContextViewKey.to) else { return }
 //            Setting PresentedView

@@ -18,14 +18,16 @@ class DebtCell: UITableViewCell {
     }()
 //    MockLabels
     lazy var mockLabelName: MockLabel = {
-        let label = MockLabel(text: .name, type: .insideCard)
+        let title = NSLocalizedString("Name", comment: "Name")
+        let label = MockLabel(text: title, type: .insideCard)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
     }()
     
     lazy var mockLabelValue: MockLabel = {
-        let label = MockLabel(text: .value, type: .insideCard)
+        let title = NSLocalizedString("Reason", comment: "Reason")
+        let label = MockLabel(text: title, type: .insideCard)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
         self.addSubview(label)
@@ -33,7 +35,8 @@ class DebtCell: UITableViewCell {
     }()
     
     lazy var mockLabelReason: MockLabel = {
-        let label = MockLabel(text: .reason, type: .insideCard)
+        let title = NSLocalizedString("Value", comment: "Value")
+        let label = MockLabel(text: title, type: .insideCard)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
