@@ -11,7 +11,7 @@ import UIKit
 class DebtsViewController: UIViewController {
 //    LargeTitle
     lazy var titleLablel: MockLabel = {
-        let label = MockLabel(text: .debts, type: .title)
+        let label = MockLabel(text: .debts, type: .largeTitle)
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         return label
@@ -25,25 +25,23 @@ class DebtsViewController: UIViewController {
         return addButton
     }()
 //    SegmentedControl
-    lazy var segmentedWidth: CGFloat = {
-        let segmentedWidth = view.frame.width*0.60
-        return segmentedWidth
-    }()
-    
     lazy var segmentedTitles: [String] = {
-        let segmentedTitles = ["To receive", "To pay"]
+        let toReceiveTitle = NSLocalizedString("To receive", comment: "To receive")
+        let toPayTitle = NSLocalizedString("To pay", comment: "To pay")
+        let segmentedTitles = [toReceiveTitle, toPayTitle]
         return segmentedTitles
     }()
     
-    lazy var segmentedControl: OneLineSC = {
-        let segControl = OneLineSC(titles: self.segmentedTitles, selectorMultiple: 3,
-                                   segmentedWidth: self.segmentedWidth,
-                                   selectedColor: UIColor.AppColors.lightGray,
-                                   unselectedColor: UIColor.AppColors.gray)
-        segControl.delegate = self
-        segControl.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(segControl)
-        return segControl
+    lazy var segmentedControl: LineSegmentedControl = {
+        let segmentedControl = LineSegmentedControl(
+            width: view.frame.width * 0.6,
+            titles: segmentedTitles, mulplierLineWidth: 3,
+            selectedColor: UIColor.AppColors.lightGray, unselectedColor: UIColor.AppColors.gray
+        )
+        segmentedControl.delegate = self
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(segmentedControl)
+        return segmentedControl
     }()
     
     lazy var isToPay: Bool = {
@@ -52,10 +50,12 @@ class DebtsViewController: UIViewController {
     }()
 //    CustomTransition
     lazy var transition: CustomTransition = {
-        let size = self.view.frame.height
-        let startingPoint = self.addButton.center
-        let center = self.view.center
-        let transition = CustomTransition(size: size, startingPoint: startingPoint, viewCenter: center, duration: 0.6)
+        let size = view.frame.height
+        let startingPoint = addButton.center
+        let center = view.center
+        let transition = CustomTransition(
+            size: size, startingPoint: startingPoint, viewCenter: center, duration: 0.6
+        )
         return transition
     }()
 //    TableView
@@ -83,17 +83,16 @@ class DebtsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.darkGray
-        
         tableView.register(DebtCell.self, forCellReuseIdentifier: "cell")
         addButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         configConstraints()
     }
-    
+//    Action
     @objc func buttonTapped(_ sender: UIButton) {
         let nextVC = NewDebtViewController()
+        nextVC.delegate = self
         nextVC.transitioningDelegate = self
         nextVC.modalPresentationStyle = .custom
-        nextVC.delegate = self
         present(nextVC, animated: true, completion: nil)
     }
 }
@@ -105,31 +104,30 @@ extension DebtsViewController {
             titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 58),
             titleLablel.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
             titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.4)
-            ])
+        ])
         
         NSLayoutConstraint.activate([
             addButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             addButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             addButton.heightAnchor.constraint(equalToConstant: 42),
             addButton.widthAnchor.constraint(equalToConstant: 42)
-            ])
+        ])
         
         NSLayoutConstraint.activate([
             segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60),
             segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -24),
             segmentedControl.heightAnchor.constraint(equalToConstant: 32)
-            ])
+        ])
         
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
-            ])
+        ])
     }
 }
-
-//TableView Delegate
+//TableViewDelegate
 extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isToPay == false {
@@ -143,10 +141,10 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DebtCell
             else { return UITableViewCell() }
         if isToPay == false {
-            cell.setupCell(debt: dataToReceive[indexPath.row])
+            cell.configCellWith(debt: dataToReceive[indexPath.row], andTextColor: UIColor.AppColors.lightGray)
             return cell
         } else {
-            cell.setupCell(debt: dataToPay[indexPath.row])
+            cell.configCellWith(debt: dataToPay[indexPath.row], andTextColor: UIColor.AppColors.lightGray)
             return cell
         }
     }
@@ -171,7 +169,6 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
                 tableView.reloadSections(IndexSet(indexPath), with: .automatic)
             }
         }
-            
         paidAction.backgroundColor = UIColor.AppColors.darkGray
         paidAction.image = #imageLiteral(resourceName: "paid")
             
@@ -180,8 +177,8 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
         return swipeAction
     }
 }
-//SegmentedControl Delegate
-extension DebtsViewController: OneLineSGDelegate {
+//SegmentedControlDelegate
+extension DebtsViewController: LineSegmentedControlDelegate {
     func didChangeTo(index: Int) {
         switch index {
         case 0:
@@ -193,7 +190,7 @@ extension DebtsViewController: OneLineSGDelegate {
         }
     }
 }
-//Transitioning Delegate + Button Delegate
+//Transitioning Delegate
 extension DebtsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -206,8 +203,8 @@ extension DebtsViewController: UIViewControllerTransitioningDelegate {
         return transition
     }
 }
-
-extension DebtsViewController: NewDebtVCDelegate {
+//NewDebtViewControllerDelegate
+extension DebtsViewController: NewDebtViewControllerDelegate {
     func addNew(debt: Debt) {
         if debt.type == 0 {
             dataToReceive = CoreDataManager.sharedManager.getDebtsFrom(type: .toReceive)
@@ -217,5 +214,4 @@ extension DebtsViewController: NewDebtVCDelegate {
             tableView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)), with: .automatic)
         }
     }
-    
 }

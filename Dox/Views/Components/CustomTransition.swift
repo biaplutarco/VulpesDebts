@@ -35,7 +35,7 @@ class CustomTransition: NSObject {
     private func configCircleView(size: CGFloat) {
         circleView.frame = CGRect(origin: startingPoint, size: CGSize(width: size*2, height: size*2))
         circleView.layer.cornerRadius = size
-        //Setting circleView to animation
+//        Setting circleView to animation
         switch transitionMode {
         case .present:
             circleView.center = self.startingPoint
@@ -45,17 +45,18 @@ class CustomTransition: NSObject {
             circleView.transform = CGAffineTransform.identity
         }
     }
-    
+//    TransitionModeAnimation:
+//    PresenteAimation
     private func presentAnimation(presentedView: UIView, transitionContext: UIViewControllerContextTransitioning) {
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: .calculationModeLinear, animations: {
             let duration = self.duration
-            //Open the circle and centered it
+//            Open the circle and centered it
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: duration, animations: {
                 self.circleView.transform = CGAffineTransform.identity
                 presentedView.transform = CGAffineTransform.identity
                 presentedView.center = self.viewCenter
             })
-            // Show the NextVC
+//            Show the NextVC
             UIView.addKeyframe(withRelativeStartTime: duration, relativeDuration: duration/2, animations: {
                 presentedView.alpha = 0.5
             })
@@ -66,17 +67,17 @@ class CustomTransition: NSObject {
             transitionContext.completeTransition(success)
         })
     }
-    
+//    DismissAnimation
     private func dismissAnimation(returningView: UIView, transitionContext: UIViewControllerContextTransitioning) {
         UIView.animateKeyframes(withDuration: duration, delay: 0, options: .calculationModeLinear, animations: {
-            //Open the circle and centered it
+//            Open the circle and centered it
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: self.duration*2, animations: {
                 self.circleView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
                 self.circleView.center = self.startingPoint
                 returningView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
                 returningView.center = self.startingPoint
             })
-            // Show the NextVC
+//            Show the NextVC
             UIView.addKeyframe(withRelativeStartTime: self.duration*2, relativeDuration: self.duration, animations: {
                 returningView.alpha = 0
             })
@@ -88,7 +89,7 @@ class CustomTransition: NSObject {
         })
     }
 }
-
+//AnimatedTransitioning
 extension CustomTransition: UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
@@ -100,16 +101,16 @@ extension CustomTransition: UIViewControllerAnimatedTransitioning {
         switch transitionMode {
         case .present:
             guard let presentedView = transitionContext.view(forKey: UITransitionContextViewKey.to) else { return }
-            //Setting PresentedView
+//            Setting PresentedView
             presentedView.alpha = 0
             presentedView.center = startingPoint
             presentedView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
             containerView.addSubview(presentedView)
-            //Animation
+//            Animation
             presentAnimation(presentedView: presentedView, transitionContext: transitionContext)
         case .dismiss:
             guard let returningView = transitionContext.view(forKey: UITransitionContextViewKey.from) else { return }
-            //Animation
+//            Animation
             dismissAnimation(returningView: returningView, transitionContext: transitionContext)
         }
     }

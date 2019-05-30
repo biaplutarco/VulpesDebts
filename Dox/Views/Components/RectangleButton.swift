@@ -9,26 +9,18 @@
 import UIKit
 
 class RectangleButton: UIButton {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
     convenience init(title: String) {
         self.init(frame: CGRect.zero)
         configButton(title: title)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
-
+//ShadowProtocol
 extension RectangleButton: ShadowProtocol {
     private func configButton(title: String) {
         self.configShadowIn(view: self, isDark: false)
         self.layer.cornerRadius = 8
         self.backgroundColor = UIColor.AppColors.darkGray
-        
+//        Set LocalizedString to title
         let translatedTitle = NSLocalizedString(title, comment: title)
         self.setTitle(translatedTitle, for: .normal)
     }

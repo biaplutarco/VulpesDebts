@@ -19,24 +19,16 @@ enum MockLabelText: String {
 }
 
 enum MockLabelType {
-    case cardDebt
-    case viewNewDebt
-    case title
-    case titleDark
+    case insideCard
+    case insideNewDebtVC
+    case largeTitle
+    case darkLargeTitle
 }
 
 class MockLabel: UILabel {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
     convenience init(text: MockLabelText, type: MockLabelType) {
         self.init(frame: CGRect.zero)
         uptadeString(text: text, type: type)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -48,17 +40,17 @@ extension MockLabel: AttributedTextProtocol {
     
     private func configLabel(text: String, type: MockLabelType) {
         switch type {
-        case .cardDebt:
+        case .insideCard:
             self.attributedText = configText(text, size: 12, color: UIColor.AppColors.gray, isBold: false)
-        case .title:
+        case .largeTitle:
             self.attributedText = configText(text, size: 34, color: UIColor.AppColors.lightGray, isBold: true)
-        case .titleDark:
+        case .darkLargeTitle:
             self.attributedText = configText(text, size: 34, color: UIColor.AppColors.darkGray, isBold: true)
-        case .viewNewDebt:
+        case .insideNewDebtVC:
             self.attributedText = configText(text, size: 16, color: UIColor.AppColors.darkGray, isBold: true)
         }
     }
-    
+//    Get the localized string for each MockLabelText case
     private func translateString(_ mockLabelText: MockLabelText) -> String {
         switch mockLabelText {
         case .debts:

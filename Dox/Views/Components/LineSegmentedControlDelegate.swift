@@ -1,5 +1,5 @@
 //
-//  OneLineSGDelegate.swift
+//  LineSegmentedControlDelegate.swift
 //  Dox
 //
 //  Created by Bia Plutarco on 25/05/19.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol OneLineSGDelegate: class {
+protocol LineSegmentedControlDelegate: class {
     func didChangeTo(index: Int)
 }

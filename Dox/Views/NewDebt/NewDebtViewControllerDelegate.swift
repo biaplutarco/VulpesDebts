@@ -1,5 +1,5 @@
 //
-//  NewDebtVCDelegate.swift
+//  NewDebtViewControllerDelegate.swift
 //  Dox
 //
 //  Created by Bia Plutarco on 29/05/19.
@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol NewDebtVCDelegate: class {
+protocol NewDebtViewControllerDelegate: class {
     func addNew(debt: Debt)
 }

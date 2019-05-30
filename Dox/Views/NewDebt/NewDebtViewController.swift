@@ -16,7 +16,7 @@ enum DebtType: Int {
 
 class NewDebtViewController: UIViewController {
     lazy var titleLablel: MockLabel = {
-        let label = MockLabel(text: .newDebt, type: .titleDark)
+        let label = MockLabel(text: .newDebt, type: .darkLargeTitle)
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         return label
@@ -36,20 +36,16 @@ class NewDebtViewController: UIViewController {
         return segmetendTitles
     }()
     
-    lazy var segmentedWidth: CGFloat = {
-        let segmentedWidth = view.frame.width*0.60
-        return segmentedWidth
-    }()
-    
-    lazy var segmentedControl: OneLineSC = {
-        let segControl = OneLineSC(titles: self.segmetendTitles, selectorMultiple: 3,
-                                   segmentedWidth: self.segmentedWidth,
-                                   selectedColor: UIColor.AppColors.darkGray,
-                                   unselectedColor: UIColor.AppColors.grayLowOpacity)
-        segControl.delegate = self
-        segControl.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(segControl)
-        return segControl
+    lazy var segmentedControl: LineSegmentedControl = {
+        let segmentedControl = LineSegmentedControl(
+            width: view.frame.width * 0.6,
+            titles: segmetendTitles, mulplierLineWidth: 3,
+            selectedColor: UIColor.AppColors.darkGray, unselectedColor: UIColor.AppColors.grayLowOpacity
+        )
+        segmentedControl.delegate = self
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(segmentedControl)
+        return segmentedControl
     }()
     
     lazy var tableView: UITableView = {
@@ -77,7 +73,7 @@ class NewDebtViewController: UIViewController {
         return mockLabelTitles
     }()
     
-    weak var delegate: NewDebtVCDelegate?
+    weak var delegate: NewDebtViewControllerDelegate?
     
     lazy var name: String = {
         let name = NSLocalizedString("Name", comment: "Name")
@@ -104,29 +100,24 @@ class NewDebtViewController: UIViewController {
         return debtType
     }()
     
-    var nameCell: NewDebtCell?
-    var reasonCell: NewDebtCell?
+    var nameCell: InputNewDebtCell?
+    var reasonCell: InputNewDebtCell?
     var valueCell: ValueDebtCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.orange
-        
-        tableView.register(NewDebtCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(InputNewDebtCell.self, forCellReuseIdentifier: "cell")
         tableView.register(ValueDebtCell.self, forCellReuseIdentifier: "valueCell")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
-        
+//        Add action to buttons
         exitButton.addTarget(self, action: #selector(exitTapped(_:)), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(saveTapped(_:)), for: .touchUpInside)
-        
+//        Methods
+        addObservers()
         configConstraints()
         hideKeyboardWhenTappedAround()
     }
-    
+//    Actions
     @objc func exitTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -146,49 +137,51 @@ class NewDebtViewController: UIViewController {
               let reasonCell = reasonCell,
               let valueCell = valueCell else { return }
         
-        name = nameCell.inputText()
-        reason = reasonCell.inputText()
-        value = valueCell.inputValueText()
-        symbol = valueCell.inputSymbolText()
+        name = nameCell.getTextFieldInputText()
+        reason = reasonCell.getTextFieldInputText()
+        value = valueCell.getValueTextFieldInputText()
+        symbol = valueCell.getSymbolTextFieldInputText()
     }
-    
+}
+//Constraints
+extension NewDebtViewController {
     private func configConstraints() {
         NSLayoutConstraint.activate([
             exitButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             exitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             exitButton.heightAnchor.constraint(equalToConstant: 42),
             exitButton.widthAnchor.constraint(equalToConstant: 42)
-        ])
-    
+            ])
+        
         NSLayoutConstraint.activate([
             titleLablel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             titleLablel.topAnchor.constraint(equalTo: view.topAnchor, constant: 58),
             titleLablel.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
             titleLablel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
-        ])
+            ])
         
         NSLayoutConstraint.activate([
             segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60),
             segmentedControl.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -26),
             segmentedControl.heightAnchor.constraint(equalToConstant: 32)
-        ])
+            ])
         
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tableView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -24),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
-        ])
+            ])
         
         NSLayoutConstraint.activate([
             saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44),
             saveButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             saveButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             saveButton.heightAnchor.constraint(equalToConstant: 44)
-        ])
+            ])
     }
 }
-
+//TableViewDelagate
 extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mockLabelTitles.count
@@ -203,17 +196,17 @@ extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         } else if indexPath.row == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewDebtCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? InputNewDebtCell
                 else { return UITableViewCell() }
             reasonCell = cell
-            cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
+            cell.configCellWith(title: mockLabelTitles[indexPath.row], to: self)
             
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewDebtCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? InputNewDebtCell
                 else { return UITableViewCell() }
             nameCell = cell
-            cell.setupCell(title: mockLabelTitles[indexPath.row], for: self)
+            cell.configCellWith(title: mockLabelTitles[indexPath.row], to: self)
             
             return cell
         }
@@ -223,8 +216,8 @@ extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
         return 96
     }
 }
-
-extension NewDebtViewController: OneLineSGDelegate {
+//SegmentedControlDelegate
+extension NewDebtViewController: LineSegmentedControlDelegate {
     func didChangeTo(index: Int) {
         switch index {
         case 0:
@@ -234,13 +227,21 @@ extension NewDebtViewController: OneLineSGDelegate {
         }
     }
 }
-
+//TextFieldDelegate
 extension NewDebtViewController: UITextFieldDelegate {
-    private func textFieldShouldReturn(textField: UITextField) -> Bool {
+//    Method called when the user click on Return button on keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
+//    Add observers to notificated when keyboard will show + hide
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+//    Show keyboard + push to up texfield
     @objc func keyboardWillShow(notification: NSNotification) {
         var userInfo = notification.userInfo!
         var keyboardFrame: CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as AnyObject).cgRectValue
@@ -250,24 +251,18 @@ extension NewDebtViewController: UITextFieldDelegate {
         contentInset.bottom = keyboardFrame.size.height
         tableView.contentInset = contentInset
     }
-    
+//    Hide keydoard + push to down textfield
     @objc func keyboardWillHide(notification: NSNotification) {
         let contentInset: UIEdgeInsets = UIEdgeInsets.zero
         tableView.contentInset = contentInset
     }
-//      Método chamado quando o usuário aperta RETURN no teclado
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // Agora fazemos o text field deixar de ser o first responder
-        // Isso faz com que o teclado se esconda
-        textField.resignFirstResponder()
-        return true
-    }
-//     Isso faz com que o teclado seja escondido quando vc toca fora dele
+//    Hide keyboard when touch up outside
     private func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
+//    Dismiss keyboard methods
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

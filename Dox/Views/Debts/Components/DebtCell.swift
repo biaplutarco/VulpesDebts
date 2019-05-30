@@ -12,19 +12,20 @@ class DebtCell: UITableViewCell {
     lazy var cardView: CardView = {
         let cardView = CardView(backgroundColor: UIColor.AppColors.mediumGray)
         cardView.translatesAutoresizingMaskIntoConstraints = false
+//        To stay in back
         self.insertSubview(cardView, at: 1)
         return cardView
     }()
-    
+//    MockLabels
     lazy var mockLabelName: MockLabel = {
-        let label = MockLabel(text: .name, type: .cardDebt)
+        let label = MockLabel(text: .name, type: .insideCard)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
     }()
     
     lazy var mockLabelValue: MockLabel = {
-        let label = MockLabel(text: .value, type: .cardDebt)
+        let label = MockLabel(text: .value, type: .insideCard)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
         self.addSubview(label)
@@ -32,12 +33,12 @@ class DebtCell: UITableViewCell {
     }()
     
     lazy var mockLabelReason: MockLabel = {
-        let label = MockLabel(text: .reason, type: .cardDebt)
+        let label = MockLabel(text: .reason, type: .insideCard)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
     }()
-    
+//    InputLabels
     lazy var inputLabelName: UILabel = {
         let label = UILabel()
         label.attributedText = configText("error", size: 16, color: UIColor.AppColors.lightGray, isBold: true)
@@ -74,18 +75,14 @@ class DebtCell: UITableViewCell {
         self.selectionStyle = .none
     }
 }
-
+//AttributedTextProtocol
 extension DebtCell: AttributedTextProtocol {
-    func setupCell(debt: Debt) {
-        inputLabelName.attributedText = configText(debt.name, size: 16,
-                                                   color: UIColor.AppColors.lightGray, isBold: true)
-        inputLabelValue.attributedText = configText(debt.value, size: 16,
-                                                    color: UIColor.AppColors.lightGray, isBold: true)
-        inputLabelReason.attributedText = configText(debt.reason, size: 16,
-                                                     color: UIColor.AppColors.lightGray, isBold: true)
+    func configCellWith(debt: Debt, andTextColor color: UIColor) {
+        inputLabelName.attributedText = configText(debt.name, size: 16, color: color, isBold: true)
+        inputLabelValue.attributedText = configText(debt.value, size: 16, color: color, isBold: true)
+        inputLabelReason.attributedText = configText(debt.reason, size: 16, color: color, isBold: true)
     }
 }
-
 //Constraints
 extension DebtCell {
     private func configConstraints() {

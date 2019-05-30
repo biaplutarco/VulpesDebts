@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NewDebtCell: UITableViewCell {
+class InputNewDebtCell: UITableViewCell {
     lazy var mockLabel: MockLabel = {
-        let mockLabel = MockLabel(text: mockLabelTitle, type: .viewNewDebt)
+        let mockLabel = MockLabel(text: mockLabelTitle, type: .insideNewDebtVC)
         mockLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(mockLabel)
         return mockLabel
@@ -33,15 +33,7 @@ class NewDebtCell: UITableViewCell {
         self.selectionStyle = .none
     }
     
-    func setupCell(title: MockLabelText, for viewController: UIViewController) {
-        self.contentView.backgroundColor = UIColor.AppColors.orange
-        self.mockLabelTitle = title
-        self.textField.delegate = viewController as? UITextFieldDelegate
-        setupPlaceholder(title: title)
-        configConstraints()
-    }
-    
-    private func setupPlaceholder(title: MockLabelText) {
+    private func configPlaceholderWith(title: MockLabelText) {
         if title == .name {
             textField.placeholder = NSLocalizedString("Name", comment: "Name")
         } else if title == .reason {
@@ -49,13 +41,21 @@ class NewDebtCell: UITableViewCell {
         }
     }
     
-    func inputText() -> String {
+    func configCellWith(title: MockLabelText, to viewController: UIViewController) {
+        self.contentView.backgroundColor = UIColor.AppColors.orange
+        self.mockLabelTitle = title
+        self.textField.delegate = viewController as? UITextFieldDelegate
+        configPlaceholderWith(title: title)
+        configConstraints()
+    }
+    
+    func getTextFieldInputText() -> String {
         guard let text = textField.text else { return "error" }
         return text
     }
 }
-
-extension NewDebtCell {
+//Constraints
+extension InputNewDebtCell {
     private func configConstraints() {
         NSLayoutConstraint.activate([
             mockLabel.topAnchor.constraint(equalTo: self.topAnchor),

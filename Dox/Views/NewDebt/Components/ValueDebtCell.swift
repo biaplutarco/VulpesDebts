@@ -11,7 +11,7 @@ import UIKit
 class ValueDebtCell: UITableViewCell {
 
     lazy var mockLabel: MockLabel = {
-        let mockLabel = MockLabel(text: mockLabelTitle, type: .viewNewDebt)
+        let mockLabel = MockLabel(text: mockLabelTitle, type: .insideNewDebtVC)
         mockLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(mockLabel)
         return mockLabel
@@ -52,12 +52,12 @@ class ValueDebtCell: UITableViewCell {
         configConstraints()
     }
     
-    func inputValueText() -> String {
+    func getValueTextFieldInputText() -> String {
         guard let text = valueTextField.text else { return "error" }
         return text
     }
     
-    func inputSymbolText() -> String {
+    func getSymbolTextFieldInputText() -> String {
         guard let text = symbolTextField.text else { return "error" }
         return text
     }
