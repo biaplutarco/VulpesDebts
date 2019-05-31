@@ -147,9 +147,11 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
         let paidAction = UIContextualAction(style: .normal, title: title) { (_, _, _) in
             if self.isToPay == false {
                 CoreDataManager.sharedManager.deleteDebt(self.dataToReceive[indexPath.row])
+                self.dataToReceive.remove(at: indexPath.row)
                 tableView.reloadSections(IndexSet(indexPath), with: .automatic)
             } else {
                 CoreDataManager.sharedManager.deleteDebt(self.dataToPay[indexPath.row])
+                self.dataToPay.remove(at: indexPath.row)
                 tableView.reloadSections(IndexSet(indexPath), with: .automatic)
             }
         }
