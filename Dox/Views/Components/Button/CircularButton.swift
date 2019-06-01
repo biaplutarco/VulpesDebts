@@ -18,6 +18,8 @@ class CircularButton: UIButton {
 extension CircularButton: ShadowProtocol {
     private func configButton(image: UIImage, type: CircularButtonType) {
         self.setBackgroundImage(image, for: .normal)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.layer.cornerRadius = 20
         switch type {
         case .add:
             self.configShadowIn(view: self, isDark: true)

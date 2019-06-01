@@ -13,15 +13,12 @@ class DebtsViewController: UIViewController {
     lazy var largeTitle: MockLabel = {
         let title = NSLocalizedString("Debts", comment: "Debts")
         let label = MockLabel(text: title, type: .largeTitle)
-        label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         return label
     }()
 //    Button
-    lazy var addButton: CircularButton = {
+    lazy var headerButton: CircularButton = {
         let addButton = CircularButton(image: #imageLiteral(resourceName: "addButton"), type: .add)
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.layer.cornerRadius = 20
         view.addSubview(addButton)
         return addButton
     }()
@@ -40,7 +37,6 @@ class DebtsViewController: UIViewController {
             selectedColor: UIColor.AppColors.lightGray, unselectedColor: UIColor.AppColors.gray
         )
         segmentedControl.delegate = self
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segmentedControl)
         return segmentedControl
     }()
@@ -52,7 +48,7 @@ class DebtsViewController: UIViewController {
 //    CustomTransition
     lazy var transition: CircularTransition = {
         let size = view.frame.height
-        let startingPoint = addButton.center
+        let startingPoint = headerButton.center
         let center = view.center
         let transition = CircularTransition(
             size: size, startingPoint: startingPoint, viewCenter: center, duration: 0.6
@@ -85,11 +81,11 @@ class DebtsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.darkGray
         tableView.register(DebtCell.self, forCellReuseIdentifier: "cell")
-        addButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        headerButton.addTarget(self, action: #selector(headerButtonTapped(_:)), for: .touchUpInside)
         configConstraints()
     }
 //    Action
-    @objc func buttonTapped(_ sender: UIButton) {
+    @objc func headerButtonTapped(_ sender: UIButton) {
         let nextVC = NewDebtViewController()
         nextVC.delegate = self
         nextVC.transitioningDelegate = self
@@ -101,7 +97,7 @@ class DebtsViewController: UIViewController {
 extension DebtsViewController: HeaderConstraintsProtocol {
     private func configConstraints() {
         configHeaderConstraints(largeTitle: largeTitle, segmentedControl: segmentedControl,
-                                button: addButton, at: view)
+                                button: headerButton, at: view)
         
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),

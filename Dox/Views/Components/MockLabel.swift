@@ -17,6 +17,7 @@ class MockLabel: UILabel {
 //AttributedTextProtocol
 extension MockLabel: AttributedTextProtocol {
     private func configLabel(text: String, type: MockLabelType) {
+        self.translatesAutoresizingMaskIntoConstraints = false
         switch type {
         case .insideCard:
             self.attributedText = configText(text, size: 12, color: UIColor.AppColors.gray, isBold: false)

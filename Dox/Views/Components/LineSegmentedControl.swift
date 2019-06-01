@@ -82,6 +82,7 @@ class LineSegmentedControl: UIControl {
         self.init(frame: CGRect.zero, width: width, titles: titles, mulplierLineWidth: mulplierLineWidth,
                   selectedColor: selectedColor, unselectedColor: unselectedColor)
         setIndex(index: selectedIndex)
+        self.translatesAutoresizingMaskIntoConstraints = false
         configConstraints()
     }
     

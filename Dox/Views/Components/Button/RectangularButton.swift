@@ -22,6 +22,9 @@ extension RectangularButton: ShadowProtocol {
         self.backgroundColor = UIColor.AppColors.darkGray
 //        Set LocalizedString to title
         let translatedTitle = NSLocalizedString(title, comment: title)
+        self.setTitleColor(UIColor.AppColors.lightGray, for: .normal)
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.setTitle(translatedTitle, for: .normal)
     }
 }

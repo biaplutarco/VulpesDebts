@@ -13,7 +13,6 @@ class NewDebtViewController: UIViewController {
     lazy var largeTitle: MockLabel = {
         let title = NSLocalizedString("New Debt", comment: "New Debt")
         let label = MockLabel(text: title, type: .darkLargeTitle)
-        label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         return label
     }()
@@ -26,37 +25,32 @@ class NewDebtViewController: UIViewController {
     }()
 
 //    Button
-    lazy var exitButton: CircularButton = {
-        let exitButton = CircularButton(image: #imageLiteral(resourceName: "exitButton"), type: .exit)
-        exitButton.translatesAutoresizingMaskIntoConstraints = false
-        exitButton.layer.cornerRadius = 20
-        exitButton.isUserInteractionEnabled = true
-        view.addSubview(exitButton)
-        return exitButton
+    lazy var headerButton: CircularButton = {
+        let headerButton = CircularButton(image: #imageLiteral(resourceName: "exitButton"), type: .exit)
+        view.addSubview(headerButton)
+        return headerButton
     }()
     
-    lazy var saveButton: RectangularButton = {
-        let saveButton = RectangularButton(title: "Save")
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.setTitleColor(UIColor.AppColors.lightGray, for: .normal)
-        saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        view.addSubview(saveButton)
-        return saveButton
+    lazy var footerButton: RectangularButton = {
+        let footerButton = RectangularButton(title: "Save")
+        view.addSubview(footerButton)
+        return footerButton
     }()
 //    SegmentedControll
-    lazy var segmetendTitles: [String] = {
-        let segmetendTitles = ["To receive", "To pay"]
-        return segmetendTitles
+    lazy var segmentedTitles: [String] = {
+        let toReceiveTitle = NSLocalizedString("To receive", comment: "To receive")
+        let toPayTitle = NSLocalizedString("To pay", comment: "To pay")
+        let segmentedTitles = [toReceiveTitle, toPayTitle]
+        return segmentedTitles
     }()
     
     lazy var segmentedControl: LineSegmentedControl = {
         let segmentedControl = LineSegmentedControl(
             width: view.frame.width * 0.6,
-            titles: segmetendTitles, mulplierLineWidth: 3,
+            titles: segmentedTitles, mulplierLineWidth: 3,
             selectedColor: UIColor.AppColors.darkGray, unselectedColor: UIColor.AppColors.grayLowOpacity
         )
         segmentedControl.delegate = self
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(segmentedControl)
         return segmentedControl
     }()
@@ -94,8 +88,8 @@ class NewDebtViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.orange
         tableView.register(InputCell.self, forCellReuseIdentifier: "cell")
-        exitButton.addTarget(self, action: #selector(exitTapped(_:)), for: .touchUpInside)
-        saveButton.addTarget(self, action: #selector(saveTapped(_:)), for: .touchUpInside)
+        headerButton.addTarget(self, action: #selector(exitTapped(_:)), for: .touchUpInside)
+        footerButton.addTarget(self, action: #selector(saveTapped(_:)), for: .touchUpInside)
 //        Methods
         addObservers()
         configConstraints()
@@ -125,20 +119,20 @@ class NewDebtViewController: UIViewController {
 extension NewDebtViewController: HeaderConstraintsProtocol {
     private func configConstraints() {
         configHeaderConstraints(largeTitle: largeTitle, segmentedControl: segmentedControl,
-                                button: exitButton, at: view)
+                                button: headerButton, at: view)
         
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 26),
-            tableView.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -24),
+            tableView.bottomAnchor.constraint(equalTo: footerButton.topAnchor, constant: -24),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
             ])
         
         NSLayoutConstraint.activate([
-            saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44),
-            saveButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            saveButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            saveButton.heightAnchor.constraint(equalToConstant: 44)
+            footerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44),
+            footerButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            footerButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            footerButton.heightAnchor.constraint(equalToConstant: 44)
             ])
     }
 }
