@@ -8,11 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		B20399712294DAD6004BFCC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399702294DAD6004BFCC8 /* AppDelegate.swift */; };
-		B20399732294DAD6004BFCC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399722294DAD6004BFCC8 /* ViewController.swift */; };
+		B20399732294DAD6004BFCC8 /* DebtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399722294DAD6004BFCC8 /* DebtsViewController.swift */; };
 		B20399792294DAD6004BFCC8 /* Dox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B20399772294DAD6004BFCC8 /* Dox.xcdatamodeld */; };
 		B203997B2294DAD9004BFCC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B203997A2294DAD9004BFCC8 /* Assets.xcassets */; };
 		B203997E2294DAD9004BFCC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B203997C2294DAD9004BFCC8 /* LaunchScreen.storyboard */; };
 		B20399892294DAD9004BFCC8 /* DoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20399882294DAD9004BFCC8 /* DoxTests.swift */; };
+		B215A012229F1E4100207B59 /* Debt+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B215A010229F1E4100207B59 /* Debt+CoreDataClass.swift */; };
+		B215A013229F1E4100207B59 /* Debt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B215A011229F1E4100207B59 /* Debt+CoreDataProperties.swift */; };
+		B2486F27229E3498005DDE99 /* NewDebtViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2486F26229E3498005DDE99 /* NewDebtViewControllerDelegate.swift */; };
+		B2486F29229EFFB6005DDE99 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2486F28229EFFB6005DDE99 /* CoreDataManager.swift */; };
+		B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B51E22985CD50072F61A /* UIColor+AppColors.swift */; };
+		B279B5232298622C0072F61A /* DebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B5222298622C0072F61A /* DebtCell.swift */; };
+		B279B5272298651B0072F61A /* MockLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B5262298651B0072F61A /* MockLabel.swift */; };
+		B279B52D2299A6AA0072F61A /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B52C2299A6AA0072F61A /* CardView.swift */; };
+		B279B531229A0CA90072F61A /* LineSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B530229A0CA90072F61A /* LineSegmentedControl.swift */; };
+		B279B533229A0CBA0072F61A /* LineSegmentedControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B532229A0CBA0072F61A /* LineSegmentedControlDelegate.swift */; };
+		B279B53E229A405A0072F61A /* CircularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B53D229A405A0072F61A /* CircularButton.swift */; };
+		B279B540229AC3310072F61A /* NewDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B53F229AC3310072F61A /* NewDebtViewController.swift */; };
+		B279B543229AC9330072F61A /* InputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B542229AC9330072F61A /* InputCell.swift */; };
+		B279B545229ACAB50072F61A /* CardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B544229ACAB50072F61A /* CardTextField.swift */; };
+		B279B547229ADB200072F61A /* RectangularButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B546229ADB200072F61A /* RectangularButton.swift */; };
+		B279B549229ADBFD0072F61A /* AttributedTextProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */; };
+		B279B54F229B10550072F61A /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B279B54E229B10550072F61A /* CircularTransition.swift */; };
+		B279B552229B568D0072F61A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B279B554229B568D0072F61A /* Localizable.strings */; };
+		B2D5CD03229F7AC900BBCC4F /* HeaderConstraintsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD02229F7AC900BBCC4F /* HeaderConstraintsProtocol.swift */; };
+		B2D5CD05229F7CDC00BBCC4F /* DebtType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD04229F7CDC00BBCC4F /* DebtType.swift */; };
+		B2D5CD07229F7D0E00BBCC4F /* MockLabelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD06229F7D0E00BBCC4F /* MockLabelType.swift */; };
+		B2D5CD0A229F7D5300BBCC4F /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD09229F7D5300BBCC4F /* TransitionType.swift */; };
+		B2D5CD0C229F7D9A00BBCC4F /* CircularButtonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD0B229F7D9A00BBCC4F /* CircularButtonType.swift */; };
+		B2D5CD10229F80D600BBCC4F /* InputCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D5CD0F229F80D600BBCC4F /* InputCellType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +52,7 @@
 /* Begin PBXFileReference section */
 		B203996D2294DAD6004BFCC8 /* Dox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20399702294DAD6004BFCC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B20399722294DAD6004BFCC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B20399722294DAD6004BFCC8 /* DebtsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtsViewController.swift; sourceTree = "<group>"; };
 		B20399782294DAD6004BFCC8 /* Dox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dox.xcdatamodel; sourceTree = "<group>"; };
 		B203997A2294DAD9004BFCC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B203997D2294DAD9004BFCC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +60,32 @@
 		B20399842294DAD9004BFCC8 /* DoxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20399882294DAD9004BFCC8 /* DoxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoxTests.swift; sourceTree = "<group>"; };
 		B203998A2294DAD9004BFCC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B215A010229F1E4100207B59 /* Debt+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debt+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B215A011229F1E4100207B59 /* Debt+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Debt+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B2486F26229E3498005DDE99 /* NewDebtViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtViewControllerDelegate.swift; sourceTree = "<group>"; };
+		B2486F28229EFFB6005DDE99 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		B279B51E22985CD50072F61A /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
+		B279B5222298622C0072F61A /* DebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCell.swift; sourceTree = "<group>"; };
+		B279B5262298651B0072F61A /* MockLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLabel.swift; sourceTree = "<group>"; };
+		B279B52C2299A6AA0072F61A /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B279B530229A0CA90072F61A /* LineSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineSegmentedControl.swift; sourceTree = "<group>"; };
+		B279B532229A0CBA0072F61A /* LineSegmentedControlDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineSegmentedControlDelegate.swift; sourceTree = "<group>"; };
+		B279B53D229A405A0072F61A /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
+		B279B53F229AC3310072F61A /* NewDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtViewController.swift; sourceTree = "<group>"; };
+		B279B542229AC9330072F61A /* InputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCell.swift; sourceTree = "<group>"; };
+		B279B544229ACAB50072F61A /* CardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextField.swift; sourceTree = "<group>"; };
+		B279B546229ADB200072F61A /* RectangularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangularButton.swift; sourceTree = "<group>"; };
+		B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedTextProtocol.swift; sourceTree = "<group>"; };
+		B279B54E229B10550072F61A /* CircularTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
+		B279B553229B568D0072F61A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B279B555229B56FE0072F61A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B279B556229B570C0072F61A /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		B2D5CD02229F7AC900BBCC4F /* HeaderConstraintsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderConstraintsProtocol.swift; sourceTree = "<group>"; };
+		B2D5CD04229F7CDC00BBCC4F /* DebtType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtType.swift; sourceTree = "<group>"; };
+		B2D5CD06229F7D0E00BBCC4F /* MockLabelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLabelType.swift; sourceTree = "<group>"; };
+		B2D5CD09229F7D5300BBCC4F /* TransitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionType.swift; sourceTree = "<group>"; };
+		B2D5CD0B229F7D9A00BBCC4F /* CircularButtonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonType.swift; sourceTree = "<group>"; };
+		B2D5CD0F229F80D600BBCC4F /* InputCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCellType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +127,8 @@
 		B203996F2294DAD6004BFCC8 /* Dox */ = {
 			isa = PBXGroup;
 			children = (
+				B279B537229A2BBD0072F61A /* Ultis */,
 				B20399952294DFE0004BFCC8 /* Models */,
-				B20399942294DFD8004BFCC8 /* ViewModels */,
 				B20399932294DFD1004BFCC8 /* Views */,
 				B20399702294DAD6004BFCC8 /* AppDelegate.swift */,
 				B203997A2294DAD9004BFCC8 /* Assets.xcassets */,
@@ -101,31 +151,111 @@
 		B20399932294DFD1004BFCC8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B20399962294DFF6004BFCC8 /* Components */,
-				B20399722294DAD6004BFCC8 /* ViewController.swift */,
+				B268CEED229E1704004AE8BE /* Components */,
+				B279B535229A2B6A0072F61A /* DebtsViewController */,
+				B279B536229A2B8A0072F61A /* NewDebtViewController */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		B20399942294DFD8004BFCC8 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B20399952294DFE0004BFCC8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B215A010229F1E4100207B59 /* Debt+CoreDataClass.swift */,
+				B215A011229F1E4100207B59 /* Debt+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		B20399962294DFF6004BFCC8 /* Components */ = {
+		B20399962294DFF6004BFCC8 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				B279B5222298622C0072F61A /* DebtCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B268CEED229E1704004AE8BE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B2D5CD0E229F7DE100BBCC4F /* Button */,
+				B279B52C2299A6AA0072F61A /* CardView.swift */,
+				B279B5262298651B0072F61A /* MockLabel.swift */,
+				B279B544229ACAB50072F61A /* CardTextField.swift */,
+				B279B54E229B10550072F61A /* CircularTransition.swift */,
+				B279B530229A0CA90072F61A /* LineSegmentedControl.swift */,
+				B279B532229A0CBA0072F61A /* LineSegmentedControlDelegate.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		B279B535229A2B6A0072F61A /* DebtsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B20399722294DAD6004BFCC8 /* DebtsViewController.swift */,
+				B20399962294DFF6004BFCC8 /* Cell */,
+			);
+			path = DebtsViewController;
+			sourceTree = "<group>";
+		};
+		B279B536229A2B8A0072F61A /* NewDebtViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B279B53F229AC3310072F61A /* NewDebtViewController.swift */,
+				B2486F26229E3498005DDE99 /* NewDebtViewControllerDelegate.swift */,
+				B279B541229AC9010072F61A /* Cell */,
+			);
+			path = NewDebtViewController;
+			sourceTree = "<group>";
+		};
+		B279B537229A2BBD0072F61A /* Ultis */ = {
+			isa = PBXGroup;
+			children = (
+				B279B554229B568D0072F61A /* Localizable.strings */,
+				B2D5CD08229F7D3300BBCC4F /* Enum */,
+				B2D5CD0D229F7DC700BBCC4F /* Protocol */,
+				B2486F28229EFFB6005DDE99 /* CoreDataManager.swift */,
+				B279B51E22985CD50072F61A /* UIColor+AppColors.swift */,
+			);
+			path = Ultis;
+			sourceTree = "<group>";
+		};
+		B279B541229AC9010072F61A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B279B542229AC9330072F61A /* InputCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B2D5CD08229F7D3300BBCC4F /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				B2D5CD04229F7CDC00BBCC4F /* DebtType.swift */,
+				B2D5CD0F229F80D600BBCC4F /* InputCellType.swift */,
+				B2D5CD09229F7D5300BBCC4F /* TransitionType.swift */,
+				B2D5CD06229F7D0E00BBCC4F /* MockLabelType.swift */,
+				B2D5CD0B229F7D9A00BBCC4F /* CircularButtonType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		B2D5CD0D229F7DC700BBCC4F /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B279B548229ADBFD0072F61A /* AttributedTextProtocol.swift */,
+				B2D5CD02229F7AC900BBCC4F /* HeaderConstraintsProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B2D5CD0E229F7DE100BBCC4F /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				B279B53D229A405A0072F61A /* CircularButton.swift */,
+				B279B546229ADB200072F61A /* RectangularButton.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +323,8 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				"pt-BR",
 			);
 			mainGroup = B20399642294DAD6004BFCC8;
 			productRefGroup = B203996E2294DAD6004BFCC8 /* Products */;
@@ -211,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B203997E2294DAD9004BFCC8 /* LaunchScreen.storyboard in Resources */,
+				B279B552229B568D0072F61A /* Localizable.strings in Resources */,
 				B203997B2294DAD9004BFCC8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,9 +382,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B20399732294DAD6004BFCC8 /* ViewController.swift in Sources */,
+				B279B54F229B10550072F61A /* CircularTransition.swift in Sources */,
+				B279B545229ACAB50072F61A /* CardTextField.swift in Sources */,
+				B215A013229F1E4100207B59 /* Debt+CoreDataProperties.swift in Sources */,
+				B215A012229F1E4100207B59 /* Debt+CoreDataClass.swift in Sources */,
+				B279B547229ADB200072F61A /* RectangularButton.swift in Sources */,
+				B279B540229AC3310072F61A /* NewDebtViewController.swift in Sources */,
+				B2D5CD0C229F7D9A00BBCC4F /* CircularButtonType.swift in Sources */,
+				B279B5232298622C0072F61A /* DebtCell.swift in Sources */,
+				B279B549229ADBFD0072F61A /* AttributedTextProtocol.swift in Sources */,
+				B279B52D2299A6AA0072F61A /* CardView.swift in Sources */,
+				B2486F27229E3498005DDE99 /* NewDebtViewControllerDelegate.swift in Sources */,
+				B2D5CD0A229F7D5300BBCC4F /* TransitionType.swift in Sources */,
+				B2D5CD07229F7D0E00BBCC4F /* MockLabelType.swift in Sources */,
+				B20399732294DAD6004BFCC8 /* DebtsViewController.swift in Sources */,
+				B279B53E229A405A0072F61A /* CircularButton.swift in Sources */,
+				B279B51F22985CD50072F61A /* UIColor+AppColors.swift in Sources */,
+				B2D5CD10229F80D600BBCC4F /* InputCellType.swift in Sources */,
+				B279B533229A0CBA0072F61A /* LineSegmentedControlDelegate.swift in Sources */,
+				B279B531229A0CA90072F61A /* LineSegmentedControl.swift in Sources */,
+				B2D5CD03229F7AC900BBCC4F /* HeaderConstraintsProtocol.swift in Sources */,
+				B279B5272298651B0072F61A /* MockLabel.swift in Sources */,
 				B20399712294DAD6004BFCC8 /* AppDelegate.swift in Sources */,
 				B20399792294DAD6004BFCC8 /* Dox.xcdatamodeld in Sources */,
+				B2D5CD05229F7CDC00BBCC4F /* DebtType.swift in Sources */,
+				B2486F29229EFFB6005DDE99 /* CoreDataManager.swift in Sources */,
+				B279B543229AC9330072F61A /* InputCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +438,16 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		B279B554229B568D0072F61A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B279B553229B568D0072F61A /* en */,
+				B279B555229B56FE0072F61A /* es */,
+				B279B556229B570C0072F61A /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -289,6 +455,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -350,6 +517,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
