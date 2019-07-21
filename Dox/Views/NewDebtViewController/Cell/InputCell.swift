@@ -9,6 +9,8 @@
 import UIKit
 
 class InputCell: UITableViewCell {
+    var myPickerData = ["R$", "$", "£", "€"]
+    
 //    Label
     lazy var mockLabel: MockLabel = {
         let mockLabel = MockLabel(text: "error", type: .insideNewDebt)
@@ -26,6 +28,7 @@ class InputCell: UITableViewCell {
     lazy var symbolTextField: CardTextField = {
         let textField = CardTextField(backgroundColor: UIColor.AppColors.lightGray)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.inputView = pickerSymbols
         self.addSubview(textField)
         return textField
     }()
@@ -34,8 +37,15 @@ class InputCell: UITableViewCell {
         let textField = CardTextField(backgroundColor: UIColor.AppColors.lightGray)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textAlignment = .right
+        textField.keyboardType = UIKeyboardType.decimalPad
         self.addSubview(textField)
         return textField
+    }()
+    
+    lazy var pickerSymbols: UIPickerView = {
+        let pickerSymbols = UIPickerView()
+        pickerSymbols.delegate = self
+        return pickerSymbols
     }()
 //    Method
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -118,5 +128,23 @@ extension InputCell {
                 textField.heightAnchor.constraint(equalToConstant: 40)
             ])
         } 
+    }
+}
+
+extension InputCell: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return myPickerData.count
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return myPickerData[row]
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        symbolTextField.text = myPickerData[row]
     }
 }

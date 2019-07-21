@@ -191,9 +191,13 @@ extension DebtsViewController: NewDebtViewControllerDelegate {
         if debt.type == 0 {
             dataToReceive = CoreDataManager.sharedManager.getDebtsFrom(type: .toReceive)
             tableView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)), with: .automatic)
+            didChangeTo(index: 0)
+            segmentedControl.selectedButtonAt(index: 0)
         } else {
             dataToPay = CoreDataManager.sharedManager.getDebtsFrom(type: .toPay)
             tableView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)), with: .automatic)
+            didChangeTo(index: 1)
+            segmentedControl.selectedButtonAt(index: 1)
         }
     }
 }

@@ -111,6 +111,27 @@ class LineSegmentedControl: UIControl {
         }
     }
     
+    func selectedButtonAt(index: Int) {
+        if index == 0 {
+            buttons[1].setTitleColor(unselectedColor, for: .normal)
+        } else if index == 1 {
+            buttons[0].setTitleColor(unselectedColor, for: .normal)
+        }
+        
+        buttons[index].setTitleColor(selectedColor, for: .normal)
+        setIndex(index: index)
+        buttons[index].titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        //        Setup to animate anchor
+        let offset = lineStartpoint + lineWidth * CGFloat(index * mulplierLineWidth)
+        lineViewLeftAnchor.isActive = false
+        lineViewLeftAnchor = lineView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: offset)
+        lineViewLeftAnchor.isActive = true
+        //        Animate
+        UIView.animate(withDuration: 0.3) {
+            self.layoutIfNeeded()
+        }
+    }
+    
     @objc func buttonAction(sender: UIButton) {
         for (index, button) in buttons.enumerated() {
             button.setTitleColor(unselectedColor, for: .normal)
