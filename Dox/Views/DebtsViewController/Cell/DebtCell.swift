@@ -10,7 +10,7 @@ import UIKit
 
 class DebtCell: UITableViewCell {
     lazy var cardView: CardView = {
-        let cardView = CardView(backgroundColor: UIColor.AppColors.mediumGray)
+        let cardView = CardView(backgroundColor: UIColor.AppColors.debtsCardBackgroundColor)
         cardView.translatesAutoresizingMaskIntoConstraints = false
 //        To stay in back
         self.insertSubview(cardView, at: 1)
@@ -26,7 +26,7 @@ class DebtCell: UITableViewCell {
     }()
     
     lazy var mockLabelValue: MockLabel = {
-        let title = NSLocalizedString("Reason", comment: "Reason")
+        let title = NSLocalizedString("Value", comment: "Value")
         let label = MockLabel(text: title, type: .insideCard)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
@@ -35,7 +35,7 @@ class DebtCell: UITableViewCell {
     }()
     
     lazy var mockLabelReason: MockLabel = {
-        let title = NSLocalizedString("Value", comment: "Value")
+        let title = NSLocalizedString("Reason", comment: "Reason")
         let label = MockLabel(text: title, type: .insideCard)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
@@ -44,7 +44,7 @@ class DebtCell: UITableViewCell {
 //    InputLabels
     lazy var inputLabelName: UILabel = {
         let label = UILabel()
-        label.attributedText = configText("error", size: 16, color: UIColor.AppColors.lightGray, isBold: true)
+        label.attributedText = configText("error", size: 16, color: UIColor.AppColors.debtsFontColor, isBold: true)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
@@ -52,7 +52,7 @@ class DebtCell: UITableViewCell {
     
     lazy var inputLabelReason: UILabel = {
         let label = UILabel()
-        label.attributedText = configText("error", size: 16, color: UIColor.AppColors.lightGray, isBold: true)
+        label.attributedText = configText("error", size: 16, color: UIColor.AppColors.debtsFontColor, isBold: true)
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         return label
@@ -60,7 +60,7 @@ class DebtCell: UITableViewCell {
     
     lazy var inputLabelValue: UILabel = {
         let label = UILabel()
-        label.attributedText = configText("error", size: 16, color: UIColor.AppColors.lightGray, isBold: true)
+        label.attributedText = configText("error", size: 16, color: UIColor.AppColors.debtsFontColor, isBold: true)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
         self.addSubview(label)
@@ -69,7 +69,7 @@ class DebtCell: UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        self.contentView.backgroundColor = UIColor.AppColors.darkGray
+        self.contentView.backgroundColor = UIColor.AppColors.debtsBackgroundColor
         configConstraints()
     }
 

@@ -13,16 +13,13 @@ class RectangularButton: UIButton {
         self.init(frame: CGRect.zero)
         configButton(title: title)
     }
-}
-//ShadowProtocol
-extension RectangularButton: ShadowProtocol {
+
     private func configButton(title: String) {
-        self.configShadowIn(view: self, isDark: false)
         self.layer.cornerRadius = 8
-        self.backgroundColor = UIColor.AppColors.darkGray
+        self.backgroundColor = UIColor.AppColors.debtsBackgroundColor
 //        Set LocalizedString to title
         let translatedTitle = NSLocalizedString(title, comment: title)
-        self.setTitleColor(UIColor.AppColors.lightGray, for: .normal)
+        self.setTitleColor(UIColor.AppColors.debtsFontColor, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.setTitle(translatedTitle, for: .normal)

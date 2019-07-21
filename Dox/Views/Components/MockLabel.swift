@@ -20,13 +20,13 @@ extension MockLabel: AttributedTextProtocol {
         self.translatesAutoresizingMaskIntoConstraints = false
         switch type {
         case .insideCard:
-            self.attributedText = configText(text, size: 12, color: UIColor.AppColors.gray, isBold: false)
+            self.attributedText = configText(text, size: 12, color: UIColor.AppColors.debtsFontColor, isBold: false)
         case .largeTitle:
-            self.attributedText = configText(text, size: 34, color: UIColor.AppColors.lightGray, isBold: true)
+            self.attributedText = configText(text, size: 36, color: UIColor.AppColors.debtsFontColor, isBold: true)
         case .darkLargeTitle:
-            self.attributedText = configText(text, size: 34, color: UIColor.AppColors.darkGray, isBold: true)
+            self.attributedText = configText(text, size: 36, color: UIColor.AppColors.newDebtFontColor, isBold: true)
         case .insideNewDebt:
-            self.attributedText = configText(text, size: 16, color: UIColor.AppColors.darkGray, isBold: true)
+            self.attributedText = configText(text, size: 16, color: UIColor.AppColors.newDebtFontColor, isBold: true)
         }
     }
 }

@@ -13,20 +13,16 @@ class CircularButton: UIButton {
         self.init(frame: CGRect.zero)
         configButton(image: image, type: type)
     }
-}
-//ShadowProtocol
-extension CircularButton: ShadowProtocol {
+    
     private func configButton(image: UIImage, type: CircularButtonType) {
         self.setBackgroundImage(image, for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.cornerRadius = 20
         switch type {
         case .add:
-            self.configShadowIn(view: self, isDark: true)
-            self.tintColor = UIColor.AppColors.orange
+            self.tintColor = UIColor.AppColors.newDebtBackgroundColor
         default:
-            self.configShadowIn(view: self, isDark: false)
-            self.tintColor = UIColor.AppColors.darkGray
+            self.tintColor = UIColor.AppColors.debtsBackgroundColor
         }
     }
 }

@@ -30,12 +30,9 @@ class CardTextField: UITextField {
     override open func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: padding)
     }
-}
-//ShadowProtocol
-extension CardTextField: ShadowProtocol {
+    
     private func configTextField(backgroundColor: UIColor) {
         self.backgroundColor = backgroundColor
         self.layer.cornerRadius = 8
-        self.configShadowIn(view: self, isDark: false)
     }
 }

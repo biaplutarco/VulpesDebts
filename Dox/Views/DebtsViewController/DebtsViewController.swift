@@ -9,6 +9,10 @@
 import UIKit
 
 class DebtsViewController: UIViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 //    Label
     lazy var largeTitle: MockLabel = {
         let title = NSLocalizedString("Debts", comment: "Debts")
@@ -34,7 +38,7 @@ class DebtsViewController: UIViewController {
         let segmentedControl = LineSegmentedControl(
             width: view.frame.width * 0.6,
             titles: segmentedTitles, mulplierLineWidth: 3,
-            selectedColor: UIColor.AppColors.lightGray, unselectedColor: UIColor.AppColors.gray
+            selectedColor: UIColor.AppColors.debtsFontColor, unselectedColor: UIColor.AppColors.unselectedDebtColor
         )
         segmentedControl.delegate = self
         view.addSubview(segmentedControl)
@@ -79,7 +83,7 @@ class DebtsViewController: UIViewController {
 //    Life circle method
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.AppColors.darkGray
+        view.backgroundColor = UIColor.AppColors.debtsBackgroundColor
         tableView.register(DebtCell.self, forCellReuseIdentifier: "cell")
         headerButton.addTarget(self, action: #selector(headerButtonTapped(_:)), for: .touchUpInside)
         configConstraints()
@@ -121,10 +125,10 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DebtCell
             else { return UITableViewCell() }
         if isToPay == false {
-            cell.configCellWith(debt: dataToReceive[indexPath.row], andTextColor: UIColor.AppColors.lightGray)
+            cell.configCellWith(debt: dataToReceive[indexPath.row], andTextColor: UIColor.AppColors.debtsFontColor)
             return cell
         } else {
-            cell.configCellWith(debt: dataToPay[indexPath.row], andTextColor: UIColor.AppColors.lightGray)
+            cell.configCellWith(debt: dataToPay[indexPath.row], andTextColor: UIColor.AppColors.debtsFontColor)
             return cell
         }
     }
@@ -144,14 +148,14 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
             if self.isToPay == false {
                 CoreDataManager.sharedManager.deleteDebt(self.dataToReceive[indexPath.row])
                 self.dataToReceive.remove(at: indexPath.row)
-                tableView.reloadSections(IndexSet(indexPath), with: .automatic)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
             } else {
                 CoreDataManager.sharedManager.deleteDebt(self.dataToPay[indexPath.row])
                 self.dataToPay.remove(at: indexPath.row)
-                tableView.reloadSections(IndexSet(indexPath), with: .automatic)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
             }
         }
-        paidAction.backgroundColor = UIColor.AppColors.darkGray
+        paidAction.backgroundColor = UIColor.AppColors.debtsBackgroundColor
         paidAction.image = #imageLiteral(resourceName: "paid")
             
         let swipeAction = UISwipeActionsConfiguration(actions: [paidAction])

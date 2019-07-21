@@ -48,7 +48,7 @@ class NewDebtViewController: UIViewController {
         let segmentedControl = LineSegmentedControl(
             width: view.frame.width * 0.6,
             titles: segmentedTitles, mulplierLineWidth: 3,
-            selectedColor: UIColor.AppColors.darkGray, unselectedColor: UIColor.AppColors.grayLowOpacity
+            selectedColor: UIColor.AppColors.newDebtFontColor, unselectedColor: UIColor.AppColors.debtsCardBackgroundColor
         )
         segmentedControl.delegate = self
         view.addSubview(segmentedControl)
@@ -86,7 +86,7 @@ class NewDebtViewController: UIViewController {
 //    Life circle method
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.AppColors.orange
+        view.backgroundColor = UIColor.AppColors.newDebtBackgroundColor
         tableView.register(InputCell.self, forCellReuseIdentifier: "cell")
         headerButton.addTarget(self, action: #selector(exitTapped(_:)), for: .touchUpInside)
         footerButton.addTarget(self, action: #selector(saveTapped(_:)), for: .touchUpInside)
@@ -123,16 +123,16 @@ extension NewDebtViewController: HeaderConstraintsProtocol {
         
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 26),
-            tableView.bottomAnchor.constraint(equalTo: footerButton.topAnchor, constant: -24),
+            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
+            tableView.bottomAnchor.constraint(equalTo: footerButton.topAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
             ])
         
         NSLayoutConstraint.activate([
-            footerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44),
-            footerButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            footerButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            footerButton.heightAnchor.constraint(equalToConstant: 44)
+            footerButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            footerButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            footerButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            footerButton.heightAnchor.constraint(equalToConstant: 40)
             ])
     }
 }

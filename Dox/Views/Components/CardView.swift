@@ -13,12 +13,9 @@ class CardView: UIView {
         self.init(frame: CGRect.zero)
         configView(backgroundColor: color)
     }
-}
-//ShadowProtocol
-extension CardView: ShadowProtocol {
+
     private func configView(backgroundColor: UIColor) {
         self.backgroundColor = backgroundColor
         self.layer.cornerRadius = 8
-        self.configShadowIn(view: self, isDark: true)
     }
 }

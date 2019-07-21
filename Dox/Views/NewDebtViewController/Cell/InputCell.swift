@@ -20,13 +20,13 @@ class InputCell: UITableViewCell {
     }()
 //    TextField
     lazy var textField: CardTextField = {
-        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightGray)
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.textFieldBackgroundColor)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     lazy var symbolTextField: CardTextField = {
-        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightGray)
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.textFieldBackgroundColor)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.inputView = pickerSymbols
         self.addSubview(textField)
@@ -34,7 +34,7 @@ class InputCell: UITableViewCell {
     }()
     
     lazy var valueTextField: CardTextField = {
-        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightGray)
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.textFieldBackgroundColor)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textAlignment = .right
         textField.keyboardType = UIKeyboardType.decimalPad
@@ -54,7 +54,7 @@ class InputCell: UITableViewCell {
     }
     
     override func draw(_ rect: CGRect) {
-        self.contentView.backgroundColor = UIColor.AppColors.orange
+        self.contentView.backgroundColor = UIColor.AppColors.newDebtBackgroundColor
     }
     
     func configCellWith(title: String, andType cellType: InputCellType, to viewController: UIViewController) {
@@ -97,12 +97,12 @@ extension InputCell {
             NSLayoutConstraint.activate([
                 mockLabel.topAnchor.constraint(equalTo: self.topAnchor),
                 mockLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
-                mockLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16)
+                mockLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20)
             ])
             
             NSLayoutConstraint.activate([
                 symbolTextField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 10),
-                symbolTextField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
+                symbolTextField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
                 symbolTextField.rightAnchor.constraint(equalTo: valueTextField.leftAnchor, constant: -12),
                 symbolTextField.widthAnchor.constraint(equalToConstant: 68),
                 symbolTextField.heightAnchor.constraint(equalToConstant: 40)
@@ -110,21 +110,21 @@ extension InputCell {
             
             NSLayoutConstraint.activate([
                 valueTextField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 10),
-                valueTextField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                valueTextField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
                 valueTextField.heightAnchor.constraint(equalToConstant: 40)
             ])
         default:
             NSLayoutConstraint.activate([
                 mockLabel.topAnchor.constraint(equalTo: self.topAnchor),
                 mockLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
-                mockLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16)
+                mockLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20)
             ])
             
             self.addSubview(textField)
             NSLayoutConstraint.activate([
                 textField.topAnchor.constraint(equalTo: mockLabel.bottomAnchor, constant: 10),
-                textField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-                textField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                textField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
+                textField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20),
                 textField.heightAnchor.constraint(equalToConstant: 40)
             ])
         } 
