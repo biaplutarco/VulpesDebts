@@ -15,14 +15,14 @@ extension HeaderConstraintsProtocol {
     func configHeaderConstraints(largeTitle: UILabel, segmentedControl: UIControl, button: UIButton, at view: UIView) {
         NSLayoutConstraint.activate([
             largeTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            largeTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 96),
+            largeTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 86),
             largeTitle.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
             largeTitle.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
         
         NSLayoutConstraint.activate([
             button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            button.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            button.topAnchor.constraint(equalTo: view.topAnchor, constant: 42),
             button.heightAnchor.constraint(equalToConstant: 42),
             button.widthAnchor.constraint(equalToConstant: 42)
         ])
