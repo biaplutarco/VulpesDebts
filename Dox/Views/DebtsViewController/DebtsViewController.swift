@@ -20,6 +20,19 @@ class DebtsViewController: UIViewController {
         view.addSubview(label)
         return label
     }()
+    
+    lazy var empytLabel: UILabel = {
+        let title = NSLocalizedString("Empyt Label", comment: "Empyt Label")
+        let label = UILabel()
+        label.text = title
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.numberOfLines = 3
+        label.textColor = UIColor.AppColors.unselectedDebtColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
 //    Button
     lazy var headerButton: CircularButton = {
         let addButton = CircularButton(image: #imageLiteral(resourceName: "addButton"), type: .add)
@@ -81,12 +94,19 @@ class DebtsViewController: UIViewController {
         return tableView
     }()
 //    Life circle method
+    override func viewWillAppear(_ animated: Bool) {
+        addEmpytLabel()
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.AppColors.debtsBackgroundColor
         tableView.register(DebtCell.self, forCellReuseIdentifier: "cell")
         headerButton.addTarget(self, action: #selector(headerButtonTapped(_:)), for: .touchUpInside)
         configConstraints()
+        
     }
 //    Action
     @objc func headerButtonTapped(_ sender: UIButton) {
@@ -95,6 +115,18 @@ class DebtsViewController: UIViewController {
         nextVC.transitioningDelegate = self
         nextVC.modalPresentationStyle = .custom
         present(nextVC, animated: true, completion: nil)
+    }
+    
+    func addEmpytLabel() {
+        if (dataToPay.isEmpty && dataToReceive.isEmpty) {
+            view.addSubview(empytLabel)
+            configEmpytLabelConstraints()
+        } else {
+            view.willRemoveSubview(empytLabel)
+            empytLabel.removeFromSuperview()
+            view.layoutIfNeeded()
+            view.layoutSubviews()
+        }
     }
 }
 //Constraints
@@ -109,6 +141,15 @@ extension DebtsViewController: HeaderConstraintsProtocol {
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
             tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 24)
         ])
+    }
+    
+    private func configEmpytLabelConstraints() {
+        NSLayoutConstraint.activate([
+            empytLabel.widthAnchor.constraint(equalToConstant: 300),
+            empytLabel.heightAnchor.constraint(equalToConstant: 400),
+            empytLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            empytLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
     }
 }
 //TableViewDelegate
@@ -192,16 +233,19 @@ extension DebtsViewController: UIViewControllerTransitioningDelegate {
 //NewDebtViewControllerDelegate
 extension DebtsViewController: NewDebtViewControllerDelegate {
     func addNew(debt: Debt) {
+        
         if debt.type == 0 {
             dataToReceive = CoreDataManager.sharedManager.getDebtsFrom(type: .toReceive)
             tableView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)), with: .automatic)
             didChangeTo(index: 0)
             segmentedControl.selectedButtonAt(index: 0)
+            addEmpytLabel()
         } else {
             dataToPay = CoreDataManager.sharedManager.getDebtsFrom(type: .toPay)
             tableView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)), with: .automatic)
             didChangeTo(index: 1)
             segmentedControl.selectedButtonAt(index: 1)
+            addEmpytLabel()
         }
     }
 }
