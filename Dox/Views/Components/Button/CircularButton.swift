@@ -20,7 +20,7 @@ class CircularButton: UIButton {
         self.layer.cornerRadius = 20
         switch type {
         case .add:
-            self.tintColor = UIColor.AppColors.newDebtBackgroundColor
+            self.tintColor = UIColor.AppColors.orange
         default:
             self.tintColor = UIColor.AppColors.debtsBackgroundColor
         }

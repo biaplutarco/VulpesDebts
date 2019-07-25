@@ -8,11 +8,12 @@
 
 import UIKit
 
-class NewDebtViewController: UIViewController {
+class NewDebtViewController: UIViewController, LabelLayoutProtocol {
 //    Label
-    lazy var largeTitle: MockLabel = {
+    lazy var largeTitle: UILabel = {
         let title = NSLocalizedString("New Debt", comment: "New Debt")
-        let label = MockLabel(text: title, type: .darkLargeTitle)
+        let label = createLargeTitleLabel(text: title, andTextColor: UIColor.AppColors.black)
+        label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         return label
     }()
@@ -48,7 +49,7 @@ class NewDebtViewController: UIViewController {
         let segmentedControl = LineSegmentedControl(
             width: view.frame.width * 0.6,
             titles: segmentedTitles, mulplierLineWidth: 3,
-            selectedColor: UIColor.AppColors.newDebtFontColor, unselectedColor: UIColor.AppColors.debtsCardBackgroundColor
+            selectedColor: UIColor.AppColors.black, unselectedColor: UIColor.AppColors.darkGray
         )
         segmentedControl.delegate = self
         view.addSubview(segmentedControl)
@@ -86,7 +87,7 @@ class NewDebtViewController: UIViewController {
 //    Life circle method
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.AppColors.newDebtBackgroundColor
+        view.backgroundColor = UIColor.AppColors.orange
         tableView.register(InputCell.self, forCellReuseIdentifier: "cell")
         headerButton.addTarget(self, action: #selector(exitTapped(_:)), for: .touchUpInside)
         footerButton.addTarget(self, action: #selector(saveTapped(_:)), for: .touchUpInside)

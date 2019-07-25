@@ -19,7 +19,7 @@ class RectangularButton: UIButton {
         self.backgroundColor = UIColor.AppColors.debtsBackgroundColor
 //        Set LocalizedString to title
         let translatedTitle = NSLocalizedString(title, comment: title)
-        self.setTitleColor(UIColor.AppColors.debtsFontColor, for: .normal)
+        self.setTitleColor(UIColor.AppColors.white, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.setTitle(translatedTitle, for: .normal)

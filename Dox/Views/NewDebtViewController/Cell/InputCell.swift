@@ -8,12 +8,12 @@
 
 import UIKit
 
-class InputCell: UITableViewCell {
+class InputCell: UITableViewCell, LabelLayoutProtocol {
     var myPickerData = ["R$", "$", "£", "€"]
     
 //    Label
-    lazy var mockLabel: MockLabel = {
-        let mockLabel = MockLabel(text: "error", type: .insideNewDebt)
+    lazy var mockLabel: UILabel = {
+        let mockLabel = createMediumLabel(text: "error", andTextColor: UIColor.AppColors.black)
         mockLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(mockLabel)
         return mockLabel
@@ -54,7 +54,7 @@ class InputCell: UITableViewCell {
     }
     
     override func draw(_ rect: CGRect) {
-        self.contentView.backgroundColor = UIColor.AppColors.newDebtBackgroundColor
+        self.contentView.backgroundColor = UIColor.AppColors.orange
     }
     
     func configCellWith(title: String, andType cellType: InputCellType, to viewController: UIViewController) {

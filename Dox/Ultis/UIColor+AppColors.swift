@@ -10,12 +10,12 @@ import UIKit
 
 extension UIColor {
     struct AppColors {
-        static let newDebtBackgroundColor = UIColor.init(named: "NewDebtBackgroundColor")!
+        static let orange = UIColor.init(named: "NewDebtBackgroundColor")!
         static let debtsBackgroundColor = UIColor.init(named: "DebtsBackgroundColor")!
-        static let debtsFontColor = UIColor.init(named: "DebtsFontColor")!
-        static let newDebtFontColor = UIColor.init(named: "NewDebtFontColor")!
+        static let white = UIColor.init(named: "DebtsFontColor")!
+        static let black = UIColor.init(named: "NewDebtFontColor")!
         static let textFieldBackgroundColor = UIColor.init(named: "TextFieldBackgroundColor")!
-        static let debtsCardBackgroundColor = UIColor.init(named: "DebtsCardBackgroundColor")!
-        static let unselectedDebtColor = UIColor.init(named: "UnselectedDebtColor")!
+        static let darkGray = UIColor.init(named: "DebtsCardBackgroundColor")!
+        static let gray = UIColor.init(named: "UnselectedDebtColor")!
     }
 }

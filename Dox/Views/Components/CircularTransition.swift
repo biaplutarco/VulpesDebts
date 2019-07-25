@@ -11,7 +11,7 @@ import UIKit
 class CircularTransition: NSObject {
     var circleView: UIView = {
         let circle = UIView()
-        circle.backgroundColor = UIColor.AppColors.newDebtBackgroundColor
+        circle.backgroundColor = UIColor.AppColors.orange
         return circle
     }()
     
