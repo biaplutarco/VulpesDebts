@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LineSegmentedControl: UIControl {
+class LineStackView: UIControl {
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: buttons)
         stackView.axis = .horizontal
@@ -58,7 +58,7 @@ class LineSegmentedControl: UIControl {
         return buttons
     }()
     
-    weak var delegate: LineSegmentedControlDelegate?
+    weak var delegate: LineStackViewDelegate?
     
     var titles: [String]
     var width: CGFloat
@@ -142,7 +142,7 @@ class LineSegmentedControl: UIControl {
     }
 }
 //Constraints
-extension LineSegmentedControl {
+extension LineStackView {
     private func configConstraints() {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: self.topAnchor),

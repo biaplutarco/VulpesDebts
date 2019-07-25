@@ -20,13 +20,13 @@ class InputCell: UITableViewCell, LabelLayoutProtocol {
     }()
 //    TextField
     lazy var textField: CardTextField = {
-        let textField = CardTextField(backgroundColor: UIColor.AppColors.textFieldBackgroundColor)
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightOrange)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     lazy var symbolTextField: CardTextField = {
-        let textField = CardTextField(backgroundColor: UIColor.AppColors.textFieldBackgroundColor)
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightOrange)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.inputView = pickerSymbols
         self.addSubview(textField)
@@ -34,7 +34,7 @@ class InputCell: UITableViewCell, LabelLayoutProtocol {
     }()
     
     lazy var valueTextField: CardTextField = {
-        let textField = CardTextField(backgroundColor: UIColor.AppColors.textFieldBackgroundColor)
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightOrange)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textAlignment = .right
         textField.keyboardType = UIKeyboardType.decimalPad

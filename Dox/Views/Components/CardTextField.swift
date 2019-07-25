@@ -33,6 +33,6 @@ class CardTextField: UITextField {
     
     private func configTextField(backgroundColor: UIColor) {
         self.backgroundColor = backgroundColor
-        self.layer.cornerRadius = 8
+        self.layer.cornerRadius = 10
     }
 }
