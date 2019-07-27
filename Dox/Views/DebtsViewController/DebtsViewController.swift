@@ -8,71 +8,19 @@
 
 import UIKit
 
-class DebtsViewController: UIViewController {
+class DebtsViewController: UIViewController, LabelLayoutProtocol {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-//    Label
-    lazy var largeTitle: MockLabel = {
-        let title = NSLocalizedString("Debts", comment: "Debts")
-        let label = MockLabel(text: title, type: .largeTitle)
-        view.addSubview(label)
-        return label
-    }()
+    override var isEditing: Bool {
+        didSet {
+            configIsEditing()
+        }
+    }
     
-    lazy var empytLabel: UILabel = {
-        let title = NSLocalizedString("Empyt Label", comment: "Empyt Label")
-        let label = UILabel()
-        label.text = title
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.numberOfLines = 3
-        label.textColor = UIColor.AppColors.unselectedDebtColor
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    var isToPay = false
     
-//    Button
-    lazy var headerButton: CircularButton = {
-        let addButton = CircularButton(image: #imageLiteral(resourceName: "addButton"), type: .add)
-        view.addSubview(addButton)
-        return addButton
-    }()
-//    SegmentedControl
-    lazy var segmentedTitles: [String] = {
-        let toReceiveTitle = NSLocalizedString("To receive", comment: "To receive")
-        let toPayTitle = NSLocalizedString("To pay", comment: "To pay")
-        let segmentedTitles = [toReceiveTitle, toPayTitle]
-        return segmentedTitles
-    }()
-    
-    lazy var segmentedControl: LineSegmentedControl = {
-        let segmentedControl = LineSegmentedControl(
-            width: view.frame.width * 0.6,
-            titles: segmentedTitles, mulplierLineWidth: 3,
-            selectedColor: UIColor.AppColors.debtsFontColor, unselectedColor: UIColor.AppColors.unselectedDebtColor
-        )
-        segmentedControl.delegate = self
-        view.addSubview(segmentedControl)
-        return segmentedControl
-    }()
-    
-    lazy var isToPay: Bool = {
-        let isToPay = false
-        return isToPay
-    }()
-//    CustomTransition
-    lazy var transition: CircularTransition = {
-        let size = view.frame.height
-        let startingPoint = headerButton.center
-        let center = view.center
-        let transition = CircularTransition(
-            size: size, startingPoint: startingPoint, viewCenter: center, duration: 0.6
-        )
-        return transition
-    }()
-//    TableView
     lazy var dataToReceive: [Debt] = {
         let dataToReceive: [Debt] = CoreDataManager.sharedManager.getDebtsFrom(type: .toReceive)
         return dataToReceive
@@ -83,33 +31,106 @@ class DebtsViewController: UIViewController {
         return dataToReceive
     }()
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
-        return tableView
+    lazy var largeTitle: UILabel = {
+        let title = NSLocalizedString("Debts", comment: "Debts")
+        let label = createLargeTitleLabel(text: title, andTextColor: UIColor.AppColors.white)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
+        return label
     }()
-//    Life circle method
+    
+    lazy var empytLabel: UILabel = {
+        let title = NSLocalizedString("Empyt Label", comment: "Empyt Label")
+        let label = createEmpytLabel(text: title, andTextColor: UIColor.AppColors.gray)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var rigthButton: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "addButton"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(goToNextVC(_:)), for: .touchUpInside)
+        view.addSubview(button)
+        return button
+    }()
+    
+    lazy var leftButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(NSLocalizedString("Edit", comment: "Edit"), for: .normal)
+        button.setTitleColor(UIColor.AppColors.white, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(didTappedLeftButton(_:)), for: .touchUpInside)
+        view.addSubview(button)
+        return button
+    }()
+    
+    lazy var titles: [String] = {
+        let titles = [NSLocalizedString("To receive", comment: "To receive"),
+                      NSLocalizedString("To pay", comment: "To pay")]
+        return titles
+    }()
+    
+    lazy var lineStackView: LineStackView = {
+        let lineStackView = LineStackView(width: view.frame.width * 0.6, titles: titles, mulplierLineWidth: 3,
+                                          selectedColor: UIColor.AppColors.white, unselectedColor: UIColor.AppColors.gray)
+        lineStackView.delegate = self
+        view.addSubview(lineStackView)
+        return lineStackView
+    }()
+    
+    lazy var transition: CircularTransition = {
+        let size = view.frame.height
+        let startingPoint = rigthButton.center
+        let center = view.center
+        let transition = CircularTransition(size: size, startingPoint: startingPoint, viewCenter: center, duration: 0.6)
+        return transition
+    }()
+    
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: CGRect.zero,
+                                              collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .clear
+        collectionView.alwaysBounceVertical = true
+        collectionView.allowsSelection = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
+        return collectionView
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         addEmpytLabel()
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.AppColors.debtsBackgroundColor
-        tableView.register(DebtCell.self, forCellReuseIdentifier: "cell")
-        headerButton.addTarget(self, action: #selector(headerButtonTapped(_:)), for: .touchUpInside)
+        view.backgroundColor = UIColor.AppColors.black
+        collectionView.register(DebtCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         configConstraints()
-        
     }
-//    Action
-    @objc func headerButtonTapped(_ sender: UIButton) {
+    
+    @objc func deleteItems(_ sender: UIButton) {
+        guard let selectedCells = collectionView.indexPathsForSelectedItems else { return }
+        let items = selectedCells.map { $0.item }.sorted().reversed()
+        isEditing = false
+        
+        for item in items {
+            if self.isToPay == true {
+                CoreDataManager.sharedManager.deleteDebt(dataToPay[item])
+                dataToPay = CoreDataManager.sharedManager.getDebtsFrom(type: .toPay)
+            } else {
+                CoreDataManager.sharedManager.deleteDebt(dataToReceive[item])
+                dataToReceive = CoreDataManager.sharedManager.getDebtsFrom(type: .toReceive)
+            }
+        }
+        
+        collectionView.deleteItems(at: selectedCells)
+        collectionView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)))
+    }
+    
+    @objc func goToNextVC(_ sender: UIButton) {
         let nextVC = NewDebtViewController()
         nextVC.delegate = self
         nextVC.transitioningDelegate = self
@@ -117,7 +138,29 @@ class DebtsViewController: UIViewController {
         present(nextVC, animated: true, completion: nil)
     }
     
-    func addEmpytLabel() {
+    @objc func didTappedLeftButton(_ sender: UIButton) {
+        isEditing.toggle()
+    }
+    
+    private func configIsEditing() {
+        if isEditing == true {
+            collectionView.allowsSelection = true
+            leftButton.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
+            rigthButton.setImage(#imageLiteral(resourceName: "trash"), for: .normal)
+            rigthButton.isEnabled = false
+            rigthButton.removeTarget(self, action: #selector(goToNextVC(_:)), for: .touchUpInside)
+            rigthButton.addTarget(self, action: #selector(deleteItems(_:)), for: .touchUpInside)
+        } else {
+            collectionView.allowsSelection = false
+            leftButton.setTitle(NSLocalizedString("Edit", comment: "Edit"), for: .normal)
+            rigthButton.setImage(#imageLiteral(resourceName: "addButton"), for: .normal)
+            rigthButton.isEnabled = true
+            rigthButton.removeTarget(self, action: #selector(deleteItems(_:)), for: .touchUpInside)
+            rigthButton.addTarget(self, action: #selector(goToNextVC(_:)), for: .touchUpInside)
+        }
+    }
+    
+    private func addEmpytLabel() {
         if (dataToPay.isEmpty && dataToReceive.isEmpty) {
             view.addSubview(empytLabel)
             configEmpytLabelConstraints()
@@ -129,17 +172,21 @@ class DebtsViewController: UIViewController {
         }
     }
 }
-//Constraints
+
 extension DebtsViewController: HeaderConstraintsProtocol {
     private func configConstraints() {
-        configHeaderConstraints(largeTitle: largeTitle, segmentedControl: segmentedControl,
-                                button: headerButton, at: view)
+        configHeaderConstraints(title: largeTitle, segControl: lineStackView, leftButton: rigthButton, at: view)
         
         NSLayoutConstraint.activate([
-            tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 24)
+            leftButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 42),
+            leftButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            ])
+        
+        NSLayoutConstraint.activate([
+            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            collectionView.topAnchor.constraint(equalTo: lineStackView.bottomAnchor, constant: 24)
         ])
     }
     
@@ -152,9 +199,9 @@ extension DebtsViewController: HeaderConstraintsProtocol {
             ])
     }
 }
-//TableViewDelegate
-extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+extension DebtsViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isToPay == false {
             return dataToReceive.count
         } else {
@@ -162,58 +209,59 @@ extension DebtsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? DebtCell
-            else { return UITableViewCell() }
-        if isToPay == false {
-            cell.configCellWith(debt: dataToReceive[indexPath.row], andTextColor: UIColor.AppColors.debtsFontColor)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? DebtCollectionViewCell
+            else { return UICollectionViewCell() }
+        if isToPay == true {
+            cell.setUp(withDebt: dataToPay[indexPath.row])
             return cell
         } else {
-            cell.configCellWith(debt: dataToPay[indexPath.row], andTextColor: UIColor.AppColors.debtsFontColor)
+            cell.setUp(withDebt: dataToReceive[indexPath.row])
             return cell
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 128
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
-        -> UISwipeActionsConfiguration? {
-        let title = NSLocalizedString("Paid", comment: "Paid")
-        let paidAction = UIContextualAction(style: .normal, title: title) { (_, _, _) in
-            if self.isToPay == false {
-                CoreDataManager.sharedManager.deleteDebt(self.dataToReceive[indexPath.row])
-                self.dataToReceive.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            } else {
-                CoreDataManager.sharedManager.deleteDebt(self.dataToPay[indexPath.row])
-                self.dataToPay.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        collectionView.allowsMultipleSelection = editing
+        let indexPaths = collectionView.indexPathsForVisibleItems
+        for indexPath in indexPaths {
+            let cell = collectionView.cellForItem(at: indexPath) as! DebtCollectionViewCell
+            cell.isInEditingMode = editing
         }
-        paidAction.backgroundColor = UIColor.AppColors.debtsBackgroundColor
-        paidAction.image = #imageLiteral(resourceName: "paid")
-            
-        let swipeAction = UISwipeActionsConfiguration(actions: [paidAction])
-        swipeAction.performsFirstActionWithFullSwipe = true
-        return swipeAction
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        rigthButton.isEnabled = true
+        collectionView.cellForItem(at: indexPath)?.isSelected = true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        collectionView.cellForItem(at: indexPath)?.isSelected = false
+        if let selectedItems = collectionView.indexPathsForSelectedItems, selectedItems.count == 0 {
+            rigthButton.isEnabled = false
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (view.frame.width - 40), height: 80)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
     }
 }
 //SegmentedControlDelegate
-extension DebtsViewController: LineSegmentedControlDelegate {
+extension DebtsViewController: LineStackViewDelegate {
     func didChangeTo(index: Int) {
         switch index {
         case 0:
             isToPay = false
-            tableView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)), with: .automatic)
+            collectionView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)))
         default:
             isToPay = true
-            tableView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)), with: .automatic)
+            collectionView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)))
         }
     }
 }
@@ -233,18 +281,17 @@ extension DebtsViewController: UIViewControllerTransitioningDelegate {
 //NewDebtViewControllerDelegate
 extension DebtsViewController: NewDebtViewControllerDelegate {
     func addNew(debt: Debt) {
-        
         if debt.type == 0 {
             dataToReceive = CoreDataManager.sharedManager.getDebtsFrom(type: .toReceive)
-            tableView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)), with: .automatic)
+            collectionView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)))
             didChangeTo(index: 0)
-            segmentedControl.selectedButtonAt(index: 0)
+            lineStackView.selectedButtonAt(index: 0)
             addEmpytLabel()
         } else {
             dataToPay = CoreDataManager.sharedManager.getDebtsFrom(type: .toPay)
-            tableView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)), with: .automatic)
+            collectionView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)))
             didChangeTo(index: 1)
-            segmentedControl.selectedButtonAt(index: 1)
+            lineStackView.selectedButtonAt(index: 1)
             addEmpytLabel()
         }
     }

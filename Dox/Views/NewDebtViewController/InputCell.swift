@@ -8,25 +8,25 @@
 
 import UIKit
 
-class InputCell: UITableViewCell {
+class InputCell: UITableViewCell, LabelLayoutProtocol {
     var myPickerData = ["R$", "$", "£", "€"]
     
 //    Label
-    lazy var mockLabel: MockLabel = {
-        let mockLabel = MockLabel(text: "error", type: .insideNewDebt)
+    lazy var mockLabel: UILabel = {
+        let mockLabel = createMediumLabel(text: "error", andTextColor: UIColor.AppColors.black)
         mockLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(mockLabel)
         return mockLabel
     }()
 //    TextField
     lazy var textField: CardTextField = {
-        let textField = CardTextField(backgroundColor: UIColor.AppColors.textFieldBackgroundColor)
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightOrange)
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     lazy var symbolTextField: CardTextField = {
-        let textField = CardTextField(backgroundColor: UIColor.AppColors.textFieldBackgroundColor)
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightOrange)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.inputView = pickerSymbols
         self.addSubview(textField)
@@ -34,7 +34,7 @@ class InputCell: UITableViewCell {
     }()
     
     lazy var valueTextField: CardTextField = {
-        let textField = CardTextField(backgroundColor: UIColor.AppColors.textFieldBackgroundColor)
+        let textField = CardTextField(backgroundColor: UIColor.AppColors.lightOrange)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textAlignment = .right
         textField.keyboardType = UIKeyboardType.decimalPad
@@ -54,7 +54,7 @@ class InputCell: UITableViewCell {
     }
     
     override func draw(_ rect: CGRect) {
-        self.contentView.backgroundColor = UIColor.AppColors.newDebtBackgroundColor
+        self.contentView.backgroundColor = UIColor.AppColors.orange
     }
     
     func configCellWith(title: String, andType cellType: InputCellType, to viewController: UIViewController) {

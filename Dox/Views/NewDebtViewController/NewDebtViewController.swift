@@ -8,47 +8,51 @@
 
 import UIKit
 
-class NewDebtViewController: UIViewController {
+class NewDebtViewController: UIViewController, LabelLayoutProtocol, ButtonProtocol {
 //    Label
-    lazy var largeTitle: MockLabel = {
+    lazy var largeTitle: UILabel = {
         let title = NSLocalizedString("New Debt", comment: "New Debt")
-        let label = MockLabel(text: title, type: .darkLargeTitle)
+        let label = createLargeTitleLabel(text: title, andTextColor: UIColor.AppColors.black)
+        label.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(label)
         return label
     }()
     
-    lazy var mockLabelTitles: [String] = {
-        let mockLabelTitles: [String] = [NSLocalizedString("Name", comment: "Name"),
+    lazy var labelsTitles: [String] = {
+        let labelsTitles: [String] = [NSLocalizedString("Name", comment: "Name"),
                                          NSLocalizedString("Reason", comment: "Reason"),
                                          NSLocalizedString("Value", comment: "Value")]
-        return mockLabelTitles
+        return labelsTitles
     }()
 
 //    Button
-    lazy var headerButton: CircularButton = {
-        let headerButton = CircularButton(image: #imageLiteral(resourceName: "exitButton"), type: .exit)
-        view.addSubview(headerButton)
-        return headerButton
+    lazy var leftButton: UIButton = {
+        let button = UIButton()
+        button.setImage(#imageLiteral(resourceName: "exitButton"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(button)
+        return button
     }()
     
-    lazy var footerButton: RectangularButton = {
-        let footerButton = RectangularButton(title: "Save")
-        view.addSubview(footerButton)
-        return footerButton
+    lazy var footerButton: UIButton = {
+        let title = NSLocalizedString("Save", comment: "Save")
+        let button = createRectangularButton(text: title)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(button)
+        return button
     }()
 //    SegmentedControll
-    lazy var segmentedTitles: [String] = {
-        let toReceiveTitle = NSLocalizedString("To receive", comment: "To receive")
-        let toPayTitle = NSLocalizedString("To pay", comment: "To pay")
-        let segmentedTitles = [toReceiveTitle, toPayTitle]
-        return segmentedTitles
+    lazy var titles: [String] = {
+        let titles = [NSLocalizedString("To receive", comment: "To receive"),
+                      NSLocalizedString("To pay", comment: "To pay")]
+        return titles
     }()
     
-    lazy var segmentedControl: LineSegmentedControl = {
-        let segmentedControl = LineSegmentedControl(
+    lazy var lineStackView: LineStackView = {
+        let segmentedControl = LineStackView(
             width: view.frame.width * 0.6,
-            titles: segmentedTitles, mulplierLineWidth: 3,
-            selectedColor: UIColor.AppColors.newDebtFontColor, unselectedColor: UIColor.AppColors.debtsCardBackgroundColor
+            titles: titles, mulplierLineWidth: 3,
+            selectedColor: UIColor.AppColors.black, unselectedColor: UIColor.AppColors.darkGray
         )
         segmentedControl.delegate = self
         view.addSubview(segmentedControl)
@@ -86,9 +90,9 @@ class NewDebtViewController: UIViewController {
 //    Life circle method
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.AppColors.newDebtBackgroundColor
+        view.backgroundColor = UIColor.AppColors.orange
         tableView.register(InputCell.self, forCellReuseIdentifier: "cell")
-        headerButton.addTarget(self, action: #selector(exitTapped(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(exitTapped(_:)), for: .touchUpInside)
         footerButton.addTarget(self, action: #selector(saveTapped(_:)), for: .touchUpInside)
 //        Methods
         addObservers()
@@ -118,12 +122,12 @@ class NewDebtViewController: UIViewController {
 //Constraints
 extension NewDebtViewController: HeaderConstraintsProtocol {
     private func configConstraints() {
-        configHeaderConstraints(largeTitle: largeTitle, segmentedControl: segmentedControl,
-                                button: headerButton, at: view)
+        configHeaderConstraints(title: largeTitle, segControl: lineStackView,
+                                leftButton: leftButton, at: view)
         
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
+            tableView.topAnchor.constraint(equalTo: lineStackView.bottomAnchor, constant: 20),
             tableView.bottomAnchor.constraint(equalTo: footerButton.topAnchor),
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor)
             ])
@@ -146,7 +150,7 @@ extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? InputCell
             else { return UITableViewCell() }
         let index = indexPath.row
-        cell.configCellWith(title: mockLabelTitles[index], andType: inputCellTypes[index], to: self)
+        cell.configCellWith(title: labelsTitles[index], andType: inputCellTypes[index], to: self)
         inputCells.append(cell)
         return cell
     }
@@ -156,7 +160,7 @@ extension NewDebtViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 //SegmentedControlDelegate
-extension NewDebtViewController: LineSegmentedControlDelegate {
+extension NewDebtViewController: LineStackViewDelegate {
     func didChangeTo(index: Int) {
         switch index {
         case 0:

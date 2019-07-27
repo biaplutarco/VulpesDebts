@@ -12,25 +12,25 @@ protocol HeaderConstraintsProtocol {
 }
 
 extension HeaderConstraintsProtocol {
-    func configHeaderConstraints(largeTitle: UILabel, segmentedControl: UIControl, button: UIButton, at view: UIView) {
+    func configHeaderConstraints(title: UILabel, segControl: UIControl, leftButton: UIButton, at view: UIView) {
         NSLayoutConstraint.activate([
-            largeTitle.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            largeTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 86),
-            largeTitle.bottomAnchor.constraint(equalTo: segmentedControl.topAnchor, constant: -24),
-            largeTitle.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+            title.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            title.topAnchor.constraint(equalTo: view.topAnchor, constant: 86),
+            title.bottomAnchor.constraint(equalTo: segControl.topAnchor, constant: -24),
+            title.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
         ])
         
         NSLayoutConstraint.activate([
-            button.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
-            button.topAnchor.constraint(equalTo: view.topAnchor, constant: 42),
-            button.heightAnchor.constraint(equalToConstant: 42),
-            button.widthAnchor.constraint(equalToConstant: 42)
+            leftButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            leftButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 42),
+            leftButton.heightAnchor.constraint(equalToConstant: 42),
+            leftButton.widthAnchor.constraint(equalToConstant: 42)
         ])
         
         NSLayoutConstraint.activate([
-            segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60),
-            segmentedControl.heightAnchor.constraint(equalToConstant: 32)
+            segControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            segControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.60),
+            segControl.heightAnchor.constraint(equalToConstant: 32)
         ])
     }
 }

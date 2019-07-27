@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol LineSegmentedControlDelegate: class {
+protocol LineStackViewDelegate: class {
     func didChangeTo(index: Int)
 }
