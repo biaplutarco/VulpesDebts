@@ -93,6 +93,8 @@ class DebtsViewController: UIViewController, LabelLayoutProtocol {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
+        collectionView.alwaysBounceVertical = true
+        collectionView.allowsSelection = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
         return collectionView
@@ -142,12 +144,14 @@ class DebtsViewController: UIViewController, LabelLayoutProtocol {
     
     private func configIsEditing() {
         if isEditing == true {
+            collectionView.allowsSelection = true
             leftButton.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
             rigthButton.setImage(#imageLiteral(resourceName: "trash"), for: .normal)
             rigthButton.isEnabled = false
             rigthButton.removeTarget(self, action: #selector(goToNextVC(_:)), for: .touchUpInside)
             rigthButton.addTarget(self, action: #selector(deleteItems(_:)), for: .touchUpInside)
         } else {
+            collectionView.allowsSelection = false
             leftButton.setTitle(NSLocalizedString("Edit", comment: "Edit"), for: .normal)
             rigthButton.setImage(#imageLiteral(resourceName: "addButton"), for: .normal)
             rigthButton.isEnabled = true
@@ -241,7 +245,7 @@ extension DebtsViewController: UICollectionViewDelegateFlowLayout, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.frame.width - 40), height: (view.frame.width - 40)/5)
+        return CGSize(width: (view.frame.width - 40), height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

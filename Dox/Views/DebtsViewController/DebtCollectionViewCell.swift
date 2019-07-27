@@ -67,12 +67,14 @@ class DebtCollectionViewCell: UICollectionViewCell, LabelLayoutProtocol {
         NSLayoutConstraint.activate([
             name.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             name.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            name.bottomAnchor.constraint(equalTo: self.reason.topAnchor, constant: -4)
+            name.bottomAnchor.constraint(equalTo: self.reason.topAnchor),
+            name.heightAnchor.constraint(equalToConstant: 24)
             ])
         
         NSLayoutConstraint.activate([
             reason.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            reason.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
+            reason.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -17),
+            reason.heightAnchor.constraint(equalToConstant: 20)
             ])
         
         NSLayoutConstraint.activate([
