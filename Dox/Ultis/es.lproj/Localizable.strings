@@ -5,17 +5,17 @@
   Created by Bia Plutarco on 26/05/19.
   Copyright © 2019 Bia Plutarco. All rights reserved.
 */
-"Debts" = "Deudas";
-"New Debt" = "Nueva Deuda";
-"To receive" = "Para recibir";
-"To pay" = "Para pagar";
-"Name" = "Nombre";
-"Reason" = "Razón";
-"Value" = "Valor";
-"Type" = "Tipo";
-"Save" = "Salvar";
-"Paid" = "Pago";
+"debts" = "Deudas";
+"newDebt" = "Nueva Deuda";
+"toReceive" = "Para recibir";
+"toPay" = "Para pagar";
+"name" = "Nombre";
+"reason" = "Razón";
+"value" = "Valor";
+"type" = "Tipo";
+"save" = "Salvar";
+"paid" = "Pago";
 "$" = "$";
-"Editar" = "Editar";
-"Cancelar" = "Cancelar";
-"Empyt Label" = "No hay nada aquí todavía. Agregue algunas deudas. ¡Una vez que lo haga, sus deudas estarán aquí!";
+"editar" = "Editar";
+"cancelar" = "Cancelar";
+"empytLabel" = "No hay nada aquí todavía. Agregue algunas deudas. ¡Una vez que lo haga, sus deudas estarán aquí!";

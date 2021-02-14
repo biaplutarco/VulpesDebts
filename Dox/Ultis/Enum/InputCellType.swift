@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum InputCellType {
-    case name
-    case reason
-    case value
+enum InputCellType: Int {
+    case name = 0
+    case reason = 1
+    case value = 2
 }

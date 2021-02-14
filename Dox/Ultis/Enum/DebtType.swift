@@ -11,5 +11,5 @@ import UIKit
 enum DebtType: Int {
     case toReceive = 0
     case toPay = 1
-    case error
+    case none
 }

@@ -8,8 +8,7 @@
 
 import UIKit
 
-protocol HeaderConstraintsProtocol {
-}
+protocol HeaderConstraintsProtocol { }
 
 extension HeaderConstraintsProtocol {
     func configHeaderConstraints(title: UILabel, segControl: UIControl, leftButton: UIButton, at view: UIView) {

@@ -19,6 +19,8 @@ extension ButtonProtocol {
         button.setTitleColor(UIColor.AppColors.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setTitle(text, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
         return button
     }
 }

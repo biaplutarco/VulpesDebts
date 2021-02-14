@@ -18,4 +18,3 @@ extension UIColor {
         static let gray = UIColor.init(named: "Gray")!
     }
 }
-

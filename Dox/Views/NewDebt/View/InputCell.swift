@@ -47,6 +47,9 @@ class InputCell: UITableViewCell, LabelLayoutProtocol {
         pickerSymbols.delegate = self
         return pickerSymbols
     }()
+    
+    weak var delegate: UITextFieldDelegate?
+    
 //    Method
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -57,9 +60,10 @@ class InputCell: UITableViewCell, LabelLayoutProtocol {
         self.contentView.backgroundColor = UIColor.AppColors.orange
     }
     
-    func configCellWith(title: String, andType cellType: InputCellType, to viewController: UIViewController) {
+    func configCellWith(title: String, andType cellType: InputCellType) {
         self.mockLabel.text = title
-        self.textField.delegate = viewController as? UITextFieldDelegate
+        self.textField.delegate = delegate
+        
         configPlaceholderTo(cellType: cellType)
         configConstraintsTo(cellType: cellType)
     }

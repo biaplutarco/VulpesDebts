@@ -88,8 +88,10 @@ class DebtsViewController: UIViewController, LabelLayoutProtocol {
     }()
     
     lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: CGRect.zero,
-                                              collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionView = UICollectionView(
+            frame: CGRect.zero,
+            collectionViewLayout: UICollectionViewFlowLayout()
+        )
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear
@@ -135,6 +137,7 @@ class DebtsViewController: UIViewController, LabelLayoutProtocol {
         nextVC.delegate = self
         nextVC.transitioningDelegate = self
         nextVC.modalPresentationStyle = .custom
+        
         present(nextVC, animated: true, completion: nil)
     }
     
@@ -143,21 +146,18 @@ class DebtsViewController: UIViewController, LabelLayoutProtocol {
     }
     
     private func configIsEditing() {
-        if isEditing == true {
-            collectionView.allowsSelection = true
-            leftButton.setTitle(NSLocalizedString("Cancel", comment: "Cancel"), for: .normal)
-            rigthButton.setImage(#imageLiteral(resourceName: "trash"), for: .normal)
-            rigthButton.isEnabled = false
-            rigthButton.removeTarget(self, action: #selector(goToNextVC(_:)), for: .touchUpInside)
-            rigthButton.addTarget(self, action: #selector(deleteItems(_:)), for: .touchUpInside)
-        } else {
-            collectionView.allowsSelection = false
-            leftButton.setTitle(NSLocalizedString("Edit", comment: "Edit"), for: .normal)
-            rigthButton.setImage(#imageLiteral(resourceName: "addButton"), for: .normal)
-            rigthButton.isEnabled = true
-            rigthButton.removeTarget(self, action: #selector(deleteItems(_:)), for: .touchUpInside)
-            rigthButton.addTarget(self, action: #selector(goToNextVC(_:)), for: .touchUpInside)
-        }
+        let title = isEditing ? "Cancel" : "Edit"
+        let image = isEditing ? #imageLiteral(resourceName: "trash") : #imageLiteral(resourceName: "addButton")
+        let addedAction = isEditing ? #selector(deleteItems(_:)) : #selector(goToNextVC(_:))
+        let removedAction = isEditing ? #selector(goToNextVC(_:)) : #selector(deleteItems(_:))
+
+        collectionView.allowsSelection = isEditing
+        leftButton.setTitle(NSLocalizedString(title, comment: title), for: .normal)
+        
+        rigthButton.isEnabled = !isEditing
+        rigthButton.removeTarget(self, action: addedAction, for: .touchUpInside)
+        rigthButton.addTarget(self, action: removedAction, for: .touchUpInside)
+        rigthButton.setImage(image, for: .normal)
     }
     
     private func addEmpytLabel() {
@@ -252,6 +252,7 @@ extension DebtsViewController: UICollectionViewDelegateFlowLayout, UICollectionV
         return 20
     }
 }
+
 //SegmentedControlDelegate
 extension DebtsViewController: LineStackViewDelegate {
     func didChangeTo(index: Int) {
@@ -265,6 +266,7 @@ extension DebtsViewController: LineStackViewDelegate {
         }
     }
 }
+
 //Transitioning Delegate
 extension DebtsViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController,
@@ -278,21 +280,27 @@ extension DebtsViewController: UIViewControllerTransitioningDelegate {
         return transition
     }
 }
+
 //NewDebtViewControllerDelegate
 extension DebtsViewController: NewDebtViewControllerDelegate {
     func addNew(debt: Debt) {
-        if debt.type == 0 {
-            dataToReceive = CoreDataManager.sharedManager.getDebtsFrom(type: .toReceive)
-            collectionView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)))
-            didChangeTo(index: 0)
-            lineStackView.selectedButtonAt(index: 0)
-            addEmpytLabel()
-        } else {
-            dataToPay = CoreDataManager.sharedManager.getDebtsFrom(type: .toPay)
-            collectionView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)))
-            didChangeTo(index: 1)
-            lineStackView.selectedButtonAt(index: 1)
-            addEmpytLabel()
+        guard let type = DebtType(rawValue: debt.type) else { return }
+        let data = CoreDataManager.sharedManager.getDebtsFrom(type: type)
+        
+        switch type {
+        case .toPay:
+            dataToPay = data
+            
+        case .toReceive:
+            dataToReceive = data
+            
+        case .none:
+            break
         }
+        
+        collectionView.reloadSections(IndexSet(IndexPath(row: 0, section: 0)))
+        didChangeTo(index: debt.type)
+        lineStackView.selectedButtonAt(index: debt.type)
+        addEmpytLabel()
     }
 }
